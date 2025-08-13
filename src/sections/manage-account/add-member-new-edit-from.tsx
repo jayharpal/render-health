@@ -138,7 +138,7 @@ export default function AddMemberNewEditFrom({ currentBooking, onClose }: Props)
       </Box>
 
       <Box>
-        <Typography fontWeight={'bold'} mb={2}>Next Of Kin</Typography>
+        <Typography fontWeight='bold' mb={2}>Next Of Kin</Typography>
         <Box
           rowGap={3}
           columnGap={2}

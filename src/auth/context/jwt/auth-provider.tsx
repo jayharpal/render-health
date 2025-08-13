@@ -249,6 +249,13 @@ export function AuthProvider({ children }: Props) {
           },
         });
 
+        return {
+          status: true,
+          message: "Login successful",
+          user: mockUser,
+          token: mockAccessToken,
+        };
+
         // enqueueSnackbar(response?.data?.message || "Login failed!", { variant: 'error' });
       } catch (error) {
         console.error('error', error);
@@ -256,7 +263,7 @@ export function AuthProvider({ children }: Props) {
         // enqueueSnackbar(error.message || "Login failed!", { variant: 'error' });
       }
     },
-    []
+    [dispatch]
   );
 
   // REGISTER
