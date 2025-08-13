@@ -191,6 +191,11 @@ export const stateOptions = [
     "Bauchi",
 ];
 
+export const roleOptions = [
+    "Addministrationn staff",
+    "Cashier"
+];
+
 export const lgaOptions = [
     "Ikeja",
     "Surulere",
@@ -211,3 +216,347 @@ export const months = [
     "July", "August", "September", "October", "November", "December"
 ];
 export const years = Array.from({ length: 100 }, (_, i) => String(new Date().getFullYear() - i));
+
+
+export const membersData: any[] = [
+    {
+        name: "Mr. Marko Marko",
+        address: "23 Science Road",
+        employeeId: "ID-Employee-1630409334",
+        role: "Administration Staff",
+        phone: "+234111111111111",
+        status: "Active User",
+    },
+    {
+        name: "Ms. Jane Doe",
+        address: "14 River Street",
+        employeeId: "ID-Employee-1630409335",
+        role: "Finance Officer",
+        phone: "+234222222222222",
+        status: "Active User",
+    },
+    {
+        name: "Mr. John Smith",
+        address: "99 Ocean Avenue",
+        employeeId: "ID-Employee-1630409336",
+        role: "IT Support",
+        phone: "+234333333333333",
+        status: "Inactive User",
+    },
+    {
+        name: "Mrs. Emily Clark",
+        address: "77 Greenway Drive",
+        employeeId: "ID-Employee-1630409337",
+        role: "Human Resources",
+        phone: "+234444444444444",
+        status: "Active User",
+    },
+    {
+        name: "Mr. Daniel White",
+        address: "5 Maple Lane",
+        employeeId: "ID-Employee-1630409338",
+        role: "Administration Staff",
+        phone: "+234555555555555",
+        status: "Inactive User",
+    },
+    {
+        name: "Ms. Olivia Brown",
+        address: "18 Rose Street",
+        employeeId: "ID-Employee-1630409339",
+        role: "Finance Officer",
+        phone: "+234666666666666",
+        status: "Active User",
+    },
+    {
+        name: "Mr. William Green",
+        address: "42 Pine Avenue",
+        employeeId: "ID-Employee-1630409340",
+        role: "IT Support",
+        phone: "+234777777777777",
+        status: "Active User",
+    },
+    {
+        name: "Mrs. Sophia Black",
+        address: "56 Willow Street",
+        employeeId: "ID-Employee-1630409341",
+        role: "Human Resources",
+        phone: "+234888888888888",
+        status: "Inactive User",
+    },
+    {
+        name: "Mr. James Carter",
+        address: "12 Cherry Road",
+        employeeId: "ID-Employee-1630409342",
+        role: "Administration Staff",
+        phone: "+234999999999999",
+        status: "Active User",
+    },
+    {
+        name: "Ms. Isabella Moore",
+        address: "67 Lake View",
+        employeeId: "ID-Employee-1630409343",
+        role: "Finance Officer",
+        phone: "+234101010101010",
+        status: "Inactive User",
+    },
+    {
+        name: "Mr. Henry Lewis",
+        address: "89 Hilltop Lane",
+        employeeId: "ID-Employee-1630409344",
+        role: "Administration Staff",
+        phone: "+234111122223333",
+        status: "Active User",
+    },
+    {
+        name: "Mrs. Ava Harris",
+        address: "31 Sunset Boulevard",
+        employeeId: "ID-Employee-1630409345",
+        role: "Human Resources",
+        phone: "+234444455556666",
+        status: "Active User",
+    },
+    {
+        name: "Mr. Ethan Walker",
+        address: "7 Elm Street",
+        employeeId: "ID-Employee-1630409346",
+        role: "IT Support",
+        phone: "+234777788889999",
+        status: "Inactive User",
+    },
+    {
+        name: "Ms. Charlotte Hill",
+        address: "25 River Bend",
+        employeeId: "ID-Employee-1630409347",
+        role: "Finance Officer",
+        phone: "+234123412341234",
+        status: "Active User",
+    },
+    {
+        name: "Mr. Liam Scott",
+        address: "10 Meadow Lane",
+        employeeId: "ID-Employee-1630409348",
+        role: "Administration Staff",
+        phone: "+234567856785678",
+        status: "Active User",
+    },
+];
+
+
+export const dealData = [
+    {
+        image: "https://via.placeholder.com/50",
+        name_of_facility: "Sunrise Medical Center",
+        deal_category: "Healthcare",
+        deal_start_date: "2025-01-15",
+        deal_end_date: "2025-06-15",
+        deal_status: "Active"
+    },
+    {
+        image: "https://via.placeholder.com/50",
+        name_of_facility: "Green Leaf Spa",
+        deal_category: "Wellness",
+        deal_start_date: "2025-02-01",
+        deal_end_date: "2025-05-30",
+        deal_status: "Inactive"
+    },
+    {
+        image: "https://via.placeholder.com/50",
+        name_of_facility: "FitZone Gym",
+        deal_category: "Fitness",
+        deal_start_date: "2025-03-10",
+        deal_end_date: "2025-09-10",
+        deal_status: "Active"
+    },
+    {
+        image: "https://via.placeholder.com/50",
+        name_of_facility: "Royal Hotel",
+        deal_category: "Hospitality",
+        deal_start_date: "2025-04-05",
+        deal_end_date: "2025-12-31",
+        deal_status: "Active"
+    },
+    {
+        image: "https://via.placeholder.com/50",
+        name_of_facility: "Bright Dental Clinic",
+        deal_category: "Healthcare",
+        deal_start_date: "2025-01-20",
+        deal_end_date: "2025-04-20",
+        deal_status: "Inactive"
+    }
+];
+
+
+export const facilityOpstion = [
+    {
+        label: "Global Hospital",
+        value: "Global Hospital"
+    },
+    {
+        label: "Local Hospital",
+        value: "Local Hospital"
+    },
+    {
+        label: "Test",
+        value: "Test"
+    },
+    {
+        label: "Merchant Test",
+        value: "Merchant Test"
+    },
+    {
+        label: "Demo",
+        value: "Demo"
+    },
+
+]
+
+
+export const CategoriesOpstion = [
+    {
+        label: "Categories 1",
+        value: "Categories 1"
+    },
+    {
+        label: "Categories 2",
+        value: "Categories 2"
+    },
+    {
+        label: "Categories 3",
+        value: "Categories 3"
+    },
+
+]
+
+
+export const appointments = [
+    {
+        date: "27 April 2023",
+        appointmentType: "Facility appointment",
+        doctorId: "1679464380",
+        patientProfile: "View Profile",
+        timeScheduled: "06:30 PM",
+        hospitalName: "--",
+        deal_status: "Active"
+    },
+    {
+        date: "15 May 2023",
+        appointmentType: "Teleconsultation",
+        doctorId: "9837465120",
+        patientProfile: "View Profile",
+        timeScheduled: "09:00 AM",
+        hospitalName: "City Hospital",
+        deal_status: "Active"
+    },
+    {
+        date: "02 June 2023",
+        appointmentType: "Home visit",
+        doctorId: "4521879650",
+        patientProfile: "View Profile",
+        timeScheduled: "11:15 AM",
+        hospitalName: "Green Valley Medical Center",
+        deal_status: "Inactive"
+    },
+    {
+        date: "18 July 2023",
+        appointmentType: "Facility appointment",
+        doctorId: "8675309123",
+        patientProfile: "View Profile",
+        timeScheduled: "04:45 PM",
+        hospitalName: "--",
+        deal_status: "Active"
+    },
+    {
+        date: "09 August 2023",
+        appointmentType: "Teleconsultation",
+        doctorId: "7345612890",
+        patientProfile: "View Profile",
+        timeScheduled: "02:00 PM",
+        hospitalName: "Sunrise Clinic",
+        deal_status: "Inactive"
+    }
+];
+
+
+export const filterOption = [
+    {
+        label: "All",
+        value: "All"
+    },
+    {
+        label: "Active",
+        value: "Active"
+    },
+    {
+        label: "Inactive",
+        value: "Inactive"
+    },
+    {
+        label: "Expired",
+        value: "Expired"
+    },
+]
+
+
+export const healthTypeFilterOption = [
+    {
+        label: "Initil Record",
+        value: "Initil Record"
+    },
+    {
+        label: "Past Record",
+        value: "Past Record"
+    },
+    {
+        label: "New Consulation",
+        value: "New Consulation"
+    },
+]
+
+
+export const patientData = [
+    {
+        date: "11 April 2023",
+        image: "https://via.placeholder.com/50",
+        patientId: "ID-7593840271",
+        hospital: "City Care Hospital",
+        doctorName: "Dr. Ramesh Verma",
+        medicalRecordNumber: "MRN-9082736451",
+        deal_status: "Active"
+    },
+    {
+        date: "12 April 2023",
+        image: "https://via.placeholder.com/50",
+        patientId: "ID-6384729105",
+        hospital: "Sunrise Medical Center",
+        doctorName: "Dr. Anita Sharma",
+        medicalRecordNumber: "MRN-7264510938",
+        deal_status: "Active"
+    },
+    {
+        date: "13 April 2023",
+        image: "https://via.placeholder.com/50",
+        patientId: "ID-9847263501",
+        hospital: "Global Hospital",
+        doctorName: "Dr. Karan Mehta",
+        medicalRecordNumber: "MRN-6173849205",
+        deal_status: "Inactive"
+    },
+    {
+        date: "14 April 2023",
+        image: "https://via.placeholder.com/50",
+        patientId: "ID-7263501984",
+        hospital: "Lotus Health Clinic",
+        doctorName: "Dr. Sneha Gupta",
+        medicalRecordNumber: "MRN-8203947561",
+        deal_status: "Active"
+    },
+    {
+        date: "15 April 2023",
+        image: "https://via.placeholder.com/50",
+        patientId: "ID-5039184726",
+        hospital: "Fortis Health Care",
+        doctorName: "Dr. Rajiv Kapoor",
+        medicalRecordNumber: "MRN-9350172846",
+        deal_status: "Inactive"
+    }
+];

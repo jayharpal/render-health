@@ -1,6 +1,6 @@
 // sections
 import { Metadata } from 'next';
-import { DashboardListView } from 'src/sections/dashboard/view';
+import { RenderEmployeesListView } from 'src/sections/manage-account/view';
 
 // ----------------------------------------------------------------------
 
@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function DashboardPage() {
-  return <>Comming soon Render Employee</>;;
+  return <RenderEmployeesListView/>;
 }

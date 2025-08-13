@@ -1,6 +1,6 @@
 // sections
 import { Metadata } from 'next';
-import { DealListView } from 'src/sections/manage-account/view';
+import { AppointmentListView } from 'src/sections/appointment/view';
 
 // ----------------------------------------------------------------------
 
@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function DashboardPage() {
-  return <DealListView/>;
+  return <AppointmentListView />;
 }
