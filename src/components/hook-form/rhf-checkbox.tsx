@@ -101,8 +101,8 @@ export function RHFMultiCheckbox({
                 key={option.value}
                 control={
                   <Checkbox
-                    checked={field.value.includes(option.value)}
-                    onChange={() => field.onChange(getSelected(field.value, option.value))}
+                    checked={field?.value?.includes(option?.value)}
+                    onChange={() => field.onChange(getSelected(field?.value, option?.value))}
                   />
                 }
                 label={option.label}

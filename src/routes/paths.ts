@@ -126,6 +126,12 @@ export const paths = {
       organizations: `${ROOTS.DASHBOARD}/manage-account/organizations`,
       renderEmployee: `${ROOTS.DASHBOARD}/manage-account/render-employee`,
     },
+    appointment: {
+      root: `${ROOTS.DASHBOARD}/appointment`,
+    },
+    healthRecord: {
+      root: `${ROOTS.DASHBOARD}/health-record`,
+    },
     inquiry: {
       root: `${ROOTS.DASHBOARD}/inquiry`,
       list: `${ROOTS.DASHBOARD}/inquiry/list`,

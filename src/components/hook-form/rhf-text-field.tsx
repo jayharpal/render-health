@@ -36,3 +36,29 @@ export default function RHFTextField({ name, helperText, type, ...other }: Props
     />
   );
 }
+
+
+
+export function RHFTextArea({ name, helperText, minRows = 3, ...other }: any) {
+  const { control } = useFormContext();
+
+  return (
+    <Controller
+      name={name}
+      control={control}
+      render={({ field, fieldState: { error } }) => (
+        <TextField
+          {...field}
+          fullWidth
+          multiline
+          minRows={minRows} // default min rows
+          value={field.value || ''}
+          onChange={(event) => field.onChange(event.target.value)}
+          error={!!error}
+          helperText={error ? error?.message : helperText}
+          {...other}
+        />
+      )}
+    />
+  );
+}

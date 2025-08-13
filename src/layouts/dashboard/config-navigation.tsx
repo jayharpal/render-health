@@ -125,6 +125,21 @@ export function useNavData() {
               ],
             }
             : null,
+
+          isAdmin
+            ? {
+              title: t('Appointment'),
+              path: paths.dashboard.appointment.root,
+              icon: ICONS.inquiry,
+            }
+            : null,
+          isAdmin
+            ? {
+              title: t('Health Record'),
+              path: paths.dashboard.healthRecord.root,
+              icon: ICONS.inquiry,
+            }
+            : null,
           // PROJECTS
           // {
           //   title: t('Projects'),
