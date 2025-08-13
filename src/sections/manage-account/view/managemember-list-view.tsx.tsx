@@ -36,9 +36,9 @@ import Iconify from 'src/components/iconify';
 import { InputAdornment, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import { IInquiry } from 'src/types/inquiry';
 import { hasData } from 'src/utils/helper';
-import ManageMembersTableRow from '../manage-members-table-row';
-import { dummyMembers } from 'src/utils/dummyMembers';
 import { useTheme } from '@mui/material/styles';
+import { dummyMembers } from 'src/utils/dummyMembers';
+import ManageMembersTableRow from '../manage-members-table-row';
 import AddMemberDialog from '../add-member-model';
 // ----------------------------------------------------------------------
 
@@ -95,7 +95,7 @@ export default function ManageMembersListView() {
 
   useEffect(() => {
     setTableData(dummyMembers || []);
-  }, [dummyMembers]);
+  }, []);
 
   const denseHeight = table.dense ? 52 : 72;
   const notFound = !hasData(tableData);
@@ -129,7 +129,7 @@ export default function ManageMembersListView() {
           justifyContent="space-between"
         >
           <Typography variant="h4">Manage Members/Patient</Typography>
-          <Box display={'flex'} gap={2}>
+          <Box display='flex' gap={2}>
             <Button
               variant="contained"
               sx={{

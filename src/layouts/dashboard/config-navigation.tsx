@@ -243,7 +243,7 @@ export function useNavData() {
         ].filter(Boolean),
       },
     ],
-    [t, isAdmin, roadmaps, unarchivedProjects, courses]
+    [t, isAdmin]
   );
 
   return data;

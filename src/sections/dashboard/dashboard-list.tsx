@@ -41,7 +41,7 @@ export default function DashboardList() {
           flexWrap="wrap"
           gap={2}
           mb={3}
-          width={"100%"}
+          width="100%"
         >
           <Box>
             <RHFDateField name="startDate" label="Start Date" />
