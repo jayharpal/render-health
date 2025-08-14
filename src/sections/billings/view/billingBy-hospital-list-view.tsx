@@ -18,6 +18,7 @@ import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import { useSettingsContext } from 'src/components/settings';
 import { useForm } from 'react-hook-form';
+import { FormControl, InputAdornment, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import {
   useTable,
   emptyRows,
@@ -26,29 +27,26 @@ import {
   TableHeadCustom,
   TablePaginationCustom,
 } from 'src/components/table';
-import FormProvider, { RHFDateField } from 'src/app/components/hook-form';
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
-import { LoadingScreen } from 'src/components/loading-screen';
-import { useDebounce } from 'src/hooks/use-debounce';
+import Iconify from 'src/components/iconify';
 import { Box, Stack } from '@mui/system';
-import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
+import { RootState, useDispatch, useSelector } from 'src/redux/store';
+import FormProvider, { RHFDateField } from 'src/app/components/hook-form';
+import { LoadingScreen } from 'src/components/loading-screen';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
-import { appointments } from 'src/utils/dummyMembers';
-import AppointmentTableRow from '../Appointment-table-row';
+import { hospitalStaffData } from 'src/utils/dummyMembers';
+import BillingByHospitalTableRow from '../billingBy-hospital-table-row';
 
 const TABLE_HEAD = [
-  { id: 'Date', label: 'DATE' },
-  { id: 'appointment_type', label: 'APPOINTMENT TYPE' },
-  { id: 'Doctor Id', label: 'DOCTOR ID' },
-  { id: 'Patient profile', label: 'PATIENT PROFILE' },
-  { id: 'time scheduled', label: 'TIME SCHEDULED' },
-  { id: 'Hospital Name', label: 'HOSPITAL NAME' },
+  { id: 'MEMBER DATA', label: 'MEMBER DATA' },
+  { id: 'HOSPITAL ID', label: 'HOSPITAL ID' },
+  { id: 'Doctor', label: 'DOCTOR' },
+  { id: 'NURSES', label: 'NURSES' },
+  { id: 'ADMIN', label: 'ADMIN' },
   { id: '', width: 88 },
 ];
 
-
-export default function AppointmentListView() {
+export default function BillingByHospitalListView() {
 
   const router = useRouter();
   const theme = useTheme();
@@ -56,28 +54,25 @@ export default function AppointmentListView() {
   const methods = useForm();
 
   const dispatch = useDispatch();
-  // const { inquirys, isLoading } = useSelector((state: RootState) => state.inquiry);
   const [searchQuery, setSearchQuery] = useState('');
   const [tableData, setTableData] = useState<any[] | []>([]);
-  const [statusFilter, setStatusFilter] = useState("All");
+  const [statusFilter, setStatusFilter] = useState("Doctor");
   const [isLoading, setIsLoading] = useState(false);
 
-
-  const handleStatusChange = (event: any) => {
-    setStatusFilter(event.target.value);
-  };
-
   useEffect(() => {
-    let filtered = appointments;
-
-    if (statusFilter !== "All") {
-      filtered = filtered.filter(
-        (member) => member.deal_status?.toLowerCase() === statusFilter.toLowerCase()
+    if (!searchQuery) {
+      setTableData(hospitalStaffData);
+    } else {
+      const filtered = hospitalStaffData.filter((member) =>
+        member?.memberData?.toLowerCase().includes(searchQuery.toLowerCase())
       );
+      setTableData(filtered);
     }
+  }, [searchQuery]);
 
-    setTableData(filtered);
-  }, [statusFilter]);
+  const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
 
   const table = useTable();
   const settings = useSettingsContext();
@@ -89,28 +84,34 @@ export default function AppointmentListView() {
   };
 
   useEffect(() => {
-    setTableData(appointments || []);
+    setTableData(hospitalStaffData || []);
   }, []);
 
   const denseHeight = table.dense ? 52 : 72;
   const notFound = !hasData(tableData);
 
   const renderSearchInput = (
-    <FormControl fullWidth sx={{ mt: 2.5 }}>
-      <Select value={statusFilter} onChange={handleStatusChange}>
-        <MenuItem value="All">All</MenuItem>
-        <MenuItem value="Active">Active</MenuItem>
-        <MenuItem value="Inactive">Inactive</MenuItem>
-        <MenuItem value="Expired">Expired</MenuItem>
-      </Select>
-    </FormControl>
+    <TextField
+      fullWidth
+      value={searchQuery}
+      onChange={handleSearchInput}
+      placeholder="Search Name..."
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled' }} />
+          </InputAdornment>
+        ),
+      }}
+      sx={{ mt: 2.5 }}
+    />
   );
-
   return (
     <>
       <FormProvider methods={methods}>
         <Container maxWidth={settings.themeStretch ? false : 'lg'}>
           <Stack
+            display="flex"
             direction="row"
             alignItems="center"
             sx={{
@@ -119,7 +120,7 @@ export default function AppointmentListView() {
             justifyContent="space-between"
           >
             <Box display='flex' flexDirection="row" gap={1}>
-              <Typography variant="h4">Appointment List</Typography>
+              <Typography variant="h4">Doctors Billing</Typography>
               <Button
                 variant="contained"
                 sx={{
@@ -129,31 +130,11 @@ export default function AppointmentListView() {
                 {tableData.length || 0}
               </Button>
             </Box>
-            <Box width="40%" sx={{ p: 2.5, pt: 0 }}>{renderSearchInput}</Box>
           </Stack>
 
           <Card>
             <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
-              <Box
-                display="flex"
-                flexDirection='row'
-                flexWrap="wrap"
-                gap={2}
-                mb={3}
-                width="100%"
-              >
-                <Box>
-                  <RHFDateField name="startDate" label="Start Date" />
-                </Box>
-                <Box>
-                  <RHFDateField name="endDate" label="End Date" />
-                </Box>
-                <Button
-                  variant="contained"
-                >
-                  Search
-                </Button>
-              </Box>
+              <Box sx={{ p: 2.5, pt: 0 }} width="100%">{renderSearchInput}</Box>
               <Scrollbar>
                 <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
                   <TableHeadCustom
@@ -188,7 +169,7 @@ export default function AppointmentListView() {
                               console.log(`sr no : ${sr_no}`);
 
                               return (
-                                <AppointmentTableRow
+                                <BillingByHospitalTableRow
                                   key={row._id}
                                   row={row}
                                   sr_no={sr_no}
@@ -222,8 +203,6 @@ export default function AppointmentListView() {
           </Card>
         </Container>
       </FormProvider>
-
-      {/* <AddDealDialog open={create.value} onClose={create.onFalse} /> */}
 
       <ConfirmDialog
         open={confirm.value}

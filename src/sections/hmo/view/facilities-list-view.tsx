@@ -34,32 +34,33 @@ import { Box, Stack } from '@mui/system';
 import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
-import { appointments } from 'src/utils/dummyMembers';
-import AppointmentTableRow from '../Appointment-table-row';
+import { facilityData } from 'src/utils/dummyMembers';
+import Iconify from 'src/app/components/iconify';
+import EnrolleeTableRow from '../enrollee-table-row';
+import AddEnrolleeDialog from '../enrollee-add-model';
+import FacilitiesTableRow from '../facilities-table-row';
+import AddFacilitiesDialog from '../facilities-add-model';
 
 const TABLE_HEAD = [
-  { id: 'Date', label: 'DATE' },
-  { id: 'appointment_type', label: 'APPOINTMENT TYPE' },
-  { id: 'Doctor Id', label: 'DOCTOR ID' },
-  { id: 'Patient profile', label: 'PATIENT PROFILE' },
-  { id: 'time scheduled', label: 'TIME SCHEDULED' },
-  { id: 'Hospital Name', label: 'HOSPITAL NAME' },
+  { id: 'Facility Name', label: 'FACILITY NAME' },
+  { id: 'Facility Id', label: 'FACILITY ID' },
+  { id: 'Address', label: 'ADDRESS' },
+  { id: 'State', label: 'STATE' },
+  { id: 'HMO Name', label: 'HMO NAME' },
+  { id: 'Status', label: 'STATUS' },
   { id: '', width: 88 },
 ];
 
-
-export default function AppointmentListView() {
+export default function FacilitiesListView() {
 
   const router = useRouter();
   const theme = useTheme();
   const create = useBoolean();
   const methods = useForm();
 
-  const dispatch = useDispatch();
-  // const { inquirys, isLoading } = useSelector((state: RootState) => state.inquiry);
   const [searchQuery, setSearchQuery] = useState('');
   const [tableData, setTableData] = useState<any[] | []>([]);
-  const [statusFilter, setStatusFilter] = useState("All");
+  const [statusFilter, setStatusFilter] = useState("Primary");
   const [isLoading, setIsLoading] = useState(false);
 
 
@@ -68,16 +69,31 @@ export default function AppointmentListView() {
   };
 
   useEffect(() => {
-    let filtered = appointments;
+    let filtered = facilityData;
 
-    if (statusFilter !== "All") {
+    if (statusFilter !== "Primary") {
       filtered = filtered.filter(
-        (member) => member.deal_status?.toLowerCase() === statusFilter.toLowerCase()
+        (member) => member.status?.toLowerCase() === statusFilter.toLowerCase()
       );
     }
 
     setTableData(filtered);
   }, [statusFilter]);
+
+  useEffect(() => {
+    if (!searchQuery) {
+      setTableData(facilityData);
+    } else {
+      const filtered = facilityData.filter((member) =>
+        member?.facilityName?.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setTableData(filtered);
+    }
+  }, [searchQuery]);
+
+  const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
 
   const table = useTable();
   const settings = useSettingsContext();
@@ -89,21 +105,37 @@ export default function AppointmentListView() {
   };
 
   useEffect(() => {
-    setTableData(appointments || []);
+    setTableData(facilityData || []);
   }, []);
 
   const denseHeight = table.dense ? 52 : 72;
   const notFound = !hasData(tableData);
 
-  const renderSearchInput = (
+  const renderStatusFilter = (
     <FormControl fullWidth sx={{ mt: 2.5 }}>
       <Select value={statusFilter} onChange={handleStatusChange}>
-        <MenuItem value="All">All</MenuItem>
-        <MenuItem value="Active">Active</MenuItem>
-        <MenuItem value="Inactive">Inactive</MenuItem>
-        <MenuItem value="Expired">Expired</MenuItem>
+        <MenuItem value="Primary">Primary</MenuItem>
+        <MenuItem value="Secondary">Secondary</MenuItem>
+        <MenuItem value="Tertiary">Tertiary</MenuItem>
       </Select>
     </FormControl>
+  );
+
+  const renderSearchInput = (
+    <TextField
+      fullWidth
+      value={searchQuery}
+      onChange={handleSearchInput}
+      placeholder="Search Name..."
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled' }} />
+          </InputAdornment>
+        ),
+      }}
+      sx={{ mt: 2.5 }}
+    />
   );
 
   return (
@@ -119,7 +151,7 @@ export default function AppointmentListView() {
             justifyContent="space-between"
           >
             <Box display='flex' flexDirection="row" gap={1}>
-              <Typography variant="h4">Appointment List</Typography>
+              <Typography variant="h4">Manage Facility</Typography>
               <Button
                 variant="contained"
                 sx={{
@@ -129,31 +161,24 @@ export default function AppointmentListView() {
                 {tableData.length || 0}
               </Button>
             </Box>
-            <Box width="40%" sx={{ p: 2.5, pt: 0 }}>{renderSearchInput}</Box>
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: theme.palette.primary.main
+              }}
+              onClick={create.onTrue}
+              startIcon={<Iconify icon="mingcute:add-line" />}
+            >
+              Add Facility
+            </Button>
           </Stack>
 
           <Card>
             <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
-              <Box
-                display="flex"
-                flexDirection='row'
-                flexWrap="wrap"
-                gap={2}
-                mb={3}
-                width="100%"
-              >
-                <Box>
-                  <RHFDateField name="startDate" label="Start Date" />
-                </Box>
-                <Box>
-                  <RHFDateField name="endDate" label="End Date" />
-                </Box>
-                <Button
-                  variant="contained"
-                >
-                  Search
-                </Button>
-              </Box>
+              <Stack display='flex' flexDirection='row' flexWrap='wrap' width="100%">
+                <Box sx={{ p: 2.5, pt: 0 }} width="80%">{renderSearchInput}</Box>
+                <Box sx={{ p: 2.5, pt: 0 }}  width="20%" >{renderStatusFilter}</Box>
+              </Stack>
               <Scrollbar>
                 <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
                   <TableHeadCustom
@@ -188,7 +213,7 @@ export default function AppointmentListView() {
                               console.log(`sr no : ${sr_no}`);
 
                               return (
-                                <AppointmentTableRow
+                                <FacilitiesTableRow
                                   key={row._id}
                                   row={row}
                                   sr_no={sr_no}
@@ -223,7 +248,7 @@ export default function AppointmentListView() {
         </Container>
       </FormProvider>
 
-      {/* <AddDealDialog open={create.value} onClose={create.onFalse} /> */}
+      <AddFacilitiesDialog open={create.value} onClose={create.onFalse} />
 
       <ConfirmDialog
         open={confirm.value}

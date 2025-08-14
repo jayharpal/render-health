@@ -17,7 +17,6 @@ import { useRouter } from 'src/routes/hook';
 import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import { useSettingsContext } from 'src/components/settings';
-import { useForm } from 'react-hook-form';
 import {
   useTable,
   emptyRows,
@@ -26,29 +25,30 @@ import {
   TableHeadCustom,
   TablePaginationCustom,
 } from 'src/components/table';
-import FormProvider, { RHFDateField } from 'src/app/components/hook-form';
 import { RootState, useDispatch, useSelector } from 'src/redux/store';
 import { LoadingScreen } from 'src/components/loading-screen';
 import { useDebounce } from 'src/hooks/use-debounce';
 import { Box, Stack } from '@mui/system';
+import Iconify from 'src/components/iconify';
 import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
-import { appointments } from 'src/utils/dummyMembers';
-import AppointmentTableRow from '../Appointment-table-row';
+import { doctorData, filterOption, healthTypeFilterOption, OptionBystatusBilling } from 'src/utils/dummyMembers';
+import FormProvider, { RHFDateField } from 'src/app/components/hook-form';
+import { useForm } from 'react-hook-form';
+import ViewAllBillingTableRow from '../view-all-billing-table-row';
 
 const TABLE_HEAD = [
-  { id: 'Date', label: 'DATE' },
-  { id: 'appointment_type', label: 'APPOINTMENT TYPE' },
-  { id: 'Doctor Id', label: 'DOCTOR ID' },
-  { id: 'Patient profile', label: 'PATIENT PROFILE' },
-  { id: 'time scheduled', label: 'TIME SCHEDULED' },
-  { id: 'Hospital Name', label: 'HOSPITAL NAME' },
+  { id: 'Created Date', label: 'DATE' },
+  { id: 'Doctor ID', label: 'DOCTOR ID' },
+  { id: 'Doctor Data', label: 'DOCTOR DATA' },
+  { id: 'Hospital Data', label: 'HOSPITAL DATA' },
+  { id: 'Phone Number', label: 'PHONE NUMBER' },
+  { id: 'Status', label: 'STATUS' },
   { id: '', width: 88 },
 ];
 
-
-export default function AppointmentListView() {
+export default function ViewAllBillingsListView() {
 
   const router = useRouter();
   const theme = useTheme();
@@ -56,23 +56,21 @@ export default function AppointmentListView() {
   const methods = useForm();
 
   const dispatch = useDispatch();
-  // const { inquirys, isLoading } = useSelector((state: RootState) => state.inquiry);
   const [searchQuery, setSearchQuery] = useState('');
   const [tableData, setTableData] = useState<any[] | []>([]);
-  const [statusFilter, setStatusFilter] = useState("All");
+  const [statusFilter, setStatusFilter] = useState("Doctor");
   const [isLoading, setIsLoading] = useState(false);
-
 
   const handleStatusChange = (event: any) => {
     setStatusFilter(event.target.value);
   };
 
   useEffect(() => {
-    let filtered = appointments;
+    let filtered = doctorData;
 
-    if (statusFilter !== "All") {
+    if (statusFilter !== "Doctor") {
       filtered = filtered.filter(
-        (member) => member.deal_status?.toLowerCase() === statusFilter.toLowerCase()
+        (member) => member.status?.toLowerCase() === statusFilter.toLowerCase()
       );
     }
 
@@ -89,19 +87,20 @@ export default function AppointmentListView() {
   };
 
   useEffect(() => {
-    setTableData(appointments || []);
+    setTableData(doctorData || []);
   }, []);
 
   const denseHeight = table.dense ? 52 : 72;
   const notFound = !hasData(tableData);
 
-  const renderSearchInput = (
+  const renderFilterByStatus = (
     <FormControl fullWidth sx={{ mt: 2.5 }}>
       <Select value={statusFilter} onChange={handleStatusChange}>
-        <MenuItem value="All">All</MenuItem>
-        <MenuItem value="Active">Active</MenuItem>
-        <MenuItem value="Inactive">Inactive</MenuItem>
-        <MenuItem value="Expired">Expired</MenuItem>
+        {OptionBystatusBilling.map((status) => (
+          <MenuItem key={status.value} value={status.value}>
+            {status.label}
+          </MenuItem>
+        ))}
       </Select>
     </FormControl>
   );
@@ -111,6 +110,7 @@ export default function AppointmentListView() {
       <FormProvider methods={methods}>
         <Container maxWidth={settings.themeStretch ? false : 'lg'}>
           <Stack
+            display="flex"
             direction="row"
             alignItems="center"
             sx={{
@@ -119,7 +119,7 @@ export default function AppointmentListView() {
             justifyContent="space-between"
           >
             <Box display='flex' flexDirection="row" gap={1}>
-              <Typography variant="h4">Appointment List</Typography>
+              <Typography variant="h4">Doctors Billing</Typography>
               <Button
                 variant="contained"
                 sx={{
@@ -129,31 +129,13 @@ export default function AppointmentListView() {
                 {tableData.length || 0}
               </Button>
             </Box>
-            <Box width="40%" sx={{ p: 2.5, pt: 0 }}>{renderSearchInput}</Box>
+            <Box display='flex'>
+              <Box width="100%" sx={{ p: 2.5, pt: 0 }}>{renderFilterByStatus}</Box>
+            </Box>
           </Stack>
 
           <Card>
             <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
-              <Box
-                display="flex"
-                flexDirection='row'
-                flexWrap="wrap"
-                gap={2}
-                mb={3}
-                width="100%"
-              >
-                <Box>
-                  <RHFDateField name="startDate" label="Start Date" />
-                </Box>
-                <Box>
-                  <RHFDateField name="endDate" label="End Date" />
-                </Box>
-                <Button
-                  variant="contained"
-                >
-                  Search
-                </Button>
-              </Box>
               <Scrollbar>
                 <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
                   <TableHeadCustom
@@ -188,7 +170,7 @@ export default function AppointmentListView() {
                               console.log(`sr no : ${sr_no}`);
 
                               return (
-                                <AppointmentTableRow
+                                <ViewAllBillingTableRow
                                   key={row._id}
                                   row={row}
                                   sr_no={sr_no}
@@ -222,8 +204,6 @@ export default function AppointmentListView() {
           </Card>
         </Container>
       </FormProvider>
-
-      {/* <AddDealDialog open={create.value} onClose={create.onFalse} /> */}
 
       <ConfirmDialog
         open={confirm.value}
