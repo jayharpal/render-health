@@ -126,11 +126,28 @@ export const paths = {
       organizations: `${ROOTS.DASHBOARD}/manage-account/organizations`,
       renderEmployee: `${ROOTS.DASHBOARD}/manage-account/render-employee`,
     },
+    hmo: {
+      root: `${ROOTS.DASHBOARD}/hmo`,
+      addHmo: `${ROOTS.DASHBOARD}/hmo/add-hmo`,
+      enrollee: `${ROOTS.DASHBOARD}/hmo/enrollee`,
+      billsClaims: `${ROOTS.DASHBOARD}/hmo/bills-claims`,
+      facilities: `${ROOTS.DASHBOARD}/hmo/facilities`,
+      // renderEmployee: `${ROOTS.DASHBOARD}/hmo/render-employee`,
+    },
+    billings: {
+      root: `${ROOTS.DASHBOARD}/billings`,
+      billingsByHospital: `${ROOTS.DASHBOARD}/billings/billings-by-hospital`,
+      disputedBillings: `${ROOTS.DASHBOARD}/billings/disputed-billings`,
+      viewAllBillings: `${ROOTS.DASHBOARD}/billings/view-all-billings`,
+    },
     appointment: {
       root: `${ROOTS.DASHBOARD}/appointment`,
     },
     healthRecord: {
       root: `${ROOTS.DASHBOARD}/health-record`,
+    },
+    searchPatient: {
+      root: `${ROOTS.DASHBOARD}/search-patient`,
     },
     inquiry: {
       root: `${ROOTS.DASHBOARD}/inquiry`,

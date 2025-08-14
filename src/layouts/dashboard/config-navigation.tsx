@@ -111,6 +111,7 @@ export function useNavData() {
               // ],
             }
             : null,
+
           isAdmin
             ? {
               title: t('Manage Accounts'),
@@ -140,6 +141,42 @@ export function useNavData() {
               icon: ICONS.inquiry,
             }
             : null,
+
+          isAdmin
+            ? {
+              title: t('HMO'),
+              path: paths.dashboard.hmo.root,
+              icon: ICONS.inquiry,
+              children: [
+                { title: t('Add Hmo'), path: paths.dashboard.hmo.addHmo },
+                { title: t('Enrollee'), path: paths.dashboard.hmo.enrollee },
+                { title: t('Bills & Claims'), path: paths.dashboard.hmo.billsClaims },
+                { title: t('Facilities'), path: paths.dashboard.hmo.facilities },
+              ],
+            }
+            : null,
+
+          isAdmin
+            ? {
+              title: t('search-patient'),
+              path: paths.dashboard.searchPatient.root,
+              icon: ICONS.inquiry,
+            }
+            : null,
+
+          isAdmin
+            ? {
+              title: t('Billings'),
+              path: paths.dashboard.billings.root,
+              icon: ICONS.inquiry,
+              children: [
+                { title: t('View All Billings'), path: paths.dashboard.billings.viewAllBillings },
+                { title: t('Billings By Hospital'), path: paths.dashboard.billings.billingsByHospital },
+                { title: t('Disputed Billings'), path: paths.dashboard.billings.disputedBillings },
+              ],
+            }
+            : null,
+
           // PROJECTS
           // {
           //   title: t('Projects'),

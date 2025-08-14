@@ -152,7 +152,6 @@ export const dummyMembers: any[] = [
     },
 ];
 
-
 export const hospitalOptions = [
     "Lagos University Teaching Hospital",
     "National Hospital Abuja",
@@ -164,7 +163,6 @@ export const hospitalOptions = [
     "Federal Medical Centre Abeokuta",
     "Federal Medical Centre Owerri",
 ];
-
 
 export const insuranceOptions = [
     "AXA Mansard",
@@ -211,12 +209,13 @@ export const lgaOptions = [
 
 // Date of Birth dropdowns
 export const days = Array.from({ length: 31 }, (_, i) => String(i + 1).padStart(2, "0"));
+
 export const months = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
-export const years = Array.from({ length: 100 }, (_, i) => String(new Date().getFullYear() - i));
 
+export const years = Array.from({ length: 100 }, (_, i) => String(new Date().getFullYear() - i));
 
 export const membersData: any[] = [
     {
@@ -341,7 +340,6 @@ export const membersData: any[] = [
     },
 ];
 
-
 export const dealData = [
     {
         image: "https://via.placeholder.com/50",
@@ -385,7 +383,6 @@ export const dealData = [
     }
 ];
 
-
 export const facilityOpstion = [
     {
         label: "Global Hospital",
@@ -410,7 +407,6 @@ export const facilityOpstion = [
 
 ]
 
-
 export const CategoriesOpstion = [
     {
         label: "Categories 1",
@@ -426,7 +422,6 @@ export const CategoriesOpstion = [
     },
 
 ]
-
 
 export const appointments = [
     {
@@ -476,7 +471,6 @@ export const appointments = [
     }
 ];
 
-
 export const filterOption = [
     {
         label: "All",
@@ -496,7 +490,6 @@ export const filterOption = [
     },
 ]
 
-
 export const healthTypeFilterOption = [
     {
         label: "Initil Record",
@@ -511,7 +504,6 @@ export const healthTypeFilterOption = [
         value: "New Consulation"
     },
 ]
-
 
 export const patientData = [
     {
@@ -559,4 +551,404 @@ export const patientData = [
         medicalRecordNumber: "MRN-9350172846",
         deal_status: "Inactive"
     }
+];
+
+export const hmoData = [
+    {
+        hmoName: "MediCare Plus",
+        hmoId: "HMO-001",
+        staff: 45,
+        enrollee: 320,
+        facilities: 8,
+        billsClaims: "$12,450",
+        status: "Active",
+    },
+    {
+        hmoName: "HealthFirst",
+        hmoId: "HMO-002",
+        staff: 32,
+        enrollee: 280,
+        facilities: 6,
+        billsClaims: "$9,780",
+        status: "Active",
+    },
+    {
+        hmoName: "CareWell",
+        hmoId: "HMO-003",
+        staff: 28,
+        enrollee: 210,
+        facilities: 5,
+        billsClaims: "$7,340",
+        status: "Pending",
+    },
+    {
+        hmoName: "LifeGuard Health",
+        hmoId: "HMO-004",
+        staff: 51,
+        enrollee: 400,
+        facilities: 10,
+        billsClaims: "$15,890",
+        status: "Active",
+    },
+    {
+        hmoName: "WellnessCover",
+        hmoId: "HMO-005",
+        staff: 20,
+        enrollee: 150,
+        facilities: 3,
+        billsClaims: "$5,670",
+        status: "Inactive",
+    },
+];
+
+export const enrolleeData = [
+    {
+        createdDate: "2023-04-19",
+        enrolleeName: "John Doe",
+        assignId: "ASG-1001",
+        companyName: "Global Health Corp",
+        typeOfEnrollee: "Primary",
+        status: "Active",
+    },
+    {
+        createdDate: "2023-04-18",
+        enrolleeName: "Jane Smith",
+        assignId: "ASG-1002",
+        companyName: "WellCare Ltd",
+        typeOfEnrollee: "Dependent",
+        status: "Inactive",
+    },
+    {
+        createdDate: "2023-04-15",
+        enrolleeName: "Michael Johnson",
+        assignId: "ASG-1003",
+        companyName: "LifePlus Insurance",
+        typeOfEnrollee: "Primary",
+        status: "Active",
+    },
+    {
+        createdDate: "2023-04-12",
+        enrolleeName: "Emily Davis",
+        assignId: "ASG-1004",
+        companyName: "HealthFirst Partners",
+        typeOfEnrollee: "Dependent",
+        status: "Pending",
+    },
+    {
+        createdDate: "2023-04-10",
+        enrolleeName: "Robert Brown",
+        assignId: "ASG-1005",
+        companyName: "CareWell Group",
+        typeOfEnrollee: "Primary",
+        status: "Active",
+    },
+];
+
+export const TypeOfDependent = [
+    {
+        label: "Child",
+        value: "Child"
+    },
+    {
+        label: "Spouse",
+        value: "Spouse"
+    },
+    {
+        label: "Extra",
+        value: "Extra"
+    },
+]
+
+export const assignedFacility = [
+    {
+        label: "Facility 1",
+        value: "Facility 1"
+    },
+    {
+        label: "Facility 2",
+        value: "Facility 2"
+    },
+    {
+        label: "Facility 3",
+        value: "Facility 3"
+    },
+]
+
+export const categoryTypeData = [
+    {
+        label: "Primary",
+        value: "Primary"
+    },
+    {
+        label: "Secondary",
+        value: "Secondary"
+    },
+    {
+        label: "Tertiary",
+        value: "Tertiary"
+    },
+]
+
+export const typeOfEnrollee = [
+    {
+        label: "PHIS",
+        value: "PHIS"
+    },
+    {
+        label: "NHIS",
+        value: "NHIS"
+    },
+    {
+        label: "Extra",
+        value: "Extra"
+    },
+]
+
+export const AssignedBillingTariff = [
+    {
+        label: "Billing Tariff",
+        value: "Billing Tariff"
+    },
+    {
+        label: "Billing Tariff 2",
+        value: "Billing Tariff 2"
+    },
+]
+
+export const billsClaimsData = [
+    {
+        dateReceived: "2023-04-19",
+        authorizationCode: "AUTH-90321",
+        hospitalLabs: "Global Hospital",
+        enrolleeName: "John Doe",
+        requested: 1200,
+        approved: 1100,
+        paid: 1100,
+    },
+    {
+        dateReceived: "2023-04-18",
+        authorizationCode: "AUTH-90322",
+        hospitalLabs: "City Labs",
+        enrolleeName: "Jane Smith",
+        requested: 800,
+        approved: 750,
+        paid: 750,
+    },
+    {
+        dateReceived: "2023-04-15",
+        authorizationCode: "AUTH-90323",
+        hospitalLabs: "MediCare Clinic",
+        enrolleeName: "Michael Johnson",
+        requested: 1500,
+        approved: 1400,
+        paid: 1400,
+    },
+    {
+        dateReceived: "2023-04-12",
+        authorizationCode: "AUTH-90324",
+        hospitalLabs: "LifeCare Hospital",
+        enrolleeName: "Emily Davis",
+        requested: 950,
+        approved: 900,
+        paid: 900,
+    },
+    {
+        dateReceived: "2023-04-10",
+        authorizationCode: "AUTH-90325",
+        hospitalLabs: "Prime Health Labs",
+        enrolleeName: "Robert Brown",
+        requested: 2000,
+        approved: 1800,
+        paid: 1800,
+    },
+];
+
+export const billsClaimsOutStandingData = [
+    {
+        dateReceived: "2023-04-19",
+        authorizationCode: "AUTH-525896",
+        hospitalLabs: "Hospital Global Hospital",
+        enrolleeName: "Test 1",
+        requested: 8900,
+        approved: 2589,
+        paid: 263,
+    },
+    {
+        dateReceived: "2023-04-18",
+        authorizationCode: "AUTH-001122",
+        hospitalLabs: "City Labs",
+        enrolleeName: "Test 2",
+        requested: 900,
+        approved: 1500,
+        paid: 8800,
+    },
+];
+
+export const billsClaimspaidData = [
+    {
+        dateReceived: "2023-04-19",
+        authorizationCode: "AUTH-520225",
+        hospitalLabs: "Hospital Global Hospital",
+        enrolleeName: "Test 1",
+        requested: 1500,
+        approved: 150,
+        paid: 199,
+    },
+    {
+        dateReceived: "2035-01-25",
+        authorizationCode: "AUTH-58955",
+        hospitalLabs: "City Labs",
+        enrolleeName: "Test 2",
+        requested: 900,
+        approved: 1500,
+        paid: 8800,
+    },
+    {
+        dateReceived: "1999-04-20",
+        authorizationCode: "AUTH-8956",
+        hospitalLabs: "City Labs",
+        enrolleeName: "Test 2",
+        requested: 900,
+        approved: 1500,
+        paid: 8800,
+    }
+];
+
+export const facilityData = [
+    {
+        facilityName: "Global Hospital",
+        facilityId: "FAC-1001",
+        address: "123 Main Street, Lagos",
+        state: "Lagos",
+        hmoName: "HealthFirst HMO",
+        status: "Active",
+    },
+    {
+        facilityName: "City Medical Center",
+        facilityId: "FAC-1002",
+        address: "45 Broad Avenue, Abuja",
+        state: "FCT",
+        hmoName: "WellCare HMO",
+        status: "Inactive",
+    },
+    {
+        facilityName: "PrimeCare Clinic",
+        facilityId: "FAC-1003",
+        address: "78 King’s Road, Port Harcourt",
+        state: "Rivers",
+        hmoName: "MedPlus HMO",
+        status: "Active",
+    },
+    {
+        facilityName: "LifeLine Hospital",
+        facilityId: "FAC-1004",
+        address: "16 Park Lane, Ibadan",
+        state: "Oyo",
+        hmoName: "SecureHealth HMO",
+        status: "Active",
+    },
+    {
+        facilityName: "Hope Wellness Center",
+        facilityId: "FAC-1005",
+        address: "210 Freedom Street, Enugu",
+        state: "Enugu",
+        hmoName: "CareTrust HMO",
+        status: "Inactive",
+    },
+];
+
+export const OptionBystatusBilling = [
+    {
+        label: "Doctor",
+        value: "Doctor"
+    },
+    {
+        label: "Hospital",
+        value: "Hospital"
+    },
+    {
+        label: "Paid/Unpaid",
+        value: "Paid/Unpaid"
+    },
+]
+
+export const doctorData = [
+    {
+        createdDate: "2025-08-01",
+        doctorId: "DOC-2001",
+        doctorData: "Dr. Samuel Okafor",
+        hospitalData: "Global Hospital, Lagos",
+        phoneNumber: "+2348012345678",
+        status: "Active",
+    },
+    {
+        createdDate: "2025-07-25",
+        doctorId: "DOC-2002",
+        doctorData: "Dr. Grace Adebayo",
+        hospitalData: "City Medical Center, Abuja",
+        phoneNumber: "+2348098765432",
+        status: "Inactive",
+    },
+    {
+        createdDate: "2025-07-10",
+        doctorId: "DOC-2003",
+        doctorData: "Dr. Emeka Nwosu",
+        hospitalData: "PrimeCare Clinic, Port Harcourt",
+        phoneNumber: "+2348023456789",
+        status: "Active",
+    },
+    {
+        createdDate: "2025-06-30",
+        doctorId: "DOC-2004",
+        doctorData: "Dr. Aisha Bello",
+        hospitalData: "LifeLine Hospital, Ibadan",
+        phoneNumber: "+2348076543210",
+        status: "Active",
+    },
+    {
+        createdDate: "2025-06-15",
+        doctorId: "DOC-2005",
+        doctorData: "Dr. Tunde Adeyemi",
+        hospitalData: "Hope Wellness Center, Enugu",
+        phoneNumber: "+2348056789123",
+        status: "Inactive",
+    },
+];
+
+export const hospitalStaffData = [
+  {
+    memberData: "Lagos Central Hospital",
+    hospitalId: "HSP-1001",
+    doctors: 25,
+    nurses: 48,
+    admin: 12
+  },
+  {
+    memberData: "City Medical Center, Abuja",
+    hospitalId: "HSP-1002",
+    doctors: 18,
+    nurses: 35,
+    admin: 9
+  },
+  {
+    memberData: "PrimeCare Clinic, Port Harcourt",
+    hospitalId: "HSP-1003",
+    doctors: 10,
+    nurses: 22,
+    admin: 5
+  },
+  {
+    memberData: "LifeLine Hospital, Ibadan",
+    hospitalId: "HSP-1004",
+    doctors: 15,
+    nurses: 28,
+    admin: 8
+  },
+  {
+    memberData: "Hope Wellness Center, Enugu",
+    hospitalId: "HSP-1005",
+    doctors: 8,
+    nurses: 16,
+    admin: 4
+  }
 ];
