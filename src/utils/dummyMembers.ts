@@ -406,7 +406,6 @@ export const facilityOpstion = [
     },
 
 ]
-
 export const BankOpstion = [
     {
         label: "Bank A",
@@ -895,7 +894,6 @@ export const OptionBystatusBilling = [
         value: "Paid/Unpaid"
     },
 ]
-
 export const merchantTypeoption = [
     {
         label: "Hospitals",
@@ -957,7 +955,6 @@ export const statusTypeoption = [
         value: "Other"
     },
 ]
-
 export const doctorData = [
     {
         createdDate: "2025-08-01",
@@ -1375,4 +1372,39 @@ export const claimData = [
         date: "May 15, 2023 - 08:30 AM"
     }
 ];
-
+  {
+    memberData: "Lagos Central Hospital",
+    hospitalId: "HSP-1001",
+    doctors: 25,
+    nurses: 48,
+    admin: 12
+  },
+  {
+    memberData: "City Medical Center, Abuja",
+    hospitalId: "HSP-1002",
+    doctors: 18,
+    nurses: 35,
+    admin: 9
+  },
+  {
+    memberData: "PrimeCare Clinic, Port Harcourt",
+    hospitalId: "HSP-1003",
+    doctors: 10,
+    nurses: 22,
+    admin: 5
+  },
+  {
+    memberData: "LifeLine Hospital, Ibadan",
+    hospitalId: "HSP-1004",
+    doctors: 15,
+    nurses: 28,
+    admin: 8
+  },
+  {
+    memberData: "Hope Wellness Center, Enugu",
+    hospitalId: "HSP-1005",
+    doctors: 8,
+    nurses: 16,
+    admin: 4
+  }
+];

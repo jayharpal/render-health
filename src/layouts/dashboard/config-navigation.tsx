@@ -177,7 +177,6 @@ export function useNavData() {
             }
             : null,
 
-
           isAdmin
             ? {
               title: t('Savings Card'),
