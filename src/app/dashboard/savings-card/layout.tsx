@@ -1,14 +1,13 @@
-import { Metadata } from 'next';
 import React from 'react';
 
 type LayoutProps = {
   children: React.ReactNode;
 };
 
-export const metadata: Metadata = {
+export const metadata = {
   title: {
-    template: '%s | Render Health',
-    default: 'Course',
+    template: 'Render Health',
+    default: 'Render Health',
   },
 };
 

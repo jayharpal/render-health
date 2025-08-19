@@ -7,7 +7,7 @@ type LayoutProps = {
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | TOFORZERO',
+    template: '%s | Render Health',
     default: 'Roadmap',
   },
 };

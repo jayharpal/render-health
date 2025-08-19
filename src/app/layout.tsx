@@ -35,7 +35,7 @@ export const viewport = {
 };
 
 // export const metadata = {
-//   title: 'Project List | TOFORZERO',
+//   title: 'Project List | Render Health',
 //   description:
 //     'Efficient project management with our intuitive taskboard. Organize tasks, collaborate seamlessly & boost productivity. Try today!',
 //   keywords: 'task, project, management, collaboration, productivity, tool, app, tracker, organizer, kanban, board, workflow, teamwork, planner, agile, schedule, prioritization, progress, dashboard, admin, organization, planning, coordination, assignment, scheduling, project management, task tracking, team coordination, online taskboard, task assignment, task scheduling, project teamwork, agile task, kanban board, productivity app, collaboration tool, task organizer',

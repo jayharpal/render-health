@@ -6,7 +6,7 @@ type LayoutProps = {
 
 export const metadata = {
   title: {
-    template: '%s | TOFORZERO',
+    template: '%s | Render Health',
     default: 'Inquiry',
   },
 };

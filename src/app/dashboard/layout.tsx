@@ -9,8 +9,8 @@ type Props = {
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | TOFORZERO',
-    default: 'TOFORZERO',
+    template: '%s | Render Health',
+    default: 'Render Health',
   },
   description:
     'Efficient project management with our intuitive taskboard. Organize tasks, collaborate seamlessly & boost productivity. Try today!',

@@ -1,6 +1,6 @@
 // sections
 import { Metadata } from 'next';
-import DisputeBillingHospitalListView from 'src/sections/billings/view/dispute-billing-hospital-list-view';
+import { MembersListView } from 'src/sections/savings-card/view';
 
 // ----------------------------------------------------------------------
 
@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function DashboardPage() {
-  return <DisputeBillingHospitalListView />;
+  return <MembersListView/>;
 }

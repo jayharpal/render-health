@@ -9,7 +9,7 @@ import { InquiryEditView } from '../../../../../sections/inquiry/view';
 // ----------------------------------------------------------------------
 
 // export const metadata = {
-//   title: 'Inquiry Edit | TOFORZERO',
+//   title: 'Inquiry Edit | Render Health',
 // };
 
 export default function UserEditPage() {
