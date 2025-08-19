@@ -17,6 +17,7 @@ import { useRouter } from 'src/routes/hook';
 import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import { useSettingsContext } from 'src/components/settings';
+import { useForm } from 'react-hook-form';
 import {
   useTable,
   emptyRows,
@@ -25,29 +26,29 @@ import {
   TableHeadCustom,
   TablePaginationCustom,
 } from 'src/components/table';
+import FormProvider from 'src/app/components/hook-form';
 import { RootState, useDispatch, useSelector } from 'src/redux/store';
 import { LoadingScreen } from 'src/components/loading-screen';
 import { useDebounce } from 'src/hooks/use-debounce';
 import { Box, Stack } from '@mui/system';
-import Iconify from 'src/components/iconify';
 import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
-import { patientData, filterOption, healthTypeFilterOption } from 'src/utils/dummyMembers';
-import FormProvider, { RHFDateField } from 'src/app/components/hook-form';
-import { useForm } from 'react-hook-form';
-import HealthRecordTableRow from '../health-record-table-row';
+import { merchants, facilityOpstion, merchantTypeoption, RecommendationsData } from 'src/utils/dummyMembers';
+import Iconify from 'src/app/components/iconify';
+import AddMerchantsDialog from '../merchants-add-model';
+import MerchantsTableRow from '../merchants-table-row';
+import MerchantsRecommendationsTableRow from '../merchants-recommendations-table-row';
 
 const TABLE_HEAD = [
-  { id: 'Date', label: 'DATE' },
-  { id: 'Patient', label: 'PATIENT' },
-  { id: 'Hospital', label: 'HOSPITAL' },
-  { id: 'Doctor Name', label: 'DOCTOR NAME' },
-  { id: 'MEDICAL RECORD NUMBER', label: 'MEDICAL RECORD NUMBER' },
+  { id: 'ID', label: 'ID' },
+  { id: 'BUSINESS NAME', label: 'BUSINESS NAME' },
+  { id: 'Onboarded By', label: 'ONBOARDED BY' },
+  { id: 'TYPE', label: 'TYPE' },
   { id: '', width: 88 },
 ];
 
-export default function HealthRecordListView() {
+export default function MerchantsRecommendationsListView() {
 
   const router = useRouter();
   const theme = useTheme();
@@ -55,31 +56,29 @@ export default function HealthRecordListView() {
   const methods = useForm();
 
   const dispatch = useDispatch();
-  const { inquirys, isLoading } = useSelector((state: RootState) => state.inquiry);
   const [searchQuery, setSearchQuery] = useState('');
   const [tableData, setTableData] = useState<any[] | []>([]);
-  const [statusFilter, setStatusFilter] = useState("All");
-  const [healthTypeFilter, setHealthTypeFilter] = useState("Initil Record");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleStatusChange = (event: any) => {
     setStatusFilter(event.target.value);
   };
 
-  const handlehealthTypeChange = (event: any) => {
-    setHealthTypeFilter(event.target.value);
-  };
-
   useEffect(() => {
-    let filtered = patientData;
-
-    if (statusFilter !== "All") {
-      filtered = filtered.filter(
-        (member) => member.deal_status?.toLowerCase() === statusFilter.toLowerCase()
+    if (!searchQuery) {
+      setTableData(RecommendationsData);
+    } else {
+      const filtered = RecommendationsData.filter((member) =>
+        member.businessName?.toLowerCase().includes(searchQuery.toLowerCase())
       );
+      setTableData(filtered);
     }
+  }, [searchQuery]);
 
-    setTableData(filtered);
-  }, [statusFilter]);
+  const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
 
   const table = useTable();
   const settings = useSettingsContext();
@@ -91,33 +90,49 @@ export default function HealthRecordListView() {
   };
 
   useEffect(() => {
-    setTableData(patientData || []);
+    setTableData(RecommendationsData || []);
   }, []);
 
   const denseHeight = table.dense ? 52 : 72;
   const notFound = !hasData(tableData);
 
-  const renderFilterByStatus = (
+  const renderStatusFilter = (
     <FormControl fullWidth sx={{ mt: 2.5 }}>
-      <Select value={statusFilter} onChange={handleStatusChange}>
-        {filterOption.map((status) => (
+      <TextField
+        name='Merchant Type'
+        label="Merchant Type"
+        onChange={handleStatusChange}
+        select
+      >
+        <MenuItem value="">
+          <em>Select By Facility Type</em>
+        </MenuItem>
+        {merchantTypeoption.map((status) => (
           <MenuItem key={status.value} value={status.value}>
             {status.label}
           </MenuItem>
         ))}
-      </Select>
+      </TextField>
     </FormControl>
   );
 
-  const renderFilterHealthType = (
+  const renderSearchInput = (
     <FormControl fullWidth sx={{ mt: 2.5 }}>
-      <Select value={healthTypeFilter} onChange={handlehealthTypeChange}>
-        {healthTypeFilterOption.map((status) => (
+      <TextField
+        name='Handler Type'
+        label="Handler Type"
+        onChange={handleStatusChange}
+        select
+      >
+        <MenuItem value="">
+          <em>Select By Handler Type</em>
+        </MenuItem>
+        {merchantTypeoption.map((status) => (
           <MenuItem key={status.value} value={status.value}>
             {status.label}
           </MenuItem>
         ))}
-      </Select>
+      </TextField>
     </FormControl>
   );
 
@@ -126,7 +141,6 @@ export default function HealthRecordListView() {
       <FormProvider methods={methods}>
         <Container maxWidth={settings.themeStretch ? false : 'lg'}>
           <Stack
-            display="flex"
             direction="row"
             alignItems="center"
             sx={{
@@ -135,7 +149,7 @@ export default function HealthRecordListView() {
             justifyContent="space-between"
           >
             <Box display='flex' flexDirection="row" gap={1}>
-              <Typography variant="h4">Health Record List</Typography>
+              <Typography variant="h4">Merchant Recommendations</Typography>
               <Button
                 variant="contained"
                 sx={{
@@ -145,34 +159,23 @@ export default function HealthRecordListView() {
                 {tableData.length || 0}
               </Button>
             </Box>
-            <Box display='flex'>
-              <Box width="100%" sx={{ p: 2.5, pt: 0 }}>{renderFilterByStatus}</Box>
-              <Box width="100%" sx={{ p: 2.5, pt: 0 }}>{renderFilterHealthType}</Box>
-            </Box>
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: theme.palette.primary.main
+              }}
+              onClick={create.onTrue}
+              startIcon={<Iconify icon="mingcute:add-line" />}
+            >
+              Add Merchants
+            </Button>
           </Stack>
 
           <Card>
             <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
-              <Stack
-                display="flex"
-                flexDirection='row'
-                flexWrap="wrap"
-                gap={2}
-                mb={3}
-                width="100%"
-                padding={2.5}
-              >
-                <Box>
-                  <RHFDateField name="startDate" label="Start Date" />
-                </Box>
-                <Box>
-                  <RHFDateField name="endDate" label="End Date" />
-                </Box>
-                <Button
-                  variant="contained"
-                >
-                  Search
-                </Button>
+              <Stack display='flex' flexDirection='row' flexWrap='wrap' width="100%">
+                <Box sx={{ p: 2.5, pt: 0 }} width="30%">{renderSearchInput}</Box>
+                <Box sx={{ p: 2.5, pt: 0 }} width="30%" >{renderStatusFilter}</Box>
               </Stack>
               <Scrollbar>
                 <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
@@ -208,7 +211,7 @@ export default function HealthRecordListView() {
                               console.log(`sr no : ${sr_no}`);
 
                               return (
-                                <HealthRecordTableRow
+                                <MerchantsRecommendationsTableRow
                                   key={row._id}
                                   row={row}
                                   sr_no={sr_no}
@@ -242,6 +245,8 @@ export default function HealthRecordListView() {
           </Card>
         </Container>
       </FormProvider>
+
+      <AddMerchantsDialog open={create.value} onClose={create.onFalse} />
 
       <ConfirmDialog
         open={confirm.value}

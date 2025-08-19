@@ -407,6 +407,30 @@ export const facilityOpstion = [
 
 ]
 
+export const BankOpstion = [
+    {
+        label: "Bank A",
+        value: "Bank A"
+    },
+    {
+        label: "Bank B",
+        value: "Bank B"
+    },
+    {
+        label: "Bank C",
+        value: "Bank C"
+    },
+    {
+        label: "Bank D",
+        value: "Bank D"
+    },
+    {
+        label: "Bank E",
+        value: "Bank E"
+    },
+
+]
+
 export const CategoriesOpstion = [
     {
         label: "Categories 1",
@@ -872,6 +896,68 @@ export const OptionBystatusBilling = [
     },
 ]
 
+export const merchantTypeoption = [
+    {
+        label: "Hospitals",
+        value: "Hospitals"
+    },
+    {
+        label: "Pharmacy",
+        value: "Pharmacy"
+    },
+    {
+        label: "Online",
+        value: "Online"
+    },
+    {
+        label: "GYM",
+        value: "GYM"
+    },
+    {
+        label: "Other",
+        value: "Other"
+    },
+]
+
+export const approvedPaymentType = [
+    {
+        label: "ALL",
+        value: "ALL"
+    },
+    {
+        label: "PAID",
+        value: "PAID"
+    },
+    {
+        label: "UNPAID",
+        value: "UNPAID"
+    },
+]
+
+
+export const statusTypeoption = [
+    {
+        label: "Hold",
+        value: "Hold"
+    },
+    {
+        label: "In review",
+        value: "In review"
+    },
+    {
+        label: "Approved",
+        value: "Approved"
+    },
+    {
+        label: "Rejected",
+        value: "Rejected"
+    },
+    {
+        label: "Other",
+        value: "Other"
+    },
+]
+
 export const doctorData = [
     {
         createdDate: "2025-08-01",
@@ -916,39 +1002,377 @@ export const doctorData = [
 ];
 
 export const hospitalStaffData = [
-  {
-    memberData: "Lagos Central Hospital",
-    hospitalId: "HSP-1001",
-    doctors: 25,
-    nurses: 48,
-    admin: 12
-  },
-  {
-    memberData: "City Medical Center, Abuja",
-    hospitalId: "HSP-1002",
-    doctors: 18,
-    nurses: 35,
-    admin: 9
-  },
-  {
-    memberData: "PrimeCare Clinic, Port Harcourt",
-    hospitalId: "HSP-1003",
-    doctors: 10,
-    nurses: 22,
-    admin: 5
-  },
-  {
-    memberData: "LifeLine Hospital, Ibadan",
-    hospitalId: "HSP-1004",
-    doctors: 15,
-    nurses: 28,
-    admin: 8
-  },
-  {
-    memberData: "Hope Wellness Center, Enugu",
-    hospitalId: "HSP-1005",
-    doctors: 8,
-    nurses: 16,
-    admin: 4
-  }
+    {
+        memberData: "Lagos Central Hospital",
+        hospitalId: "HSP-1001",
+        doctors: 25,
+        nurses: 48,
+        admin: 12
+    },
+    {
+        memberData: "City Medical Center, Abuja",
+        hospitalId: "HSP-1002",
+        doctors: 18,
+        nurses: 35,
+        admin: 9
+    },
+    {
+        memberData: "PrimeCare Clinic, Port Harcourt",
+        hospitalId: "HSP-1003",
+        doctors: 10,
+        nurses: 22,
+        admin: 5
+    },
+    {
+        memberData: "LifeLine Hospital, Ibadan",
+        hospitalId: "HSP-1004",
+        doctors: 15,
+        nurses: 28,
+        admin: 8
+    },
+    {
+        memberData: "Hope Wellness Center, Enugu",
+        hospitalId: "HSP-1005",
+        doctors: 8,
+        nurses: 16,
+        admin: 4
+    }
 ];
+
+export const doctorDirectory = [
+    {
+        doctorData: "Dr. John Okafor - Cardiologist",
+        doctorId: "DOC-2001",
+        phoneNumber: "+2348012345678",
+        status: "Active"
+    },
+    {
+        doctorData: "Dr. Amina Bello - Pediatrician",
+        doctorId: "DOC-2002",
+        phoneNumber: "+2348098765432",
+        status: "Active"
+    },
+    {
+        doctorData: "Dr. Samuel Eze - General Surgeon",
+        doctorId: "DOC-2003",
+        phoneNumber: "+2348023456789",
+        status: "On Leave"
+    },
+    {
+        doctorData: "Dr. Grace Adeniyi - Gynecologist",
+        doctorId: "DOC-2004",
+        phoneNumber: "+2348076543210",
+        status: "Active"
+    },
+    {
+        doctorData: "Dr. Musa Ibrahim - Orthopedic Specialist",
+        doctorId: "DOC-2005",
+        phoneNumber: "+2348054321987",
+        status: "Retired"
+    }
+];
+
+export const bloodGroupOptions = [
+    {
+        label: "A+",
+        value: "A+"
+    },
+    {
+        label: "A-",
+        value: "A-"
+    },
+    {
+        label: "B+",
+        value: "B+"
+    },
+    {
+        label: "B-",
+        value: "B-"
+    },
+    {
+        label: "AB+",
+        value: "AB+"
+    },
+    {
+        label: "AB-",
+        value: "AB-"
+    },
+    {
+        label: "O+",
+        value: "O+"
+    },
+    {
+        label: "O-",
+        value: "O-"
+    },
+]
+
+export const companies = [
+    {
+        companyId: "8966767982",
+        name: "emp_name",
+        email: "-",
+        phone: "-",
+        employeeCount: 1,
+        balance: "₦0.00"
+    },
+    {
+        companyId: "1002457893",
+        name: "TechNova Solutions Ltd",
+        email: "info@technova.com",
+        phone: "+2348011122233",
+        employeeCount: 54,
+        balance: "₦1,250,000.00"
+    },
+    {
+        companyId: "2009876543",
+        name: "HealthFirst Nigeria",
+        email: "contact@healthfirst.com.ng",
+        phone: "+2348093344556",
+        employeeCount: 132,
+        balance: "₦3,450,500.00"
+    },
+    {
+        companyId: "3006547890",
+        name: "GreenAgro Industries",
+        email: "support@greenagro.com",
+        phone: "+2348029988776",
+        employeeCount: 87,
+        balance: "₦875,900.00"
+    },
+    {
+        companyId: "4001236789",
+        name: "Skyline Properties Ltd",
+        email: "admin@skyline.com.ng",
+        phone: "+2348056677889",
+        employeeCount: 25,
+        balance: "₦420,000.00"
+    }
+];
+
+export const merchants = [
+    {
+        id: "4802463784",
+        businessName: "Apr",
+        onboardedBy: "Jeo Tyler",
+        type: "GYM"
+    },
+    {
+        id: "5903578921",
+        businessName: "FreshBites Restaurant",
+        onboardedBy: "Amaka Okoro",
+        type: "Restaurant"
+    },
+    {
+        id: "6728945610",
+        businessName: "WellLife Pharmacy",
+        onboardedBy: "David Johnson",
+        type: "Pharmacy"
+    },
+    {
+        id: "7812345098",
+        businessName: "Elite Fitness Hub",
+        onboardedBy: "Chioma Adeyemi",
+        type: "GYM"
+    },
+    {
+        id: "8956432781",
+        businessName: "TechHive Solutions",
+        onboardedBy: "Michael Smith",
+        type: "IT Services"
+    },
+    {
+        id: "9345627812",
+        businessName: "CityCare Hospital",
+        onboardedBy: "Ngozi Chukwu",
+        type: "Healthcare"
+    }
+];
+
+export const StaffData = [
+    {
+        createdAt: "2025-08-01 10:15:30",
+        rhId: "RH1001",
+        name: "Alice Johnson",
+        email: "alice.johnson@example.com"
+    },
+    {
+        createdAt: "2025-08-02 14:45:10",
+        rhId: "RH1002",
+        name: "Michael Brown",
+        email: "michael.brown@example.com"
+    },
+    {
+        createdAt: "2025-08-03 09:20:45",
+        rhId: "RH1003",
+        name: "Sophia Williams",
+        email: "sophia.williams@example.com"
+    },
+    {
+        createdAt: "2025-08-05 16:10:05",
+        rhId: "RH1004",
+        name: "David Smith",
+        email: "david.smith@example.com"
+    },
+    {
+        createdAt: "2025-08-07 11:55:50",
+        rhId: "RH1005",
+        name: "Emma Davis",
+        email: "emma.davis@example.com"
+    }
+];
+
+export const RecommendationsData = [
+    {
+        businessName: "Green Health Clinic",
+        facilityType: "Hospital",
+        handler: "John Carter",
+        suggestedBy: "Emily Watson",
+        action: "Approved"
+    },
+    {
+        businessName: "FitLife Gym",
+        facilityType: "Gym",
+        handler: "Michael Lee",
+        suggestedBy: "David Parker",
+        action: "Pending"
+    },
+    {
+        businessName: "Happy Smiles Dental",
+        facilityType: "Dental Clinic",
+        handler: "Sarah Johnson",
+        suggestedBy: "Chris Brown",
+        action: "Rejected"
+    },
+    {
+        businessName: "Wellness Hub",
+        facilityType: "Spa",
+        handler: "Anna White",
+        suggestedBy: "James Harris",
+        action: "Approved"
+    },
+    {
+        businessName: "Vital Care Pharmacy",
+        facilityType: "Pharmacy",
+        handler: "Robert Green",
+        suggestedBy: "Laura King",
+        action: "Pending"
+    }
+];
+
+export const paymentData = [
+    {
+        paymentId: "5346199443",
+        status: "Approved",
+        cardHolder: "Ajay Bodara",
+        facility: "Global Hospital Pvt Ltd",
+        amount: "₦ 12,000.00",
+        discount: "₦ 500.00",
+        transactionFee: "₦ 120.00",
+        payout: "₦ 11,380.00",
+        submittedBy: "Jaylo Patel",
+        submissionDate: "May 03, 2023 - 12:48 PM",
+        approvedDate: "May 04, 2023 - 12:09 PM",
+        reviewedBy: "Jeo Jeo"
+    },
+    {
+        paymentId: "6785432190",
+        status: "Pending",
+        cardHolder: "Riya Sharma",
+        facility: "Wellness Care Clinic",
+        amount: "₦ 8,500.00",
+        discount: "₦ 300.00",
+        transactionFee: "₦ 90.00",
+        payout: "₦ 8,110.00",
+        submittedBy: "Michael Lee",
+        submissionDate: "May 07, 2023 - 09:30 AM",
+        approvedDate: "-",
+        reviewedBy: "-"
+    },
+    {
+        paymentId: "9823417655",
+        status: "Rejected",
+        cardHolder: "David Parker",
+        facility: "FitLife Gym",
+        amount: "₦ 5,000.00",
+        discount: "₦ 0.00",
+        transactionFee: "₦ 50.00",
+        payout: "₦ 0.00",
+        submittedBy: "Emily Watson",
+        submissionDate: "May 10, 2023 - 04:15 PM",
+        approvedDate: "-",
+        reviewedBy: "Sarah Johnson"
+    },
+    {
+        paymentId: "4532198765",
+        status: "Approved",
+        cardHolder: "Sarah Johnson",
+        facility: "Happy Smiles Dental",
+        amount: "₦ 15,000.00",
+        discount: "₦ 1,000.00",
+        transactionFee: "₦ 150.00",
+        payout: "₦ 13,850.00",
+        submittedBy: "Robert Green",
+        submissionDate: "May 12, 2023 - 11:22 AM",
+        approvedDate: "May 13, 2023 - 02:05 PM",
+        reviewedBy: "James Harris"
+    },
+    {
+        paymentId: "7654982310",
+        status: "Approved",
+        cardHolder: "Emily Watson",
+        facility: "Vital Care Pharmacy",
+        amount: "₦ 6,800.00",
+        discount: "₦ 200.00",
+        transactionFee: "₦ 80.00",
+        payout: "₦ 6,520.00",
+        submittedBy: "Anna White",
+        submissionDate: "May 14, 2023 - 08:40 AM",
+        approvedDate: "May 15, 2023 - 01:00 PM",
+        reviewedBy: "Laura King"
+    }
+];
+
+export const claimData = [
+    {
+        claimId: "5346199443",
+        status: "Approved",
+        patientName: "Ajay Bodara",
+        payout: "₦ 0.00",
+        charge: "₦ 0.00",
+        date: "May 03, 2023 - 12:48 PM"
+    },
+    {
+        claimId: "7823645123",
+        status: "Pending",
+        patientName: "Riya Sharma",
+        payout: "₦ 2,500.00",
+        charge: "₦ 3,000.00",
+        date: "May 07, 2023 - 09:20 AM"
+    },
+    {
+        claimId: "9834127654",
+        status: "Rejected",
+        patientName: "David Parker",
+        payout: "₦ 0.00",
+        charge: "₦ 4,200.00",
+        date: "May 09, 2023 - 02:45 PM"
+    },
+    {
+        claimId: "6523987410",
+        status: "Approved",
+        patientName: "Sarah Johnson",
+        payout: "₦ 5,000.00",
+        charge: "₦ 5,500.00",
+        date: "May 12, 2023 - 11:10 AM"
+    },
+    {
+        claimId: "8712456390",
+        status: "Approved",
+        patientName: "Emily Watson",
+        payout: "₦ 3,800.00",
+        charge: "₦ 4,000.00",
+        date: "May 15, 2023 - 08:30 AM"
+    }
+];
+

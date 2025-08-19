@@ -177,6 +177,33 @@ export function useNavData() {
             }
             : null,
 
+
+          isAdmin
+            ? {
+              title: t('Savings Card'),
+              path: paths.dashboard.savingsCard.root,
+              icon: ICONS.inquiry,
+              children: [
+                { title: t('Member'), path: paths.dashboard.savingsCard.members },
+                { title: t('Companies'), path: paths.dashboard.savingsCard.companies },
+                { title: t('Merchants'), path: paths.dashboard.savingsCard.merchants },
+                { title: t('Merchant Recommendations'), path: paths.dashboard.savingsCard.merchantRecommendations },
+                { title: t('Payment'), path: paths.dashboard.savingsCard.payment },
+                { title: t('Approved Claims'), path: paths.dashboard.savingsCard.approvedClaims },
+                { title: t('Tariff'), path: paths.dashboard.savingsCard.tariff },
+                { title: t('Rebate'), path: paths.dashboard.savingsCard.rebate },
+                { title: t('Pan Card'), path: paths.dashboard.savingsCard.pancard },
+                { title: t('Transactions'), path: paths.dashboard.savingsCard.transactions },
+                { title: t('Top-up'), path: paths.dashboard.savingsCard.topUp },
+                { title: t('Report'), path: paths.dashboard.savingsCard.report },
+                { title: t('Overdrafts'), path: paths.dashboard.savingsCard.overdrafts },
+                { title: t('Withdrawal Requests'), path: paths.dashboard.savingsCard.withdrawalRequests },
+                { title: t('Pending Requests'), path: paths.dashboard.savingsCard.pendingRequests },
+                { title: t('Summary'), path: paths.dashboard.savingsCard.summary },
+                { title: t('Settings'), path: paths.dashboard.savingsCard.settings },
+              ],
+            }
+            : null,
           // PROJECTS
           // {
           //   title: t('Projects'),

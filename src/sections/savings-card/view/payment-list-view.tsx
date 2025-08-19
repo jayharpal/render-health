@@ -17,6 +17,7 @@ import { useRouter } from 'src/routes/hook';
 import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import { useSettingsContext } from 'src/components/settings';
+import { useForm } from 'react-hook-form';
 import {
   useTable,
   emptyRows,
@@ -25,29 +26,38 @@ import {
   TableHeadCustom,
   TablePaginationCustom,
 } from 'src/components/table';
+import FormProvider from 'src/app/components/hook-form';
 import { RootState, useDispatch, useSelector } from 'src/redux/store';
 import { LoadingScreen } from 'src/components/loading-screen';
 import { useDebounce } from 'src/hooks/use-debounce';
 import { Box, Stack } from '@mui/system';
-import Iconify from 'src/components/iconify';
 import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
-import { patientData, filterOption, healthTypeFilterOption } from 'src/utils/dummyMembers';
-import FormProvider, { RHFDateField } from 'src/app/components/hook-form';
-import { useForm } from 'react-hook-form';
-import HealthRecordTableRow from '../health-record-table-row';
+import { merchants, facilityOpstion, merchantTypeoption, paymentData, statusTypeoption } from 'src/utils/dummyMembers';
+import Iconify from 'src/app/components/iconify';
+import AddMerchantsDialog from '../merchants-add-model';
+import MerchantsTableRow from '../merchants-table-row';
+import MerchantsRecommendationsTableRow from '../merchants-recommendations-table-row';
+import PaymentTableRow from '../payment-table-row';
 
 const TABLE_HEAD = [
-  { id: 'Date', label: 'DATE' },
-  { id: 'Patient', label: 'PATIENT' },
-  { id: 'Hospital', label: 'HOSPITAL' },
-  { id: 'Doctor Name', label: 'DOCTOR NAME' },
-  { id: 'MEDICAL RECORD NUMBER', label: 'MEDICAL RECORD NUMBER' },
+  { id: 'Payment ID', label: 'PAYMENT ID' },
+  { id: 'Status', label: 'STATUS' },
+  { id: 'Card Holder', label: 'CARD HOLDER' },
+  { id: 'Facility', label: 'FACILITY' },
+  { id: 'Amount', label: 'AMOUNT' },
+  { id: 'Discount', label: 'DISCOUNT' },
+  { id: 'Transaction Fee', label: 'TRANSACTION FEE' },
+  { id: 'Payout', label: 'PAYOUT' },
+  { id: 'Submitted By', label: 'SUBMITTED BY' },
+  { id: 'Submission Date', label: 'SUBMISSION DATE' },
+  { id: 'Approved Date', label: 'APPROVED DATE' },
+  { id: 'Reviewed By', label: 'REVIEWED BY' },
   { id: '', width: 88 },
 ];
 
-export default function HealthRecordListView() {
+export default function PaymentListView() {
 
   const router = useRouter();
   const theme = useTheme();
@@ -55,31 +65,25 @@ export default function HealthRecordListView() {
   const methods = useForm();
 
   const dispatch = useDispatch();
-  const { inquirys, isLoading } = useSelector((state: RootState) => state.inquiry);
   const [searchQuery, setSearchQuery] = useState('');
   const [tableData, setTableData] = useState<any[] | []>([]);
-  const [statusFilter, setStatusFilter] = useState("All");
-  const [healthTypeFilter, setHealthTypeFilter] = useState("Initil Record");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleStatusChange = (event: any) => {
     setStatusFilter(event.target.value);
   };
 
-  const handlehealthTypeChange = (event: any) => {
-    setHealthTypeFilter(event.target.value);
-  };
-
   useEffect(() => {
-    let filtered = patientData;
-
-    if (statusFilter !== "All") {
-      filtered = filtered.filter(
-        (member) => member.deal_status?.toLowerCase() === statusFilter.toLowerCase()
+    if (!searchQuery) {
+      setTableData(paymentData);
+    } else {
+      const filtered = paymentData.filter((member) =>
+        member.reviewedBy?.toLowerCase().includes(searchQuery.toLowerCase())
       );
+      setTableData(filtered);
     }
-
-    setTableData(filtered);
-  }, [statusFilter]);
+  }, [searchQuery]);
 
   const table = useTable();
   const settings = useSettingsContext();
@@ -90,35 +94,93 @@ export default function HealthRecordListView() {
     console.log("")
   };
 
+  const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
+
   useEffect(() => {
-    setTableData(patientData || []);
+    setTableData(paymentData || []);
   }, []);
 
   const denseHeight = table.dense ? 52 : 72;
   const notFound = !hasData(tableData);
 
-  const renderFilterByStatus = (
+  const renderFacilityFilter = (
     <FormControl fullWidth sx={{ mt: 2.5 }}>
-      <Select value={statusFilter} onChange={handleStatusChange}>
-        {filterOption.map((status) => (
+      <TextField
+        name='Facility Type'
+        label="Facility Type"
+        onChange={handleStatusChange}
+        select
+      >
+        <MenuItem value="">
+          <em>Select By Facility Type</em>
+        </MenuItem>
+        {merchantTypeoption.map((status) => (
           <MenuItem key={status.value} value={status.value}>
             {status.label}
           </MenuItem>
         ))}
-      </Select>
+      </TextField>
     </FormControl>
   );
 
-  const renderFilterHealthType = (
+  const renderStatusFilter = (
     <FormControl fullWidth sx={{ mt: 2.5 }}>
-      <Select value={healthTypeFilter} onChange={handlehealthTypeChange}>
-        {healthTypeFilterOption.map((status) => (
+      <TextField
+        name='Status'
+        label="Status"
+        onChange={handleStatusChange}
+        select
+      >
+        <MenuItem value="">
+          <em>Select By Payment Type</em>
+        </MenuItem>
+        {statusTypeoption.map((status) => (
           <MenuItem key={status.value} value={status.value}>
             {status.label}
           </MenuItem>
         ))}
-      </Select>
+      </TextField>
     </FormControl>
+  );
+
+
+  const renderPaymentFilter = (
+    <FormControl fullWidth sx={{ mt: 2.5 }}>
+      <TextField
+        name='Payment Type'
+        label="Payment Type"
+        onChange={handleStatusChange}
+        select
+      >
+        <MenuItem value="">
+          <em>Select By Payment Type</em>
+        </MenuItem>
+        {statusTypeoption.map((status) => (
+          <MenuItem key={status.value} value={status.value}>
+            {status.label}
+          </MenuItem>
+        ))}
+      </TextField>
+    </FormControl>
+  );
+
+  const renderSearchInput = (
+    <TextField
+      fullWidth
+      value={searchQuery}
+      onChange={handleSearchInput}
+      placeholder="Search By Merchant..."
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled' }} />
+          </InputAdornment>
+        ),
+      }}
+      sx={{ mt: 2.5 }}
+    />
   );
 
   return (
@@ -126,7 +188,6 @@ export default function HealthRecordListView() {
       <FormProvider methods={methods}>
         <Container maxWidth={settings.themeStretch ? false : 'lg'}>
           <Stack
-            display="flex"
             direction="row"
             alignItems="center"
             sx={{
@@ -135,7 +196,7 @@ export default function HealthRecordListView() {
             justifyContent="space-between"
           >
             <Box display='flex' flexDirection="row" gap={1}>
-              <Typography variant="h4">Health Record List</Typography>
+              <Typography variant="h4">Payments</Typography>
               <Button
                 variant="contained"
                 sx={{
@@ -145,34 +206,15 @@ export default function HealthRecordListView() {
                 {tableData.length || 0}
               </Button>
             </Box>
-            <Box display='flex'>
-              <Box width="100%" sx={{ p: 2.5, pt: 0 }}>{renderFilterByStatus}</Box>
-              <Box width="100%" sx={{ p: 2.5, pt: 0 }}>{renderFilterHealthType}</Box>
-            </Box>
           </Stack>
 
           <Card>
             <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
-              <Stack
-                display="flex"
-                flexDirection='row'
-                flexWrap="wrap"
-                gap={2}
-                mb={3}
-                width="100%"
-                padding={2.5}
-              >
-                <Box>
-                  <RHFDateField name="startDate" label="Start Date" />
-                </Box>
-                <Box>
-                  <RHFDateField name="endDate" label="End Date" />
-                </Box>
-                <Button
-                  variant="contained"
-                >
-                  Search
-                </Button>
+              <Stack display='flex' flexDirection='row' flexWrap='wrap' width="100%">
+                <Box sx={{ p: 2.5, pt: 0 }} width="25%">{renderSearchInput}</Box>
+                <Box sx={{ p: 2.5, pt: 0 }} width="25%" >{renderStatusFilter}</Box>
+                <Box sx={{ p: 2.5, pt: 0 }} width="25%" >{renderFacilityFilter}</Box>
+                <Box sx={{ p: 2.5, pt: 0 }} width="25%" >{renderPaymentFilter}</Box>
               </Stack>
               <Scrollbar>
                 <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
@@ -208,7 +250,7 @@ export default function HealthRecordListView() {
                               console.log(`sr no : ${sr_no}`);
 
                               return (
-                                <HealthRecordTableRow
+                                <PaymentTableRow
                                   key={row._id}
                                   row={row}
                                   sr_no={sr_no}
@@ -216,12 +258,10 @@ export default function HealthRecordListView() {
                                 />
                               );
                             })}
-
                         <TableEmptyRows
                           height={denseHeight}
                           emptyRows={emptyRows(table.page, table.rowsPerPage, tableData?.length)}
                         />
-
                         <TableNoData notFound={notFound} />
                       </>
                     )}
@@ -242,6 +282,8 @@ export default function HealthRecordListView() {
           </Card>
         </Container>
       </FormProvider>
+
+      <AddMerchantsDialog open={create.value} onClose={create.onFalse} />
 
       <ConfirmDialog
         open={confirm.value}
