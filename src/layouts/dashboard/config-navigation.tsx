@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { Children, useEffect, useMemo } from 'react';
 
 import { paths } from 'src/routes/paths';
 
@@ -189,11 +189,40 @@ export function useNavData() {
                 { title: t('Merchant Recommendations'), path: paths.dashboard.savingsCard.merchantRecommendations },
                 { title: t('Payment'), path: paths.dashboard.savingsCard.payment },
                 { title: t('Approved Claims'), path: paths.dashboard.savingsCard.approvedClaims },
-                { title: t('Tariff'), path: paths.dashboard.savingsCard.tariff },
-                { title: t('Rebate'), path: paths.dashboard.savingsCard.rebate },
-                { title: t('Pan Card'), path: paths.dashboard.savingsCard.pancard },
+                {
+                  title: t('Tariff'),
+                  path: paths.dashboard.savingsCard.tariff.root,
+                  children: [
+                    { title: t('Update'), path: paths.dashboard.savingsCard.tariff.update },
+                    { title: t('View By Team'), path: paths.dashboard.savingsCard.tariff.viewByTeam },
+                    { title: t('View By Merchant'), path: paths.dashboard.savingsCard.tariff.viewByMerchant },
+                  ]
+                },
+                {
+                  title: t('Rebate'),
+                  path: paths.dashboard.savingsCard.rebate.root,
+                  children: [
+                    { title: t('Manage'), path: paths.dashboard.savingsCard.rebate.manage },
+                    { title: t('Review'), path: paths.dashboard.savingsCard.rebate.review },
+                  ],
+                },
+                {
+                  title: t('Pan Card'),
+                  path: paths.dashboard.savingsCard.pancard.root,
+                  children: [
+                    { title: t('Manage'), path: paths.dashboard.savingsCard.pancard.manage },
+                    { title: t('Review'), path: paths.dashboard.savingsCard.pancard.review },
+                  ],
+                },
                 { title: t('Transactions'), path: paths.dashboard.savingsCard.transactions },
-                { title: t('Top-up'), path: paths.dashboard.savingsCard.topUp },
+                // {
+                //   title: t('Top-up'),
+                //   path: paths.dashboard.savingsCard.topUp,
+                //   children: [
+                //     { title: t('Top-up'), path: paths.dashboard.savingsCard.topUp.topup },
+                //     { title: t('Reconciliation'), path: paths.dashboard.savingsCard.topUp.reconciliation },
+                //   ],
+                // },
                 { title: t('Report'), path: paths.dashboard.savingsCard.report },
                 { title: t('Overdrafts'), path: paths.dashboard.savingsCard.overdrafts },
                 { title: t('Withdrawal Requests'), path: paths.dashboard.savingsCard.withdrawalRequests },

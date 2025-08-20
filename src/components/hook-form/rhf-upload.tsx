@@ -3,6 +3,7 @@ import { useFormContext, Controller } from 'react-hook-form';
 import FormHelperText from '@mui/material/FormHelperText';
 //
 import { UploadAvatar, Upload, UploadBox, UploadProps } from '../upload';
+import UploadPhotoBox from '../upload/upload-photo-box';
 
 // ----------------------------------------------------------------------
 
@@ -92,6 +93,28 @@ export function RHFUpload({ name, multiple, helperText, ...other }: Props) {
           />
         )
       }
+    />
+  );
+}
+
+export function RHFUploadAvatarBox({ name, ...other }: Props) {
+  const { control } = useFormContext();
+
+  return (
+    <Controller
+      name={name}
+      control={control}
+      render={({ field, fieldState: { error } }) => (
+        <div>
+          <UploadPhotoBox error={!!error} file={field.value} {...other} />
+
+          {!!error && (
+            <FormHelperText error sx={{ px: 2, textAlign: 'center' }}>
+              {error.message}
+            </FormHelperText>
+          )}
+        </div>
+      )}
     />
   );
 }

@@ -1,6 +1,6 @@
 // sections
 import { Metadata } from 'next';
-import TransactionsListView from 'src/sections/savings-card/view/transactions-list-view';
+import { DealListView } from 'src/sections/manage-account/view';
 
 // ----------------------------------------------------------------------
 
@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function DashboardPage() {
-  return <TransactionsListView />;
+  return <>TOP UP</>;
 }
