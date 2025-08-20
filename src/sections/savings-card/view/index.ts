@@ -4,3 +4,5 @@ export { default as MerchantsListView } from './merchants-list-view';
 export { default as MerchantsRecommendationsListView } from './merchants-recommendations-list-view';
 export { default as PaymentListView } from './payment-list-view';
 export { default as ApprovedListView } from './approved-list-view';
+export { default as TariffViewByMerchantListView } from './tariff-view-by-merchant-list-view';
+export { default as PancardManageListView } from './pancard-manage-list-view';

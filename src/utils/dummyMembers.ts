@@ -1155,36 +1155,42 @@ export const merchants = [
         id: "4802463784",
         businessName: "Apr",
         onboardedBy: "Jeo Tyler",
+        merchantName: "Jeo Tyler",
         type: "GYM"
     },
     {
         id: "5903578921",
         businessName: "FreshBites Restaurant",
         onboardedBy: "Amaka Okoro",
+        merchantName: "Amaka Okoro",
         type: "Restaurant"
     },
     {
         id: "6728945610",
         businessName: "WellLife Pharmacy",
         onboardedBy: "David Johnson",
+        merchantName: "David Johnson",
         type: "Pharmacy"
     },
     {
         id: "7812345098",
         businessName: "Elite Fitness Hub",
         onboardedBy: "Chioma Adeyemi",
+        merchantName: "Chioma Adeyemi",
         type: "GYM"
     },
     {
         id: "8956432781",
         businessName: "TechHive Solutions",
         onboardedBy: "Michael Smith",
+        merchantName: "Michael Smith",
         type: "IT Services"
     },
     {
         id: "9345627812",
         businessName: "CityCare Hospital",
         onboardedBy: "Ngozi Chukwu",
+        merchantName: "Ngozi Chukwu",
         type: "Healthcare"
     }
 ];
@@ -1373,5 +1379,63 @@ export const claimData = [
         payout: "₦ 3,800.00",
         charge: "₦ 4,000.00",
         date: "May 15, 2023 - 08:30 AM"
+    }
+];
+
+export const transactionData = [
+    {
+        rhId: "6357765294",
+        transactionType: "Purchase",
+        name: "Ajay Bodara",
+        cardNumber: "7410517198",
+        merchantName: "-",
+        status: "Done",
+        settledStatus: "Unsettled",
+        amount: "₦ 0.00",
+        createdAt: "May 03, 2023 - 12:48 PM"
+    },
+    {
+        rhId: "7283645290",
+        transactionType: "Withdrawal",
+        name: "Riya Sharma",
+        cardNumber: "9653028471",
+        merchantName: "Zenith Bank",
+        status: "Pending",
+        settledStatus: "Unsettled",
+        amount: "₦ 5,000.00",
+        createdAt: "May 06, 2023 - 10:15 AM"
+    },
+    {
+        rhId: "8364927501",
+        transactionType: "Deposit",
+        name: "David Parker",
+        cardNumber: "8451093726",
+        merchantName: "UBA Bank",
+        status: "Done",
+        settledStatus: "Settled",
+        amount: "₦ 10,500.00",
+        createdAt: "May 09, 2023 - 03:30 PM"
+    },
+    {
+        rhId: "9248573612",
+        transactionType: "Purchase",
+        name: "Emily Watson",
+        cardNumber: "7102938465",
+        merchantName: "Amazon",
+        status: "Failed",
+        settledStatus: "Unsettled",
+        amount: "₦ 3,200.00",
+        createdAt: "May 11, 2023 - 06:50 PM"
+    },
+    {
+        rhId: "5129364782",
+        transactionType: "Transfer",
+        name: "Sarah Johnson",
+        cardNumber: "6920154738",
+        merchantName: "Paystack",
+        status: "Done",
+        settledStatus: "Settled",
+        amount: "₦ 7,000.00",
+        createdAt: "May 14, 2023 - 08:10 AM"
     }
 ];
