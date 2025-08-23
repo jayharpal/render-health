@@ -9,10 +9,8 @@ import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 // routes
-import { paths } from 'src/routes/paths';
 // hooks
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useRouter } from 'src/routes/hook';
 // components
 import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
@@ -26,58 +24,46 @@ import {
   TableHeadCustom,
   TablePaginationCustom,
 } from 'src/components/table';
-import FormProvider, { RHFDateField } from 'src/app/components/hook-form';
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
+import Iconify from 'src/app/components/iconify';
+import FormProvider from 'src/app/components/hook-form';
 import { LoadingScreen } from 'src/components/loading-screen';
-import { useDebounce } from 'src/hooks/use-debounce';
 import { Box, Stack } from '@mui/system';
-import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
+import { InputAdornment, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
-import { useTheme } from '@mui/material/styles';
-import { appointments } from 'src/utils/dummyMembers';
-import AppointmentTableRow from '../Appointment-table-row';
+import { overdraftDummyData } from 'src/utils/dummyMembers';
+import OverdraftsTableRow from '../overdrafts-table-row';
 
 const TABLE_HEAD = [
-  { id: 'Date', label: 'DATE' },
-  { id: 'appointment_type', label: 'APPOINTMENT TYPE' },
-  { id: 'Doctor Id', label: 'DOCTOR ID' },
-  { id: 'Patient profile', label: 'PATIENT PROFILE' },
-  { id: 'time scheduled', label: 'TIME SCHEDULED' },
-  { id: 'Hospital Name', label: 'HOSPITAL NAME' },
+  { id: 'RH ID', label: 'RH ID' },
+  { id: 'OVERDRAFT ID', label: 'OVERDRAFT ID' },
+  { id: 'AMOUNT', label: 'AMOUNT' },
+  { id: 'STATUS', label: 'STATUS' },
+  { id: 'CREATED DATE', label: 'CREATED DATE' },
   { id: '', width: 88 },
 ];
 
+export default function OverdraftsListView() {
 
-export default function AppointmentListView() {
-
-  const router = useRouter();
-  const theme = useTheme();
-  const create = useBoolean();
   const methods = useForm();
 
-  const dispatch = useDispatch();
-  // const { inquirys, isLoading } = useSelector((state: RootState) => state.inquiry);
   const [searchQuery, setSearchQuery] = useState('');
   const [tableData, setTableData] = useState<any[] | []>([]);
-  const [statusFilter, setStatusFilter] = useState("All");
   const [isLoading, setIsLoading] = useState(false);
 
-
-  const handleStatusChange = (event: any) => {
-    setStatusFilter(event.target.value);
-  };
-
   useEffect(() => {
-    let filtered = appointments;
-
-    if (statusFilter !== "All") {
-      filtered = filtered.filter(
-        (member) => member.deal_status?.toLowerCase() === statusFilter.toLowerCase()
+    if (!searchQuery) {
+      setTableData(overdraftDummyData);
+    } else {
+      const filtered = overdraftDummyData.filter((member) =>
+        member.overdraftId?.toLowerCase().includes(searchQuery.toLowerCase())
       );
+      setTableData(filtered);
     }
+  }, [searchQuery]);
 
-    setTableData(filtered);
-  }, [statusFilter]);
+  const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
 
   const table = useTable();
   const settings = useSettingsContext();
@@ -89,21 +75,27 @@ export default function AppointmentListView() {
   };
 
   useEffect(() => {
-    setTableData(appointments || []);
+    setTableData(overdraftDummyData || []);
   }, []);
 
   const denseHeight = table.dense ? 52 : 72;
   const notFound = !hasData(tableData);
 
   const renderSearchInput = (
-    <FormControl fullWidth sx={{ mt: 2.5 }}>
-      <Select value={statusFilter} onChange={handleStatusChange}>
-        <MenuItem value="All">All</MenuItem>
-        <MenuItem value="Active">Active</MenuItem>
-        <MenuItem value="Inactive">Inactive</MenuItem>
-        <MenuItem value="Expired">Expired</MenuItem>
-      </Select>
-    </FormControl>
+    <TextField
+      fullWidth
+      value={searchQuery}
+      onChange={handleSearchInput}
+      placeholder="Search By Overdraft ID..."
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled' }} />
+          </InputAdornment>
+        ),
+      }}
+      sx={{ mt: 2.5 }}
+    />
   );
 
   return (
@@ -119,41 +111,15 @@ export default function AppointmentListView() {
             justifyContent="space-between"
           >
             <Box display='flex' flexDirection="row" gap={1}>
-              <Typography variant="h4">Appointment List</Typography>
-              <Button
-                variant="contained"
-                sx={{
-                  bgcolor: theme.palette.primary.main
-                }}
-              >
-                {tableData.length || 0}
-              </Button>
+              <Typography variant="h4">Overdrafts</Typography>
             </Box>
-            <Box width="40%" sx={{ p: 2.5, pt: 0 }}>{renderSearchInput}</Box>
           </Stack>
 
           <Card>
             <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
-              <Box
-                display="flex"
-                flexDirection='row'
-                flexWrap="wrap"
-                gap={2}
-                p={2.5}
-                width="100%"
-              >
-                <Box>
-                  <RHFDateField name="startDate" label="Start Date" />
-                </Box>
-                <Box>
-                  <RHFDateField name="endDate" label="End Date" />
-                </Box>
-                <Button
-                  variant="contained"
-                >
-                  Search
-                </Button>
-              </Box>
+              <Stack display='flex' flexDirection='row' flexWrap='wrap' width="100%">
+                <Box sx={{ p: 2.5, pt: 0 }} width="30%" >{renderSearchInput}</Box>
+              </Stack>
               <Scrollbar>
                 <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
                   <TableHeadCustom
@@ -188,7 +154,7 @@ export default function AppointmentListView() {
                               console.log(`sr no : ${sr_no}`);
 
                               return (
-                                <AppointmentTableRow
+                                <OverdraftsTableRow
                                   key={row._id}
                                   row={row}
                                   sr_no={sr_no}
@@ -223,7 +189,6 @@ export default function AppointmentListView() {
         </Container>
       </FormProvider>
 
-      {/* <AddDealDialog open={create.value} onClose={create.onFalse} /> */}
 
       <ConfirmDialog
         open={confirm.value}
