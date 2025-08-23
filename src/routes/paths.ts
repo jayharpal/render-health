@@ -169,11 +169,11 @@ export const paths = {
         viewByTeam: `${ROOTS.DASHBOARD}/savings-card/tariff/view-by-team`,
         viewByMerchant: `${ROOTS.DASHBOARD}/savings-card/tariff/view-by-merchant`,
       },
-      // topUp: {
-      //   root: `${ROOTS.DASHBOARD}/savings-card/top-up`,
-      //   topup: `${ROOTS.DASHBOARD}/savings-card/top-up/topup`,
-      //   reconciliation: `${ROOTS.DASHBOARD}/savings-card/top-up/reconciliation`,
-      // },
+      topUp: {
+        root: `${ROOTS.DASHBOARD}/savings-card/top-up`,
+        topupList: `${ROOTS.DASHBOARD}/savings-card/top-up/topup`,
+        reconciliation: `${ROOTS.DASHBOARD}/savings-card/top-up/reconciliation`,
+      },
       transactions: `${ROOTS.DASHBOARD}/savings-card/transactions`,
       withdrawalRequests: `${ROOTS.DASHBOARD}/savings-card/withdrawal-requests`,
     },

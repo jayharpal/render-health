@@ -65,7 +65,7 @@ export function useNavData() {
   const { isAdmin } = useAuthContext();
   const { projects } = useSelector((state: RootState) => state.projects);
   const { roadmaps } = useSelector((state: RootState) => state.roadmap);
-  const { courses } = useSelector((state: RootState) => state.course);
+  // const { courses } = useSelector((state: RootState) => state.course);
 
   useEffect(() => {
     dispatch(getProjects());
@@ -215,14 +215,14 @@ export function useNavData() {
                   ],
                 },
                 { title: t('Transactions'), path: paths.dashboard.savingsCard.transactions },
-                // {
-                //   title: t('Top-up'),
-                //   path: paths.dashboard.savingsCard.topUp,
-                //   children: [
-                //     { title: t('Top-up'), path: paths.dashboard.savingsCard.topUp.topup },
-                //     { title: t('Reconciliation'), path: paths.dashboard.savingsCard.topUp.reconciliation },
-                //   ],
-                // },
+                {
+                  title: t('Top-up'),
+                  path: paths.dashboard.savingsCard.topUp.root,
+                  children: [
+                    { title: t('Top-up'), path: paths.dashboard.savingsCard.topUp.topupList },
+                    { title: t('Reconciliation'), path: paths.dashboard.savingsCard.topUp.reconciliation },
+                  ],
+                },
                 { title: t('Report'), path: paths.dashboard.savingsCard.report },
                 { title: t('Overdrafts'), path: paths.dashboard.savingsCard.overdrafts },
                 { title: t('Withdrawal Requests'), path: paths.dashboard.savingsCard.withdrawalRequests },

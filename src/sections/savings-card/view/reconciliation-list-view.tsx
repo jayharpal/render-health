@@ -9,10 +9,8 @@ import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 // routes
-import { paths } from 'src/routes/paths';
 // hooks
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useRouter } from 'src/routes/hook';
 // components
 import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
@@ -27,57 +25,39 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 import FormProvider, { RHFDateField } from 'src/app/components/hook-form';
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
 import { LoadingScreen } from 'src/components/loading-screen';
-import { useDebounce } from 'src/hooks/use-debounce';
 import { Box, Stack } from '@mui/system';
 import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
-import { appointments } from 'src/utils/dummyMembers';
-import AppointmentTableRow from '../Appointment-table-row';
+import { reconciliation } from 'src/utils/dummyMembers';
+import AddMemberDialog from '../members-add-model';
+import ReconciliationTableRow from '../reconciliation-table-row copy';
 
 const TABLE_HEAD = [
   { id: 'Date', label: 'DATE' },
-  { id: 'appointment_type', label: 'APPOINTMENT TYPE' },
-  { id: 'Doctor Id', label: 'DOCTOR ID' },
-  { id: 'Patient profile', label: 'PATIENT PROFILE' },
-  { id: 'time scheduled', label: 'TIME SCHEDULED' },
-  { id: 'Hospital Name', label: 'HOSPITAL NAME' },
+  { id: 'Cardholder', label: 'CARDHOLDER' },
+  { id: 'RHSC Number', label: 'RHSC NUMBER' },
+  { id: 'Transaction ID', label: 'TRANSACTION ID' },
+  { id: 'Amount', label: 'AMOUNT' },
+  { id: 'Processed By', label: 'PROCESSED BY' },
+  { id: 'Status', label: 'STATUS' },
   { id: '', width: 88 },
 ];
 
+export default function ReconciliationListView() {
 
-export default function AppointmentListView() {
-
-  const router = useRouter();
   const theme = useTheme();
   const create = useBoolean();
   const methods = useForm();
 
-  const dispatch = useDispatch();
-  // const { inquirys, isLoading } = useSelector((state: RootState) => state.inquiry);
-  const [searchQuery, setSearchQuery] = useState('');
   const [tableData, setTableData] = useState<any[] | []>([]);
-  const [statusFilter, setStatusFilter] = useState("All");
+  const [statusFilter, setStatusFilter] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
 
   const handleStatusChange = (event: any) => {
     setStatusFilter(event.target.value);
   };
-
-  useEffect(() => {
-    let filtered = appointments;
-
-    if (statusFilter !== "All") {
-      filtered = filtered.filter(
-        (member) => member.deal_status?.toLowerCase() === statusFilter.toLowerCase()
-      );
-    }
-
-    setTableData(filtered);
-  }, [statusFilter]);
 
   const table = useTable();
   const settings = useSettingsContext();
@@ -89,20 +69,71 @@ export default function AppointmentListView() {
   };
 
   useEffect(() => {
-    setTableData(appointments || []);
+    setTableData(reconciliation || []);
   }, []);
 
   const denseHeight = table.dense ? 52 : 72;
   const notFound = !hasData(tableData);
 
-  const renderSearchInput = (
+  const renderStatusFilter = (
     <FormControl fullWidth sx={{ mt: 2.5 }}>
-      <Select value={statusFilter} onChange={handleStatusChange}>
+      <TextField
+        name='Search By'
+        label="Search By"
+        onChange={handleStatusChange}
+        select
+      >
+        <MenuItem value="">
+          <em>Select One</em>
+        </MenuItem>
+        <MenuItem value="RH Staff">RH Staff</MenuItem>
+        <MenuItem value="Date and Time">Date and Time</MenuItem>
+        <MenuItem value="Reconciliation">Reconciliation</MenuItem>
+      </TextField>
+    </FormControl>
+  );
+
+  const renderSearchByReconciliation = (
+    <FormControl fullWidth sx={{ mt: 2.5 }}>
+      <TextField
+        name='Search By Reconciliation'
+        label="Search By Reconciliation"
+        select
+        fullWidth
+      >
+        <MenuItem value="">
+          <em>Select One</em>
+        </MenuItem>
+        <MenuItem value="Yes">Yes</MenuItem>
+        <MenuItem value="No">No</MenuItem>
         <MenuItem value="All">All</MenuItem>
-        <MenuItem value="Active">Active</MenuItem>
-        <MenuItem value="Inactive">Inactive</MenuItem>
-        <MenuItem value="Expired">Expired</MenuItem>
-      </Select>
+      </TextField>
+    </FormControl>
+  );
+
+  const renderSearchByDateAndTime = (
+    <FormControl sx={{ mt: 2.5, display: 'flex', flexDirection: 'row', gap: 2 }}>
+      <RHFDateField name="startDate" label="Start Date" />
+      <RHFDateField name="endDate" label="End Date" />
+    </FormControl>
+  );
+
+  const renderSearchByStaff = (
+    <FormControl fullWidth sx={{ mt: 2.5 }}>
+      <TextField
+        name='Search By staff'
+        label="Search By staff"
+        select
+      >
+        <MenuItem value="">
+          <em>Select One</em>
+        </MenuItem>
+        {reconciliation.map((status) => (
+          <MenuItem key={status.cardholder} value={status.cardholder}>
+            {status.cardholder}
+          </MenuItem>
+        ))}
+      </TextField>
     </FormControl>
   );
 
@@ -119,41 +150,22 @@ export default function AppointmentListView() {
             justifyContent="space-between"
           >
             <Box display='flex' flexDirection="row" gap={1}>
-              <Typography variant="h4">Appointment List</Typography>
-              <Button
-                variant="contained"
-                sx={{
-                  bgcolor: theme.palette.primary.main
-                }}
-              >
-                {tableData.length || 0}
-              </Button>
+              <Typography variant="h4">Reconciliation</Typography>
             </Box>
-            <Box width="40%" sx={{ p: 2.5, pt: 0 }}>{renderSearchInput}</Box>
           </Stack>
 
           <Card>
             <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
-              <Box
-                display="flex"
-                flexDirection='row'
-                flexWrap="wrap"
-                gap={2}
-                p={2.5}
-                width="100%"
-              >
-                <Box>
-                  <RHFDateField name="startDate" label="Start Date" />
+              <Stack display='flex' flexDirection='row' flexWrap='wrap' width="100%">
+                <Box sx={{ p: 2.5, pt: 0 }} width="20%" >{renderStatusFilter}</Box>
+                <Box sx={{ p: 2.5, pt: 0 }} width="50%">
+                  {statusFilter === "RH Staff" && renderSearchByStaff}
+
+                  {statusFilter === "Date and Time" && renderSearchByDateAndTime}
+
+                  {statusFilter === "Reconciliation" && renderSearchByReconciliation}
                 </Box>
-                <Box>
-                  <RHFDateField name="endDate" label="End Date" />
-                </Box>
-                <Button
-                  variant="contained"
-                >
-                  Search
-                </Button>
-              </Box>
+              </Stack>
               <Scrollbar>
                 <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
                   <TableHeadCustom
@@ -188,7 +200,7 @@ export default function AppointmentListView() {
                               console.log(`sr no : ${sr_no}`);
 
                               return (
-                                <AppointmentTableRow
+                                <ReconciliationTableRow
                                   key={row._id}
                                   row={row}
                                   sr_no={sr_no}
@@ -223,7 +235,7 @@ export default function AppointmentListView() {
         </Container>
       </FormProvider>
 
-      {/* <AddDealDialog open={create.value} onClose={create.onFalse} /> */}
+      <AddMemberDialog open={create.value} onClose={create.onFalse} />
 
       <ConfirmDialog
         open={confirm.value}

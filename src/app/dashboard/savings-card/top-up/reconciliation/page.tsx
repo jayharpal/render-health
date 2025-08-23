@@ -1,6 +1,6 @@
 // sections
 import { Metadata } from 'next';
-import { DealListView } from 'src/sections/manage-account/view';
+import { ReconciliationListView } from 'src/sections/savings-card/view';
 
 // ----------------------------------------------------------------------
 
@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function DashboardPage() {
-  return <>Top up reconciliation</>;
+  return <ReconciliationListView />;
 }
