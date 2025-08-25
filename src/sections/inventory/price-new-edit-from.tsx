@@ -1,6 +1,6 @@
 // import * as Yup from 'yup';
-import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
+
 import LoadingButton from '@mui/lab/LoadingButton';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -8,7 +8,6 @@ import Stack from '@mui/material/Stack';
 import FormProvider, {
   RHFTextField,
 } from 'src/components/hook-form';
-import RHFMuiPhoneNumber from 'src/components/hook-form/rhf-muiPhonenumber';
 
 // ----------------------------------------------------------------------
 
@@ -17,29 +16,9 @@ type Props = {
   onClose?: VoidFunction;
 };
 
-export default function CompaniesNewEditFrom({ currentBooking, onClose }: Props) {
+export default function AddPriceNewEditFrom({ currentBooking, onClose }: Props) {
 
   const methods = useForm();
-
-  const {
-    watch,
-    setValue,
-  } = methods;
-
-  const handleDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      const file = acceptedFiles[0];
-
-      const newFile = Object.assign(file, {
-        preview: URL.createObjectURL(file),
-      });
-
-      if (file) {
-        setValue('avatarUrl', newFile, { shouldValidate: true });
-      }
-    },
-    [setValue]
-  );
 
   return (
     <FormProvider methods={methods} >
@@ -52,10 +31,9 @@ export default function CompaniesNewEditFrom({ currentBooking, onClose }: Props)
         }}
         mb={3}
       >
-        <RHFTextField name="name" label="Name" required />
-        <RHFTextField name="email" label="Email" type="email" required />
-        <RHFMuiPhoneNumber name="phoneNumber" placeholder="Phone Number" required />
+        <RHFTextField name="Price" label="Price" required />
       </Box>
+
 
       <Stack direction='row' gap={1} alignItems="center" justifyContent="end" marginY={3} >
         <LoadingButton
@@ -64,7 +42,7 @@ export default function CompaniesNewEditFrom({ currentBooking, onClose }: Props)
           size="medium"
         // loading={isLoading}
         >
-          {currentBooking ? "Update" : "Create"}
+          Save
         </LoadingButton>
         <LoadingButton onClick={onClose} variant="soft">
           Cancel

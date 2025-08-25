@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import IconButton from '@mui/material/IconButton';
+import ListItemText from '@mui/material/ListItemText';
 // hooks
 import { useBoolean } from 'src/hooks/use-boolean';
 // components
@@ -12,8 +13,8 @@ import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
 import { ConfirmDialog } from 'src/components/custom-dialog';
-import AddStaffDialog from './add-staff-model';
-import ViewStaffDialog from './view-staff-model';
+import AddPriceDialog from './price-add-model';
+import AddInventoryDialog from './inventory-add-model';
 //
 // ----------------------------------------------------------------------
 
@@ -23,97 +24,54 @@ type Props = {
   onEditRow: VoidFunction;
 };
 
-export default function TransactionsTableRow({ row, sr_no, onEditRow }: Props) {
+export default function InventoryTableRow({ row, sr_no, onEditRow }: Props) {
 
   const confirm = useBoolean();
+  const price = useBoolean();
   const quickEdit = useBoolean();
 
   const popover = usePopover();
-  const staff = useBoolean();
-  const viewStaff = useBoolean();
 
   return (
     <>
       <TableRow>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.rhId}</TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.transactionType}</TableCell>
         <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.name}</TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.cardNumber}</TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.merchantName}</TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>
-          <Label
-            variant="soft"
-            color={
-              (row?.status === 'Done' && 'success') ||
-              (row?.status === 'Pending' && 'error') ||
-              'default'
-            }
-          >
-            {row?.status}
-          </Label>
-        </TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.settledStatus}</TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>
-          <Label
-            variant="soft"
-            color="error"
-          >
-            {row?.amount}
-          </Label>
-        </TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.createdAt}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.dosageForm}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.strengths}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.count}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.description}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.qty}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.lowStockAlert}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.price}</TableCell>
 
         <TableCell align="right" sx={{ px: 1, whiteSpace: 'nowrap' }}>
-          <Tooltip title="View Climes" placement="top" arrow>
-            <IconButton color={quickEdit.value ? 'inherit' : 'default'} onClick={quickEdit.onTrue}>
-              <Iconify icon="mdi:eye" />
-            </IconButton>
-          </Tooltip>
-
           <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
             <Iconify icon="eva:more-vertical-fill" />
           </IconButton>
         </TableCell>
       </TableRow>
 
-      <AddStaffDialog open={staff.value} onClose={staff.onFalse} />
-      <ViewStaffDialog open={viewStaff.value} onClose={viewStaff.onFalse} />
+      <AddPriceDialog open={price.value} onClose={price.onFalse} />
+      <AddInventoryDialog open={quickEdit.value} onClose={quickEdit.onFalse} />
 
       <CustomPopover
         open={popover.open}
         onClose={popover.onClose}
         arrow="right-top"
-        sx={{ width: 200 }}
+        sx={{ width: 140 }}
       >
-
         <MenuItem
           onClick={() => {
-            onEditRow();
+            price.onTrue();
             popover.onClose();
           }}
         >
-          <Iconify icon="material-symbols:add" />
-          New Upload Tariff
+          <Iconify icon="iconoir:money-square" />
+          Price
         </MenuItem>
         <MenuItem
           onClick={() => {
-            staff.onTrue();
-          }}
-        >
-          <Iconify icon="material-symbols:add" />
-          Add Staff
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            viewStaff.onTrue();
-          }}
-        >
-          <Iconify icon="mdi:eye" />
-          View Staff
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            onEditRow();
+            quickEdit.onTrue();
             popover.onClose();
           }}
         >
@@ -128,7 +86,7 @@ export default function TransactionsTableRow({ row, sr_no, onEditRow }: Props) {
           sx={{ color: 'error.main' }}
         >
           <Iconify icon="solar:trash-bin-trash-bold" />
-          Delete Merchants
+          Delete
         </MenuItem>
       </CustomPopover>
 

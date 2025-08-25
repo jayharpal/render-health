@@ -180,6 +180,12 @@ export const paths = {
     appointment: {
       root: `${ROOTS.DASHBOARD}/appointment`,
     },
+    inventory: {
+      root: `${ROOTS.DASHBOARD}/inventory`,
+    },
+    settings: {
+      root: `${ROOTS.DASHBOARD}/settings`,
+    },
     healthRecord: {
       root: `${ROOTS.DASHBOARD}/health-record`,
     },

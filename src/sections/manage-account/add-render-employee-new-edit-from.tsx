@@ -44,35 +44,7 @@ export default function AddRenderEmployeeNewEditFrom({ currentBooking, onClose }
   const [pendingAmount, setPendingAmount] = useState(0);
   const [total, setTotal] = useState('');
 
-  const dispatch = useDispatch();
-
-
-  const defaultValues = useMemo(
-    () => ({
-      email: currentBooking?.email || '', // Add default value if available
-      mobile: currentBooking?.mobile || '', // Add default value if available
-      travelingVehicleType: currentBooking?.travelingVehicleType || '', // Add default value if available
-      travelingVehiclePlateNo: currentBooking?.travelingVehiclePlateNo || '', // Add default value if available
-      totalPendingAmount: pendingAmount, // Add default value if available
-      comingFrom: currentBooking?.comingFrom || '', // Add default value if available
-      goingTo: currentBooking?.goingTo || '', // Add default value if available
-      members: currentBooking?.bookingMembers || [],
-      extraAmenities: currentBooking?.extraAmenities || [],
-      fixedPrice: currentBooking?.fixedPrice || 0, // Add default value if available
-      finalPaidAmount: currentBooking?.finalPaidAmount || 0, // Add default value if available
-      avatarUrl: currentBooking?.avatarUrl || null,
-      rooms: currentBooking?.rooms || 0,// Add default value if available
-      discount: currentBooking?.discount || 0, // Add default value if available
-      adjustAmmount: "",
-      total: ""
-    }),
-    [currentBooking, pendingAmount]
-  );
-
-  const methods = useForm({
-    defaultValues,
-
-  });
+  const methods = useForm();
 
   const {
     watch,

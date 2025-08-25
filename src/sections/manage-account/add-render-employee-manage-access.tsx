@@ -6,7 +6,7 @@ import FormProvider, {
   RHFCheckbox,
   RHFRadioGroup,
 } from 'src/components/hook-form';
-import { Dialog, DialogContent, DialogTitle, InputLabel, Typography } from '@mui/material';
+import { Dialog, DialogContent, DialogTitle, Typography } from '@mui/material';
 import { RHFSwitch } from 'src/app/components/hook-form';
 import Iconify from 'src/components/iconify';
 

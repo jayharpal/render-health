@@ -1,4 +1,4 @@
-import { Card, MenuItem, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from '@mui/material';
+import { Card, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { StaffData } from 'src/utils/dummyMembers';
 import { emptyRows, TableEmptyRows, TableHeadCustom, TableNoData, TablePaginationCustom, useTable } from 'src/app/components/table';
 import { hasData } from 'src/utils/helper';
@@ -17,7 +17,6 @@ const TABLE_HEAD = [
   { id: 'NAME', label: 'NAME' },
   { id: 'EMAIL', label: 'EMAIL' },
 ];
-
 
 export default function StaffViewFrom({ onClose, currentBooking }: Props) {
 
