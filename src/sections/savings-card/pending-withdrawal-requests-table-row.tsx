@@ -8,7 +8,6 @@ import IconButton from '@mui/material/IconButton';
 // hooks
 import { useBoolean } from 'src/hooks/use-boolean';
 // components
-import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
 import { ConfirmDialog } from 'src/components/custom-dialog';
@@ -23,7 +22,7 @@ type Props = {
   onEditRow: VoidFunction;
 };
 
-export default function TransactionsTableRow({ row, sr_no, onEditRow }: Props) {
+export default function PendingWithdrawalRequestsTableRow({ row, sr_no, onEditRow }: Props) {
 
   const confirm = useBoolean();
   const quickEdit = useBoolean();
@@ -36,32 +35,13 @@ export default function TransactionsTableRow({ row, sr_no, onEditRow }: Props) {
     <>
       <TableRow>
         <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.rhId}</TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.transactionType}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.requestId}</TableCell>
         <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.name}</TableCell>
         <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.cardNumber}</TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.merchantName}</TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>
-          <Label
-            variant="soft"
-            color={
-              (row?.status === 'Done' && 'success') ||
-              (row?.status === 'Pending' && 'error') ||
-              'default'
-            }
-          >
-            {row?.status}
-          </Label>
-        </TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.settledStatus}</TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>
-          <Label
-            variant="soft"
-            color="error"
-          >
-            {row?.amount}
-          </Label>
-        </TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.createdAt}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.amount}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.penalty}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.creditAccount}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.createdDate}</TableCell>
 
         <TableCell align="right" sx={{ px: 1, whiteSpace: 'nowrap' }}>
           <Tooltip title="View Climes" placement="top" arrow>
@@ -85,32 +65,6 @@ export default function TransactionsTableRow({ row, sr_no, onEditRow }: Props) {
         arrow="right-top"
         sx={{ width: 200 }}
       >
-
-        <MenuItem
-          onClick={() => {
-            onEditRow();
-            popover.onClose();
-          }}
-        >
-          <Iconify icon="material-symbols:add" />
-          New Upload Tariff
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            staff.onTrue();
-          }}
-        >
-          <Iconify icon="material-symbols:add" />
-          Add Staff
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            viewStaff.onTrue();
-          }}
-        >
-          <Iconify icon="mdi:eye" />
-          View Staff
-        </MenuItem>
         <MenuItem
           onClick={() => {
             onEditRow();
@@ -128,7 +82,7 @@ export default function TransactionsTableRow({ row, sr_no, onEditRow }: Props) {
           sx={{ color: 'error.main' }}
         >
           <Iconify icon="solar:trash-bin-trash-bold" />
-          Delete Merchants
+          Delete
         </MenuItem>
       </CustomPopover>
 

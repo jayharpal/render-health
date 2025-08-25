@@ -1,7 +1,6 @@
 // sections
 import { Metadata } from 'next';
-import { WithdrawalRequestsListView } from 'src/sections/savings-card/view';
-
+import { InventoryListView } from 'src/sections/inventory/view';
 // ----------------------------------------------------------------------
 
 export const metadata: Metadata = {
@@ -9,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function DashboardPage() {
-  return <WithdrawalRequestsListView />;
+  return <InventoryListView />;
 }

@@ -100,7 +100,7 @@ export function useNavData() {
             ? {
               title: t('Dashboard'),
               path: paths.dashboard.dashboard.root,
-              icon: ICONS.inquiry,
+              icon: ICONS.dashboard,
               // children: [
               //   // { title: t('profile'), path: paths.dashboard.user.root },
               //   // { title: t('cards'), path: paths.dashboard.user.cards },
@@ -230,6 +230,22 @@ export function useNavData() {
                 { title: t('Summary'), path: paths.dashboard.savingsCard.summary },
                 { title: t('Settings'), path: paths.dashboard.savingsCard.settings },
               ],
+            }
+            : null,
+
+          isAdmin
+            ? {
+              title: t('Inventory'),
+              path: paths.dashboard.inventory.root,
+              icon: ICONS.inquiry,
+            }
+            : null,
+
+          isAdmin
+            ? {
+              title: t('Settings'),
+              path: paths.dashboard.settings.root,
+              icon: ICONS.ecommerce,
             }
             : null,
           // PROJECTS

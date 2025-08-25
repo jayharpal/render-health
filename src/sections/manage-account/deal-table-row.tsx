@@ -14,10 +14,7 @@ import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
 import { ConfirmDialog } from 'src/components/custom-dialog';
-//
-import { IInquiry } from 'src/types/inquiry';
-import AddRenderEmployeeManageAccess from './add-render-employee-manage-access';
-// import InquiryInfo from './inquiry-info';
+
 // ----------------------------------------------------------------------
 
 type Props = {

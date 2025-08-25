@@ -10,3 +10,6 @@ export { default as TopUpListView } from './topUp-list-view';
 export { default as ReconciliationListView } from './reconciliation-list-view';
 export { default as ReportListView } from './report-list-view';
 export { default as OverdraftsListView } from './overdrafts-list-view';
+export { default as WithdrawalRequestsListView } from './withdrawal-requests-list-view';
+export { default as PendingWithdrawalRequestsListView } from './pending-withdrawal-requests-list-view';
+export { default as SettingListView } from './setting-list-view';

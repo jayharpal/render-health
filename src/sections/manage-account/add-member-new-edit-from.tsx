@@ -1,6 +1,6 @@
 // import * as Yup from 'yup';
-import { useEffect, useMemo, useState } from 'react';
-import { useFieldArray, useForm } from 'react-hook-form';
+import { useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
 // import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -9,17 +9,14 @@ import Stack from '@mui/material/Stack';
 // components
 import FormProvider, {
   RHFAutocomplete,
-  RHFAutocompleteMultiple,
   RHFDateField,
   RHFTextField,
   // RHFUploadAvatarBox,
 } from 'src/components/hook-form';
-// import { IBooking } from 'src/@types/bookings';
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
-// import { getCustomers } from 'src/redux/slices/customers';
-import { InputLabel, Typography } from '@mui/material';
+import { useDispatch } from 'src/redux/store';
+import { Typography } from '@mui/material';
 import RHFMuiPhoneNumber from 'src/components/hook-form/rhf-muiPhonenumber';
-import { days, hospitalOptions, insuranceOptions, lgaOptions, months, stateOptions, years } from 'src/utils/dummyMembers';
+import { hospitalOptions, insuranceOptions, lgaOptions, stateOptions } from 'src/utils/dummyMembers';
 
 // ----------------------------------------------------------------------
 

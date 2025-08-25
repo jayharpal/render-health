@@ -1,6 +1,6 @@
 // sections
 import { Metadata } from 'next';
-import { WithdrawalRequestsListView } from 'src/sections/savings-card/view';
+import { SettingsView } from 'src/sections/settings/view';
 
 // ----------------------------------------------------------------------
 
@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function DashboardPage() {
-  return <WithdrawalRequestsListView />;
+  return <SettingsView />;
 }
