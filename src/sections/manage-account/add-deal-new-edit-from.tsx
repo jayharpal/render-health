@@ -11,7 +11,7 @@ import FormProvider, {
   RHFUploadAvatar,
 } from 'src/components/hook-form';
 import { MenuItem, Typography } from '@mui/material';
-import { CategoriesOpstion, days, facilityOpstion, hospitalOptions, insuranceOptions, lgaOptions, months, roleOptions, stateOptions, years } from 'src/utils/dummyMembers';
+import { CategoriesOpstion, days, facilityOpstion } from 'src/utils/dummyMembers';
 import { fData } from 'src/utils/format-number';
 import { RHFTextArea } from 'src/components/hook-form/rhf-text-field';
 
@@ -27,7 +27,6 @@ export default function AddDealNewEditFrom({ currentBooking, onClose }: Props) {
   const methods = useForm();
 
   const {
-    watch,
     setValue
   } = methods;
 

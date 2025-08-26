@@ -5,7 +5,6 @@ import MenuItem from '@mui/material/MenuItem';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import IconButton from '@mui/material/IconButton';
-import ListItemText from '@mui/material/ListItemText';
 import { Avatar } from '@mui/material';
 // hooks
 import { useBoolean } from 'src/hooks/use-boolean';
@@ -19,11 +18,10 @@ import { ConfirmDialog } from 'src/components/custom-dialog';
 
 type Props = {
   row: any;
-  sr_no: number;
   onEditRow: VoidFunction;
 };
 
-export default function DealTableRow({ row, sr_no, onEditRow }: Props) {
+export default function DealTableRow({ row, onEditRow }: Props) {
 
   const confirm = useBoolean();
 
@@ -35,7 +33,7 @@ export default function DealTableRow({ row, sr_no, onEditRow }: Props) {
     <>
       <TableRow>
         <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
-           <Avatar src={row?.image} sx={{ mr: 2 }} />
+          <Avatar src={row?.image} sx={{ mr: 2 }} />
         </TableCell>
 
         <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.name_of_facility}</TableCell>

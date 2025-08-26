@@ -24,7 +24,6 @@ export default function AddRenderEmployeeManageAccess({
 
   const {
     watch,
-    setValue
   } = methods;
 
   const isActive = watch("isActive");

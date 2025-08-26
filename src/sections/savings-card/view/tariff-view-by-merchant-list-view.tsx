@@ -9,7 +9,6 @@ import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 // routes
-import { paths } from 'src/routes/paths';
 // hooks
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useRouter } from 'src/routes/hook';
@@ -30,10 +29,10 @@ import FormProvider from 'src/app/components/hook-form';
 import { useDispatch } from 'src/redux/store';
 import { LoadingScreen } from 'src/components/loading-screen';
 import { Box, Stack } from '@mui/system';
-import { FormControl, InputAdornment, MenuItem, TableCell, TableRow, TextField, Typography } from '@mui/material';
+import { InputAdornment, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
-import { merchants, facilityOpstion, merchantTypeoption } from 'src/utils/dummyMembers';
+import { merchants } from 'src/utils/dummyMembers';
 import Iconify from 'src/app/components/iconify';
 import AddMerchantsDialog from '../merchants-add-model';
 import TariffViewByMerchantTableRow from '../tariff-view-by-merchants-table-row';
@@ -45,7 +44,6 @@ const TABLE_HEAD = [
 
 export default function TariffViewByMerchantListView() {
 
-  const router = useRouter();
   const theme = useTheme();
   const create = useBoolean();
   const methods = useForm();
@@ -53,7 +51,6 @@ export default function TariffViewByMerchantListView() {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
   const [tableData, setTableData] = useState<any[] | []>([]);
-  const [statusFilter, setStatusFilter] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {

@@ -9,11 +9,8 @@ import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 // routes
-import { paths } from 'src/routes/paths';
 // hooks
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useRouter } from 'src/routes/hook';
-// components
 import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import { useSettingsContext } from 'src/components/settings';
@@ -26,18 +23,14 @@ import {
   TableHeadCustom,
   TablePaginationCustom,
 } from 'src/components/table';
-import FormProvider, { RHFDateField } from 'src/app/components/hook-form';
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
+import FormProvider from 'src/app/components/hook-form';
 import { LoadingScreen } from 'src/components/loading-screen';
-import { useDebounce } from 'src/hooks/use-debounce';
 import { Box, Stack } from '@mui/system';
-import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
+import { FormControl, InputAdornment, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
 import { facilityData } from 'src/utils/dummyMembers';
 import Iconify from 'src/app/components/iconify';
-import EnrolleeTableRow from '../enrollee-table-row';
-import AddEnrolleeDialog from '../enrollee-add-model';
 import FacilitiesTableRow from '../facilities-table-row';
 import AddFacilitiesDialog from '../facilities-add-model';
 
@@ -53,7 +46,6 @@ const TABLE_HEAD = [
 
 export default function FacilitiesListView() {
 
-  const router = useRouter();
   const theme = useTheme();
   const create = useBoolean();
   const methods = useForm();
@@ -177,7 +169,7 @@ export default function FacilitiesListView() {
             <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
               <Stack display='flex' flexDirection='row' flexWrap='wrap' width="100%">
                 <Box sx={{ p: 2.5, pt: 0 }} width="80%">{renderSearchInput}</Box>
-                <Box sx={{ p: 2.5, pt: 0 }}  width="20%" >{renderStatusFilter}</Box>
+                <Box sx={{ p: 2.5, pt: 0 }} width="20%">{renderStatusFilter}</Box>
               </Stack>
               <Scrollbar>
                 <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
@@ -208,19 +200,13 @@ export default function FacilitiesListView() {
                               table.page * table.rowsPerPage,
                               table.page * table.rowsPerPage + table.rowsPerPage
                             )
-                            .map((row, index) => {
-                              const sr_no = table.page * table.rowsPerPage + index + 1;
-                              console.log(`sr no : ${sr_no}`);
-
-                              return (
+                            .map((row, index) => (
                                 <FacilitiesTableRow
                                   key={row._id}
                                   row={row}
-                                  sr_no={sr_no}
                                   onEditRow={() => handleEditRow(row._id as string)}
                                 />
-                              );
-                            })}
+                              ))}
 
                         <TableEmptyRows
                           height={denseHeight}

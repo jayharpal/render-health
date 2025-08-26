@@ -19,11 +19,10 @@ import ViewStaffDialog from './view-staff-model';
 
 type Props = {
   row: any;
-  sr_no: number;
   onEditRow: VoidFunction;
 };
 
-export default function OverdraftsTableRow({ row, sr_no, onEditRow }: Props) {
+export default function OverdraftsTableRow({ row, onEditRow }: Props) {
 
   const confirm = useBoolean();
 

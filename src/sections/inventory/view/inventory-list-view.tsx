@@ -9,35 +9,25 @@ import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 // routes
-import { paths } from 'src/routes/paths';
-// hooks
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useRouter } from 'src/routes/hook';
 // components
-import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import { useSettingsContext } from 'src/components/settings';
-import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 import {
-  useTable,
   emptyRows,
   TableNoData,
   TableEmptyRows,
   TableHeadCustom,
   TablePaginationCustom,
+  useTable,
 } from 'src/components/table';
+import Scrollbar from 'src/components/scrollbar';
 // types
-//
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
 import { LoadingScreen } from 'src/components/loading-screen';
-import { useDebounce } from 'src/hooks/use-debounce';
 import { Box, Stack } from '@mui/system';
-import Iconify from 'src/components/iconify';
-import { FormControl, InputAdornment, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
-import { IInquiry } from 'src/types/inquiry';
+import { FormControl, MenuItem, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
-import { useTheme } from '@mui/material/styles';
-import { InventoryData, billsClaimsOutStandingData, billsClaimspaidData, SelectPricePlanOption, SelectPriceTypeOption, statusTypeoption } from 'src/utils/dummyMembers';
+import { InventoryData, SelectPricePlanOption, SelectPriceTypeOption } from 'src/utils/dummyMembers';
 import InventoryTableRow from '../inventory-table-row';
 // ----------------------------------------------------------------------
 
@@ -65,7 +55,6 @@ export default function InventoryListView() {
   const table = useTable();
   const settings = useSettingsContext();
   const confirm = useBoolean();
-
 
   const handleEditRow = (id: string) => {
     console.log("-")

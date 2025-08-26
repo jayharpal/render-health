@@ -248,6 +248,13 @@ export function useNavData() {
               icon: ICONS.ecommerce,
             }
             : null,
+          isAdmin
+            ? {
+              title: t('View Record'),
+              path: paths.dashboard.viewRecord.root,
+              icon: ICONS.course,
+            }
+            : null,
           // PROJECTS
           // {
           //   title: t('Projects'),

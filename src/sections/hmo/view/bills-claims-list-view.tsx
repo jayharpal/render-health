@@ -9,15 +9,12 @@ import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 // routes
-import { paths } from 'src/routes/paths';
 // hooks
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useRouter } from 'src/routes/hook';
 // components
 import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import { useSettingsContext } from 'src/components/settings';
-import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 import {
   useTable,
   emptyRows,
@@ -27,18 +24,12 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 // types
-//
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
 import { LoadingScreen } from 'src/components/loading-screen';
-import { useDebounce } from 'src/hooks/use-debounce';
 import { Box, Stack } from '@mui/system';
-import Iconify from 'src/components/iconify';
-import { FormControl, InputAdornment, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
-import { IInquiry } from 'src/types/inquiry';
+import { FormControl, MenuItem, Select, TableCell, TableRow, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
 import { billsClaimsData, billsClaimsOutStandingData, billsClaimspaidData } from 'src/utils/dummyMembers';
-import HmoTableRow from '../hmo-table-row';
 import AddHmoDialog from '../hmo-add-model';
 import BillsClaimsTableRow from '../bills-claims-table-row';
 // ----------------------------------------------------------------------
@@ -57,16 +48,13 @@ const TABLE_HEAD = [
 // ----------------------------------------------------------------------
 
 export default function BillsClaimsListView() {
-  const router = useRouter();
   const theme = useTheme();
   const create = useBoolean();
 
-  const dispatch = useDispatch();
   const [tableData, setTableData] = useState<any[] | []>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [billingType, setBillingType] = useState<'all' | 'outstanding' | 'paid'>('all');
   const [statusFilter, setStatusFilter] = useState("Newest Billing");
-
 
   const handleStatusChange = (event: any) => {
     setStatusFilter(event.target.value);
@@ -188,19 +176,13 @@ export default function BillsClaimsListView() {
                             table.page * table.rowsPerPage,
                             table.page * table.rowsPerPage + table.rowsPerPage
                           )
-                          .map((row, index) => {
-                            const sr_no = table.page * table.rowsPerPage + index + 1;
-                            console.log(`sr no : ${sr_no}`);
-
-                            return (
+                          .map((row, index) => (
                               <BillsClaimsTableRow
                                 key={row._id}
                                 row={row}
-                                sr_no={sr_no}
                                 onEditRow={() => handleEditRow(row._id as string)}
                               />
-                            );
-                          })}
+                            ))}
 
                       <TableEmptyRows
                         height={denseHeight}

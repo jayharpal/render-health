@@ -8,12 +8,10 @@ import IconButton from '@mui/material/IconButton';
 // hooks
 import { useBoolean } from 'src/hooks/use-boolean';
 // components
-import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 //
-import { Avatar } from '@mui/material';
 import { useTheme } from '@mui/system';
 // ----------------------------------------------------------------------
 

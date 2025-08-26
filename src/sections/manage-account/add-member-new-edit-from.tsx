@@ -1,5 +1,4 @@
 // import * as Yup from 'yup';
-import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 // import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
@@ -13,7 +12,6 @@ import FormProvider, {
   RHFTextField,
   // RHFUploadAvatarBox,
 } from 'src/components/hook-form';
-import { useDispatch } from 'src/redux/store';
 import { Typography } from '@mui/material';
 import RHFMuiPhoneNumber from 'src/components/hook-form/rhf-muiPhonenumber';
 import { hospitalOptions, insuranceOptions, lgaOptions, stateOptions } from 'src/utils/dummyMembers';
@@ -27,51 +25,7 @@ type Props = {
 
 export default function AddMemberNewEditFrom({ currentBooking, onClose }: Props) {
 
-  function formatDateToYYYYMMDD(dateString: string) {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    return `${year}-${month}-${day}T${hours}:${minutes}`;
-  }
-  const [pendingAmount, setPendingAmount] = useState(0);
-  const [total, setTotal] = useState('');
-
-  const dispatch = useDispatch();
-
-
-  const defaultValues = useMemo(
-    () => ({
-      email: currentBooking?.email || '', // Add default value if available
-      mobile: currentBooking?.mobile || '', // Add default value if available
-      travelingVehicleType: currentBooking?.travelingVehicleType || '', // Add default value if available
-      travelingVehiclePlateNo: currentBooking?.travelingVehiclePlateNo || '', // Add default value if available
-      totalPendingAmount: pendingAmount, // Add default value if available
-      comingFrom: currentBooking?.comingFrom || '', // Add default value if available
-      goingTo: currentBooking?.goingTo || '', // Add default value if available
-      members: currentBooking?.bookingMembers || [],
-      extraAmenities: currentBooking?.extraAmenities || [],
-      fixedPrice: currentBooking?.fixedPrice || 0, // Add default value if available
-      finalPaidAmount: currentBooking?.finalPaidAmount || 0, // Add default value if available
-      rooms: currentBooking?.rooms || 0,// Add default value if available
-      discount: currentBooking?.discount || 0, // Add default value if available
-      adjustAmmount: "",
-      total: ""
-    }),
-    [currentBooking, pendingAmount]
-  );
-
-  const methods = useForm({
-    defaultValues,
-
-  });
-
-  const {
-    watch,
-  } = methods;
-
+  const methods = useForm();
 
   return (
     <FormProvider methods={methods} >
@@ -109,13 +63,6 @@ export default function AddMemberNewEditFrom({ currentBooking, onClose }: Props)
         <RHFAutocomplete name="lga" label="LGA" options={lgaOptions} />
         <RHFTextField name="city" label="City" required />
 
-        {/* DOB fields */}
-        {/* <Box>
-          <RHFAutocomplete name="dobDay" label="Select Day" options={days} />
-          <RHFAutocomplete name="dobMonth" label="Select Month" options={months} />
-          <RHFAutocomplete name="dobYear" label="Select Year" options={years} />
-        </Box> */}
-
         <RHFDateField name="dateOfBirth" label="Date Of Birth" />
 
         <RHFAutocomplete name="gender" label="Gender" options={['Male', 'Female']} />
@@ -131,7 +78,6 @@ export default function AddMemberNewEditFrom({ currentBooking, onClose }: Props)
 
         <RHFAutocomplete name="preferredHospital" label="Preferred Hospital" options={hospitalOptions} />
 
-        {/* Next of Kin section */}
       </Box>
 
       <Box>

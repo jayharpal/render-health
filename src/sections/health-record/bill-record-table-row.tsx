@@ -13,47 +13,40 @@ import Iconify from 'src/components/iconify';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 //
+import { Avatar, ListItemText } from '@mui/material';
+import { useTheme } from '@mui/system';
 // ----------------------------------------------------------------------
 
 type Props = {
   row: any;
+  sr_no: number;
   onEditRow: VoidFunction;
 };
 
-export default function MembersTableRow({ row, onEditRow }: Props) {
-
+export default function BillingRecordTableRow({ row, sr_no, onEditRow }: Props) {
+  const theme = useTheme();
   const confirm = useBoolean();
 
-  const quickEdit = useBoolean();
+  const create = useBoolean();
 
   const popover = usePopover();
 
   return (
     <>
       <TableRow>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.createdDate}</TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.enrolleeName}</TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.assignId}</TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.companyName}</TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.typeOfEnrollee}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.dateCreated}</TableCell>
 
-        <TableCell>
-          <Label
-            variant="soft"
-            color={
-              (row?.status === 'Active' && 'success') ||
-              (row?.status === 'Pending' && 'warning') ||
-              (row?.status === 'Inactive' && 'error') ||
-              'default'
-            }
-          >
-            {row?.status}
-          </Label>
-        </TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.invoiceId}</TableCell>
+
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.hospital}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.amount}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.paid}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.balance}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.view}</TableCell>
 
         <TableCell align="right" sx={{ px: 1, whiteSpace: 'nowrap' }}>
           <Tooltip title="Quick Info" placement="top" arrow>
-            <IconButton color={quickEdit.value ? 'inherit' : 'default'} onClick={quickEdit.onTrue}>
+            <IconButton color={create.value ? 'inherit' : 'default'} onClick={create.onTrue}>
               <Iconify icon="mdi:eye" />
             </IconButton>
           </Tooltip>
@@ -63,7 +56,6 @@ export default function MembersTableRow({ row, onEditRow }: Props) {
           </IconButton>
         </TableCell>
       </TableRow>
-      {/* <InquiryInfo currentInquiry={row} open={quickEdit.value} onClose={quickEdit.onFalse} /> */}
 
       <CustomPopover
         open={popover.open}

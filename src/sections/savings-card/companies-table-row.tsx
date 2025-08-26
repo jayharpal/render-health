@@ -16,11 +16,10 @@ import { ConfirmDialog } from 'src/components/custom-dialog';
 
 type Props = {
   row: any;
-  sr_no: number;
   onEditRow: VoidFunction;
 };
 
-export default function CompaniesTableRow({ row, sr_no, onEditRow }: Props) {
+export default function CompaniesTableRow({ row, onEditRow }: Props) {
 
   const confirm = useBoolean();
 

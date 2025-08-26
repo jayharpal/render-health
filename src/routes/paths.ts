@@ -180,6 +180,9 @@ export const paths = {
     appointment: {
       root: `${ROOTS.DASHBOARD}/appointment`,
     },
+    viewRecord: {
+      root: `${ROOTS.DASHBOARD}/view-record`,
+    },
     inventory: {
       root: `${ROOTS.DASHBOARD}/inventory`,
     },

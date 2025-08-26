@@ -9,8 +9,6 @@ import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 // routes
-import { paths } from 'src/routes/paths';
-// hooks
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useRouter } from 'src/routes/hook';
 // components
@@ -49,17 +47,14 @@ const TABLE_HEAD = [
 
 export default function MerchantsListView() {
 
-  const router = useRouter();
   const theme = useTheme();
   const create = useBoolean();
   const methods = useForm();
 
-  const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
   const [tableData, setTableData] = useState<any[] | []>([]);
   const [statusFilter, setStatusFilter] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
 
   const handleStatusChange = (event: any) => {
     setStatusFilter(event.target.value);

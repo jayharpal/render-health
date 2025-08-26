@@ -18,11 +18,10 @@ import ViewStaffDialog from './view-staff-model';
 
 type Props = {
   row: any;
-  sr_no: number;
   onEditRow: VoidFunction;
 };
 
-export default function WithdrawalRequestsTableRow({ row, sr_no, onEditRow }: Props) {
+export default function WithdrawalRequestsTableRow({ row, onEditRow }: Props) {
 
   const confirm = useBoolean();
   const quickEdit = useBoolean();

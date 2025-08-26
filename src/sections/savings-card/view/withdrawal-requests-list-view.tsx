@@ -27,10 +27,10 @@ import {
 import FormProvider from 'src/app/components/hook-form';
 import { LoadingScreen } from 'src/components/loading-screen';
 import { Box, Stack } from '@mui/system';
-import { FormControl, InputAdornment, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
+import { FormControl, InputAdornment, MenuItem, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
-import { merchants, facilityOpstion, merchantTypeoption, withdrawalRequestsData, statusTypeoption } from 'src/utils/dummyMembers';
+import { withdrawalRequestsData, statusTypeoption } from 'src/utils/dummyMembers';
 import Iconify from 'src/app/components/iconify';
 import WithdrawalRequestsTableRow from '../withdrawal-requests-table-row';
 
@@ -47,9 +47,7 @@ const TABLE_HEAD = [
 ];
 
 export default function WithdrawalRequestsListView() {
-
-  const theme = useTheme();
-  const create = useBoolean();
+  
   const methods = useForm();
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -181,19 +179,13 @@ export default function WithdrawalRequestsListView() {
                               table.page * table.rowsPerPage,
                               table.page * table.rowsPerPage + table.rowsPerPage
                             )
-                            .map((row, index) => {
-                              const sr_no = table.page * table.rowsPerPage + index + 1;
-                              console.log(`sr no : ${sr_no}`);
-
-                              return (
+                            .map((row, index) => (
                                 <WithdrawalRequestsTableRow
                                   key={row._id}
                                   row={row}
-                                  sr_no={sr_no}
                                   onEditRow={() => handleEditRow(row._id as string)}
                                 />
-                              );
-                            })}
+                              ))}
                         <TableEmptyRows
                           height={denseHeight}
                           emptyRows={emptyRows(table.page, table.rowsPerPage, tableData?.length)}

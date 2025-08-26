@@ -1,4 +1,4 @@
-import { Box, TextField, Typography, Button, Avatar } from "@mui/material";
+import { Box, TextField, Typography, Button } from "@mui/material";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import FormProvider, { RHFUploadAvatar } from "src/components/hook-form";
@@ -14,7 +14,6 @@ export default function Profile() {
   });
 
   const {
-    watch,
     setValue
   } = methods;
 

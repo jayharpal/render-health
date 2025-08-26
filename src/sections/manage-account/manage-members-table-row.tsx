@@ -17,11 +17,10 @@ import { ConfirmDialog } from 'src/components/custom-dialog';
 
 type Props = {
   row: any;
-  sr_no: number;
   onEditRow: VoidFunction;
 };
 
-export default function ManageMembersTableRow({ row, sr_no, onEditRow }: Props) {
+export default function ManageMembersTableRow({ row, onEditRow }: Props) {
   const { createdAt, memberName, patientId, hospitalName, dateOfBirth, typeOfRegister, registeredBy } = row;
 
   const confirm = useBoolean();

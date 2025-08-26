@@ -1,6 +1,6 @@
 // import * as Yup from 'yup';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useFieldArray, useForm } from 'react-hook-form';
+import { useCallback } from 'react';
+import { useForm } from 'react-hook-form';
 // import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -9,18 +9,14 @@ import Stack from '@mui/material/Stack';
 // components
 import FormProvider, {
   RHFAutocomplete,
-  RHFAutocompleteMultiple,
   RHFDateField,
   RHFTextField,
   RHFUploadAvatar,
 } from 'src/components/hook-form';
-// import { IBooking } from 'src/@types/bookings';
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
-// import { getCustomers } from 'src/redux/slices/customers';
-import { InputLabel, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import RHFMuiPhoneNumber from 'src/components/hook-form/rhf-muiPhonenumber';
-import { days, hospitalOptions, insuranceOptions, lgaOptions, months, roleOptions, stateOptions, years } from 'src/utils/dummyMembers';
-import { RHFCheckbox, RHFMultiCheckbox, RHFRadioGroup } from 'src/app/components/hook-form';
+import { roleOptions, stateOptions } from 'src/utils/dummyMembers';
+import { RHFCheckbox, RHFRadioGroup } from 'src/app/components/hook-form';
 import { fData } from 'src/utils/format-number';
 
 // ----------------------------------------------------------------------
@@ -32,22 +28,9 @@ type Props = {
 
 export default function AddRenderEmployeeNewEditFrom({ currentBooking, onClose }: Props) {
 
-  function formatDateToYYYYMMDD(dateString: string) {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    return `${year}-${month}-${day}T${hours}:${minutes}`;
-  }
-  const [pendingAmount, setPendingAmount] = useState(0);
-  const [total, setTotal] = useState('');
-
   const methods = useForm();
 
   const {
-    watch,
     setValue
   } = methods;
 
@@ -182,8 +165,6 @@ export default function AddRenderEmployeeNewEditFrom({ currentBooking, onClose }
         <RHFTextField name="stateOfOrigin" label="State Of Origin" />
         <RHFTextField name="position" label="Position" />
       </Box>
-
-      {/* </Box> */}
 
       <Box>
         <Typography fontWeight='bold' mb={2}>Next Of Kin</Typography>
