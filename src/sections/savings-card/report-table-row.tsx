@@ -16,12 +16,11 @@ import ViewReportDetailsDialog from './view-report-details-model';
 
 type Props = {
   row: any;
-  sr_no: number;
-  onEditRow: VoidFunction;
+  onEditRow?: VoidFunction;
   selected: boolean;
 };
 
-export default function ReportTableRow({ row, sr_no, onEditRow, selected }: Props) {
+export default function ReportTableRow({ row, onEditRow, selected }: Props) {
 
   const confirm = useBoolean();
   const viewStaff = useBoolean();

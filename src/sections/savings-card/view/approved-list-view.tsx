@@ -9,10 +9,7 @@ import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 // routes
-import { paths } from 'src/routes/paths';
-// hooks
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useRouter } from 'src/routes/hook';
 // components
 import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
@@ -27,15 +24,12 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 import FormProvider from 'src/app/components/hook-form';
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
 import { LoadingScreen } from 'src/components/loading-screen';
-import { useDebounce } from 'src/hooks/use-debounce';
 import { Box, Stack } from '@mui/system';
-import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
+import { FormControl, MenuItem, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
-import { approvedPaymentType, claimData, merchantTypeoption } from 'src/utils/dummyMembers';
-import Iconify from 'src/app/components/iconify';
+import { approvedPaymentType, claimData } from 'src/utils/dummyMembers';
 import ApprovedTableRow from '../approved-table-row';
 
 const TABLE_HEAD = [
@@ -50,35 +44,15 @@ const TABLE_HEAD = [
 
 export default function ApprovedListView() {
 
-  const router = useRouter();
   const theme = useTheme();
-  const create = useBoolean();
   const methods = useForm();
 
-  const dispatch = useDispatch();
-  const [searchQuery, setSearchQuery] = useState('');
   const [tableData, setTableData] = useState<any[] | []>([]);
   const [statusFilter, setStatusFilter] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-
   const handleStatusChange = (event: any) => {
     setStatusFilter(event.target.value);
-  };
-
-  useEffect(() => {
-    if (!searchQuery) {
-      setTableData(claimData);
-    } else {
-      const filtered = claimData.filter((member) =>
-        member.patientName?.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setTableData(filtered);
-    }
-  }, [searchQuery]);
-
-  const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
   };
 
   const table = useTable();
@@ -115,23 +89,6 @@ export default function ApprovedListView() {
         ))}
       </TextField>
     </FormControl>
-  );
-
-  const renderSearchInput = (
-    <TextField
-      fullWidth
-      value={searchQuery}
-      onChange={handleSearchInput}
-      placeholder="Search By Merchant..."
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled' }} />
-          </InputAdornment>
-        ),
-      }}
-      sx={{ mt: 2.5 }}
-    />
   );
 
   return (
@@ -193,19 +150,13 @@ export default function ApprovedListView() {
                               table.page * table.rowsPerPage,
                               table.page * table.rowsPerPage + table.rowsPerPage
                             )
-                            .map((row, index) => {
-                              const sr_no = table.page * table.rowsPerPage + index + 1;
-                              console.log(`sr no : ${sr_no}`);
-
-                              return (
+                            .map((row) => (
                                 <ApprovedTableRow
                                   key={row._id}
                                   row={row}
-                                  sr_no={sr_no}
                                   onEditRow={() => handleEditRow(row._id as string)}
                                 />
-                              );
-                            })}
+                              ))}
 
                         <TableEmptyRows
                           height={denseHeight}

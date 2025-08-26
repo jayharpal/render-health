@@ -2,7 +2,6 @@
 
 import Card from '@mui/material/Card';
 import Container from '@mui/material/Container';
-import { useRouter } from 'src/routes/hook';
 // components
 import { useSettingsContext } from 'src/components/settings';
 // types
@@ -21,11 +20,6 @@ export default function SearchPatientListView() {
 
   const settings = useSettingsContext();
   const methods = useForm();
-
-  const {
-    watch,
-    setValue,
-  } = methods;
 
   return (
     <FormProvider methods={methods} >

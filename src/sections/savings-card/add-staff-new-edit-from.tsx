@@ -19,10 +19,6 @@ export default function StaffNewEditFrom({ currentBooking, onClose }: Props) {
 
   const methods = useForm();
 
-  const {
-    setValue,
-  } = methods;
-
   return (
     <FormProvider methods={methods} >
       <Box

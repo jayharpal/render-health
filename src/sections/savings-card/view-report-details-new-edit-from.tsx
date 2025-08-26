@@ -9,14 +9,6 @@ type Props = {
   onClose?: VoidFunction;
 };
 
-const TABLE_HEAD = [
-  { id: 'CREATED AT', label: 'CREATED AT' },
-  { id: 'RH ID', label: 'RH ID' },
-  { id: 'NAME', label: 'NAME' },
-  { id: 'EMAIL', label: 'EMAIL' },
-];
-
-
 export default function ViewReportDetailsNewEditForm({ onClose, currentData }: Props) {
 
   const theme = useTheme();

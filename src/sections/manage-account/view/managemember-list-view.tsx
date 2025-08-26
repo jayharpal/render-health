@@ -17,7 +17,6 @@ import { useRouter } from 'src/routes/hook';
 import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import { useSettingsContext } from 'src/components/settings';
-import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 import {
   useTable,
   emptyRows,
@@ -28,9 +27,7 @@ import {
 } from 'src/components/table';
 // types
 //
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
 import { LoadingScreen } from 'src/components/loading-screen';
-import { useDebounce } from 'src/hooks/use-debounce';
 import { Box, Stack } from '@mui/system';
 import Iconify from 'src/components/iconify';
 import { InputAdornment, TableCell, TableRow, TextField, Typography } from '@mui/material';
@@ -60,11 +57,9 @@ export default function ManageMembersListView() {
   const theme = useTheme();
   const create = useBoolean();
 
-  const dispatch = useDispatch();
-  const { inquirys, isLoading } = useSelector((state: RootState) => state.inquiry);
   const [searchQuery, setSearchQuery] = useState('');
-  const debouncedSearchQuery = useDebounce(searchQuery, 150);
   const [tableData, setTableData] = useState<IInquiry[] | []>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // useEffect(() => {
   //   dispatch(getInquiry(debouncedSearchQuery));
@@ -184,19 +179,13 @@ export default function ManageMembersListView() {
                             table.page * table.rowsPerPage,
                             table.page * table.rowsPerPage + table.rowsPerPage
                           )
-                          .map((row, index) => {
-                            const sr_no = table.page * table.rowsPerPage + index + 1;
-                            console.log(`sr no : ${sr_no}`);
-
-                            return (
+                          .map((row, index) => (
                               <ManageMembersTableRow
                                 key={row._id}
                                 row={row}
-                                sr_no={sr_no}
                                 onEditRow={() => handleEditRow(row._id as string)}
                               />
-                            );
-                          })}
+                            ))}
 
                       <TableEmptyRows
                         height={denseHeight}

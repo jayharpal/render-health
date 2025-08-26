@@ -19,11 +19,10 @@ import ViewStaffDialog from './view-staff-model';
 
 type Props = {
   row: any;
-  sr_no: number;
   onEditRow: VoidFunction;
 };
 
-export default function ApprovedTableRow({ row, sr_no, onEditRow }: Props) {
+export default function ApprovedTableRow({ row, onEditRow }: Props) {
 
   const confirm = useBoolean();
 

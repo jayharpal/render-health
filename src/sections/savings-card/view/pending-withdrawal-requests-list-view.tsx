@@ -115,18 +115,13 @@ export default function PendingWithdrawalRequestsListView() {
                               table.page * table.rowsPerPage,
                               table.page * table.rowsPerPage + table.rowsPerPage
                             )
-                            .map((row, index) => {
-                              const sr_no = table.page * table.rowsPerPage + index + 1;
-
-                              return (
+                            .map((row) => (
                                 <PendingWithdrawalRequestsTableRow
                                   key={row._id}
                                   row={row}
-                                  sr_no={sr_no}
                                   onEditRow={() => handleEditRow(row._id as string)}
                                 />
-                              );
-                            })}
+                              ))}
                         <TableEmptyRows
                           height={denseHeight}
                           emptyRows={emptyRows(table.page, table.rowsPerPage, tableData?.length)}

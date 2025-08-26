@@ -27,9 +27,8 @@ import {
 import FormProvider, { RHFDateField } from 'src/app/components/hook-form';
 import { LoadingScreen } from 'src/components/loading-screen';
 import { Box, Stack } from '@mui/system';
-import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
+import { FormControl, MenuItem, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
-import { useTheme } from '@mui/material/styles';
 import { reconciliation } from 'src/utils/dummyMembers';
 import AddMemberDialog from '../members-add-model';
 import ReconciliationTableRow from '../reconciliation-table-row copy';
@@ -47,7 +46,6 @@ const TABLE_HEAD = [
 
 export default function ReconciliationListView() {
 
-  const theme = useTheme();
   const create = useBoolean();
   const methods = useForm();
 
@@ -195,19 +193,13 @@ export default function ReconciliationListView() {
                               table.page * table.rowsPerPage,
                               table.page * table.rowsPerPage + table.rowsPerPage
                             )
-                            .map((row, index) => {
-                              const sr_no = table.page * table.rowsPerPage + index + 1;
-                              console.log(`sr no : ${sr_no}`);
-
-                              return (
+                            .map((row, index) => (
                                 <ReconciliationTableRow
                                   key={row._id}
                                   row={row}
-                                  sr_no={sr_no}
                                   onEditRow={() => handleEditRow(row._id as string)}
                                 />
-                              );
-                            })}
+                              ))}
 
                         <TableEmptyRows
                           height={denseHeight}

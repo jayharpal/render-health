@@ -9,10 +9,7 @@ import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 // routes
-import { paths } from 'src/routes/paths';
-// hooks
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useRouter } from 'src/routes/hook';
 // components
 import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
@@ -25,16 +22,13 @@ import {
   TableHeadCustom,
   TablePaginationCustom,
 } from 'src/components/table';
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
 import { LoadingScreen } from 'src/components/loading-screen';
-import { useDebounce } from 'src/hooks/use-debounce';
 import { Box, Stack } from '@mui/system';
-import Iconify from 'src/components/iconify';
-import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
+import { FormControl, MenuItem, Select, TableCell, TableRow, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
-import { doctorData, filterOption, healthTypeFilterOption, OptionBystatusBilling } from 'src/utils/dummyMembers';
-import FormProvider, { RHFDateField } from 'src/app/components/hook-form';
+import { doctorData, OptionBystatusBilling } from 'src/utils/dummyMembers';
+import FormProvider from 'src/app/components/hook-form';
 import { useForm } from 'react-hook-form';
 import ViewAllBillingTableRow from '../view-all-billing-table-row';
 
@@ -50,13 +44,9 @@ const TABLE_HEAD = [
 
 export default function ViewAllBillingsListView() {
 
-  const router = useRouter();
   const theme = useTheme();
-  const create = useBoolean();
   const methods = useForm();
 
-  const dispatch = useDispatch();
-  const [searchQuery, setSearchQuery] = useState('');
   const [tableData, setTableData] = useState<any[] | []>([]);
   const [statusFilter, setStatusFilter] = useState("Doctor");
   const [isLoading, setIsLoading] = useState(false);

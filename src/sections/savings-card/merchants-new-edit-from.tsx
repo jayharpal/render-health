@@ -28,24 +28,9 @@ export default function MerchantsNewEditFrom({ currentBooking, onClose }: Props)
   const methods = useForm();
 
   const {
-    watch,
     setValue,
   } = methods;
 
-  const handleDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      const file = acceptedFiles[0];
-
-      const newFile = Object.assign(file, {
-        preview: URL.createObjectURL(file),
-      });
-
-      if (file) {
-        setValue('avatarUrl', newFile, { shouldValidate: true });
-      }
-    },
-    [setValue]
-  );
 
   return (
     <FormProvider methods={methods} >

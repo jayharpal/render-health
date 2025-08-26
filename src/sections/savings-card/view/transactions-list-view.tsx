@@ -9,8 +9,6 @@ import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 // routes
-import { paths } from 'src/routes/paths';
-// hooks
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useRouter } from 'src/routes/hook';
 // components
@@ -27,14 +25,13 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 import FormProvider, { RHFDateField } from 'src/app/components/hook-form';
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
+import { useDispatch } from 'src/redux/store';
 import { LoadingScreen } from 'src/components/loading-screen';
-import { useDebounce } from 'src/hooks/use-debounce';
 import { Box, Stack } from '@mui/system';
-import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
+import { FormControl, InputAdornment, MenuItem, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
-import { merchants, facilityOpstion, merchantTypeoption, transactionData, statusTypeoption } from 'src/utils/dummyMembers';
+import { transactionData, statusTypeoption } from 'src/utils/dummyMembers';
 import Iconify from 'src/app/components/iconify';
 import { LoadingButton } from '@mui/lab';
 import AddMerchantsDialog from '../merchants-add-model';
@@ -55,7 +52,6 @@ const TABLE_HEAD = [
 
 export default function TransactionsListView() {
 
-  const router = useRouter();
   const theme = useTheme();
   const create = useBoolean();
   const methods = useForm();
@@ -104,26 +100,6 @@ export default function TransactionsListView() {
   const renderFacilityFilter = (
     <FormControl fullWidth sx={{ mt: 2.5 }}>
       <RHFDateField name="startDate" label="Date Range" />
-    </FormControl>
-  );
-
-  const renderStatusFilter = (
-    <FormControl fullWidth sx={{ mt: 2.5 }}>
-      <TextField
-        name='Status'
-        label="Status"
-        onChange={handleStatusChange}
-        select
-      >
-        <MenuItem value="">
-          <em>Select By Payment Type</em>
-        </MenuItem>
-        {statusTypeoption.map((status) => (
-          <MenuItem key={status.value} value={status.value}>
-            {status.label}
-          </MenuItem>
-        ))}
-      </TextField>
     </FormControl>
   );
 
@@ -234,19 +210,13 @@ export default function TransactionsListView() {
                               table.page * table.rowsPerPage,
                               table.page * table.rowsPerPage + table.rowsPerPage
                             )
-                            .map((row, index) => {
-                              const sr_no = table.page * table.rowsPerPage + index + 1;
-                              console.log(`sr no : ${sr_no}`);
-
-                              return (
+                            .map((row, index) => (
                                 <TransactionsTableRow
                                   key={row._id}
                                   row={row}
-                                  sr_no={sr_no}
                                   onEditRow={() => handleEditRow(row._id as string)}
                                 />
-                              );
-                            })}
+                              ))}
                         <TableEmptyRows
                           height={denseHeight}
                           emptyRows={emptyRows(table.page, table.rowsPerPage, tableData?.length)}

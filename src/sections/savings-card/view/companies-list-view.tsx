@@ -9,10 +9,7 @@ import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 // routes
-import { paths } from 'src/routes/paths';
-// hooks
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useRouter } from 'src/routes/hook';
 // components
 import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
@@ -26,12 +23,10 @@ import {
   TableHeadCustom,
   TablePaginationCustom,
 } from 'src/components/table';
-import FormProvider, { RHFDateField } from 'src/app/components/hook-form';
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
+import FormProvider from 'src/app/components/hook-form';
 import { LoadingScreen } from 'src/components/loading-screen';
-import { useDebounce } from 'src/hooks/use-debounce';
 import { Box, Stack } from '@mui/system';
-import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
+import { InputAdornment, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
 import { companies } from 'src/utils/dummyMembers';
@@ -55,15 +50,9 @@ export default function CompaniesListView() {
   const create = useBoolean();
   const methods = useForm();
 
-  const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
   const [tableData, setTableData] = useState<any[] | []>([]);
-  const [statusFilter, setStatusFilter] = useState("RHSC Number");
   const [isLoading, setIsLoading] = useState(false);
-
-  const handleStatusChange = (event: any) => {
-    setStatusFilter(event.target.value);
-  };
 
   useEffect(() => {
     if (!searchQuery) {
@@ -182,19 +171,13 @@ export default function CompaniesListView() {
                               table.page * table.rowsPerPage,
                               table.page * table.rowsPerPage + table.rowsPerPage
                             )
-                            .map((row, index) => {
-                              const sr_no = table.page * table.rowsPerPage + index + 1;
-                              console.log(`sr no : ${sr_no}`);
-
-                              return (
+                            .map((row) => (
                                 <CompaniesTableRow
                                   key={row._id}
                                   row={row}
-                                  sr_no={sr_no}
                                   onEditRow={() => handleEditRow(row._id as string)}
                                 />
-                              );
-                            })}
+                              ))}
 
                         <TableEmptyRows
                           height={denseHeight}

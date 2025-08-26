@@ -28,7 +28,6 @@ export default function MembersNewEditFrom({ currentBooking, onClose }: Props) {
   const methods = useForm();
 
   const {
-    watch,
     setValue,
   } = methods;
 

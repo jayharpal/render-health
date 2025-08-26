@@ -19,11 +19,10 @@ import AddRenderEmployeeManageAccess from './add-render-employee-manage-access';
 
 type Props = {
   row: any;
-  sr_no: number;
   onEditRow: VoidFunction;
 };
 
-export default function RenderEmployeesTableRow({ row, sr_no, onEditRow }: Props) {
+export default function RenderEmployeesTableRow({ row, onEditRow }: Props) {
 
   const confirm = useBoolean();
 

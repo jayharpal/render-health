@@ -9,16 +9,13 @@ import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 // routes
-import { paths } from 'src/routes/paths';
-// hooks
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useRouter } from 'src/routes/hook';
 // components
 import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import { useSettingsContext } from 'src/components/settings';
 import { useForm } from 'react-hook-form';
-import { FormControl, InputAdornment, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
+import { TableCell, TableRow, Typography } from '@mui/material';
 import {
   useTable,
   emptyRows,
@@ -27,10 +24,8 @@ import {
   TableHeadCustom,
   TablePaginationCustom,
 } from 'src/components/table';
-import Iconify from 'src/components/iconify';
 import { Box, Stack } from '@mui/system';
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
-import FormProvider, { RHFDateField } from 'src/app/components/hook-form';
+import FormProvider from 'src/app/components/hook-form';
 import { LoadingScreen } from 'src/components/loading-screen';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';

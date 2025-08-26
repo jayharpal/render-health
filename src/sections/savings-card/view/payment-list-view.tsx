@@ -9,10 +9,7 @@ import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 // routes
-import { paths } from 'src/routes/paths';
-// hooks
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useRouter } from 'src/routes/hook';
 // components
 import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
@@ -27,18 +24,14 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 import FormProvider from 'src/app/components/hook-form';
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
 import { LoadingScreen } from 'src/components/loading-screen';
-import { useDebounce } from 'src/hooks/use-debounce';
 import { Box, Stack } from '@mui/system';
-import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TableCell, TableRow, TextField, Typography } from '@mui/material';
+import { FormControl, InputAdornment, MenuItem, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
-import { merchants, facilityOpstion, merchantTypeoption, paymentData, statusTypeoption } from 'src/utils/dummyMembers';
+import { merchantTypeoption, paymentData, statusTypeoption } from 'src/utils/dummyMembers';
 import Iconify from 'src/app/components/iconify';
 import AddMerchantsDialog from '../merchants-add-model';
-import MerchantsTableRow from '../merchants-table-row';
-import MerchantsRecommendationsTableRow from '../merchants-recommendations-table-row';
 import PaymentTableRow from '../payment-table-row';
 
 const TABLE_HEAD = [
@@ -59,12 +52,10 @@ const TABLE_HEAD = [
 
 export default function PaymentListView() {
 
-  const router = useRouter();
   const theme = useTheme();
   const create = useBoolean();
   const methods = useForm();
 
-  const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
   const [tableData, setTableData] = useState<any[] | []>([]);
   const [statusFilter, setStatusFilter] = useState("");
@@ -245,19 +236,13 @@ export default function PaymentListView() {
                               table.page * table.rowsPerPage,
                               table.page * table.rowsPerPage + table.rowsPerPage
                             )
-                            .map((row, index) => {
-                              const sr_no = table.page * table.rowsPerPage + index + 1;
-                              console.log(`sr no : ${sr_no}`);
-
-                              return (
+                            .map((row, index) => (
                                 <PaymentTableRow
                                   key={row._id}
                                   row={row}
-                                  sr_no={sr_no}
                                   onEditRow={() => handleEditRow(row._id as string)}
                                 />
-                              );
-                            })}
+                              ))}
                         <TableEmptyRows
                           height={denseHeight}
                           emptyRows={emptyRows(table.page, table.rowsPerPage, tableData?.length)}

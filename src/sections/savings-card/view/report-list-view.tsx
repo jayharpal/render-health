@@ -27,7 +27,7 @@ import {
 import FormProvider from 'src/app/components/hook-form';
 import { LoadingScreen } from 'src/components/loading-screen';
 import { Box, Stack } from '@mui/system';
-import { FormControl, IconButton, InputAdornment, InputLabel, MenuItem, Select, TableCell, TableRow, TextField, Tooltip, Typography } from '@mui/material';
+import { FormControl, IconButton, InputAdornment, MenuItem, TableCell, TableRow, TextField, Tooltip, Typography } from '@mui/material';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
 import { reportDatas } from 'src/utils/dummyMembers';
@@ -270,20 +270,14 @@ export default function ReportListView() {
                               table.page * table.rowsPerPage,
                               table.page * table.rowsPerPage + table.rowsPerPage
                             )
-                            .map((row, index) => {
-                              const sr_no = table.page * table.rowsPerPage + index + 1;
-                              console.log(`sr no : ${sr_no}`);
-
-                              return (
+                            .map((row) => (
                                 <ReportTableRow
                                   key={row._id}
                                   row={row}
-                                  sr_no={sr_no}
                                   selected={table.selected.includes(row._id as string)}
                                   onEditRow={() => handleEditRow(row._id as string)}
                                 />
-                              );
-                            })}
+                              ))}
                         <TableEmptyRows
                           height={denseHeight}
                           emptyRows={emptyRows(table.page, table.rowsPerPage, tableData?.length)}

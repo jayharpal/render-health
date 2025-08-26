@@ -17,11 +17,10 @@ import { ConfirmDialog } from 'src/components/custom-dialog';
 
 type Props = {
   row: any;
-  sr_no: number;
   onEditRow: VoidFunction;
 };
 
-export default function ReconciliationTableRow({ row, sr_no, onEditRow }: Props) {
+export default function ReconciliationTableRow({ row, onEditRow }: Props) {
 
   const confirm = useBoolean();
 
