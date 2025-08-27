@@ -1,5 +1,4 @@
 // import * as Yup from 'yup';
-import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Box from '@mui/material/Box';
@@ -26,11 +25,6 @@ type Props = {
 export default function MerchantsNewEditFrom({ currentBooking, onClose }: Props) {
 
   const methods = useForm();
-
-  const {
-    setValue,
-  } = methods;
-
 
   return (
     <FormProvider methods={methods} >

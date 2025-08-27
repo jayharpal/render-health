@@ -11,7 +11,7 @@ import FormProvider, {
   RHFUploadAvatar,
 } from 'src/components/hook-form';
 import { MenuItem, Typography } from '@mui/material';
-import { CategoriesOpstion, days, facilityOpstion } from 'src/utils/dummyMembers';
+import { CategoriesOpstion, facilityOpstion } from 'src/utils/dummyMembers';
 import { fData } from 'src/utils/format-number';
 import { RHFTextArea } from 'src/components/hook-form/rhf-text-field';
 

@@ -1,12 +1,13 @@
 // sections
 import { Metadata } from 'next';
+import { FacilityDashboardList } from 'src/sections/facility-dashboard/view';
 
 // ----------------------------------------------------------------------
 
 export const metadata: Metadata = {
-  title: "Dashboard",
+  title: "Facility Dashboard",
 };
 
 export default function DashboardPage() {
-  return <>Comming soon Fecility</>;
+  return <FacilityDashboardList />;
 }

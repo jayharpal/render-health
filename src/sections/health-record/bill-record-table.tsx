@@ -10,7 +10,6 @@ import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 // routes
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useRouter } from 'src/routes/hook';
 // components
 import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
@@ -23,12 +22,10 @@ import {
   TableHeadCustom,
   TablePaginationCustom,
 } from 'src/components/table';
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
 import { LoadingScreen } from 'src/components/loading-screen';
-import { FormControl, MenuItem, Select, TableCell, TableRow } from '@mui/material';
+import { TableCell, TableRow } from '@mui/material';
 import { hasData } from 'src/utils/helper';
-import { useTheme } from '@mui/material/styles';
-import { billingData, filterOption, healthTypeFilterOption } from 'src/utils/dummyMembers';
+import { billingData } from 'src/utils/dummyMembers';
 import FormProvider from 'src/app/components/hook-form';
 import { useForm } from 'react-hook-form';
 import BillingRecordTableRow from './bill-record-table-row';
@@ -102,19 +99,13 @@ export default function BillingRecordTable() {
                               table.page * table.rowsPerPage,
                               table.page * table.rowsPerPage + table.rowsPerPage
                             )
-                            .map((row, index) => {
-                              const sr_no = table.page * table.rowsPerPage + index + 1;
-                              console.log(`sr no : ${sr_no}`);
-
-                              return (
-                                <BillingRecordTableRow
-                                  key={row._id}
-                                  row={row}
-                                  sr_no={sr_no}
-                                  onEditRow={() => handleEditRow(row._id as string)}
-                                />
-                              );
-                            })}
+                            .map((row) => (
+                              <BillingRecordTableRow
+                                key={row._id}
+                                row={row}
+                                onEditRow={() => handleEditRow(row._id as string)}
+                              />
+                            ))}
 
                         <TableEmptyRows
                           height={denseHeight}

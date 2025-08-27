@@ -8,23 +8,18 @@ import IconButton from '@mui/material/IconButton';
 // hooks
 import { useBoolean } from 'src/hooks/use-boolean';
 // components
-import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 //
-import { Avatar, ListItemText } from '@mui/material';
-import { useTheme } from '@mui/system';
 // ----------------------------------------------------------------------
 
 type Props = {
   row: any;
-  sr_no: number;
   onEditRow: VoidFunction;
 };
 
-export default function BillingByHospitalTableRow({ row, sr_no, onEditRow }: Props) {
-  const theme = useTheme();
+export default function BillingByHospitalTableRow({ row, onEditRow }: Props) {
   const confirm = useBoolean();
 
   const create = useBoolean();

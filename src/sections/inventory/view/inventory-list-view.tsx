@@ -174,19 +174,13 @@ export default function InventoryListView() {
                             table.page * table.rowsPerPage,
                             table.page * table.rowsPerPage + table.rowsPerPage
                           )
-                          .map((row, index) => {
-                            const sr_no = table.page * table.rowsPerPage + index + 1;
-                            console.log(`sr no : ${sr_no}`);
-
-                            return (
+                          .map((row, index) => (
                               <InventoryTableRow
                                 key={row._id}
                                 row={row}
-                                sr_no={sr_no}
                                 onEditRow={() => handleEditRow(row._id as string)}
                               />
-                            );
-                          })}
+                            ))}
 
                       <TableEmptyRows
                         height={denseHeight}

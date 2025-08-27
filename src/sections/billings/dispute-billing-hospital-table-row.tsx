@@ -13,18 +13,13 @@ import Iconify from 'src/components/iconify';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 //
-import { Avatar, ListItemText } from '@mui/material';
-import { useTheme } from '@mui/system';
-// ----------------------------------------------------------------------
 
 type Props = {
   row: any;
-  sr_no: number;
   onEditRow: VoidFunction;
 };
 
-export default function DisputeBillingHospitalTableRow({ row, sr_no, onEditRow }: Props) {
-  const theme = useTheme();
+export default function DisputeBillingHospitalTableRow({ row, onEditRow }: Props) {
   const confirm = useBoolean();
 
   const create = useBoolean();

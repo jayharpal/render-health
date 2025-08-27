@@ -192,6 +192,9 @@ export const paths = {
     healthRecord: {
       root: `${ROOTS.DASHBOARD}/health-record`,
     },
+    facilityDashboard: {
+      root: `${ROOTS.DASHBOARD}/facility-dashboard`,
+    },
     searchPatient: {
       root: `${ROOTS.DASHBOARD}/search-patient`,
     },

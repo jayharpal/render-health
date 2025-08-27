@@ -5,7 +5,6 @@ import MenuItem from '@mui/material/MenuItem';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import IconButton from '@mui/material/IconButton';
-import ListItemText from '@mui/material/ListItemText';
 // hooks
 import { useBoolean } from 'src/hooks/use-boolean';
 // components
@@ -14,17 +13,14 @@ import Iconify from 'src/components/iconify';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 //
-import { IInquiry } from 'src/types/inquiry';
-// import InquiryInfo from './inquiry-info';
 // ----------------------------------------------------------------------
 
 type Props = {
   row: any;
-  sr_no: number;
   onEditRow: VoidFunction;
 };
 
-export default function HmoTableRow({ row, sr_no, onEditRow }: Props) {
+export default function HmoTableRow({ row, onEditRow }: Props) {
 
   const confirm = useBoolean();
 
@@ -36,15 +32,6 @@ export default function HmoTableRow({ row, sr_no, onEditRow }: Props) {
     <>
       <TableRow>
         <TableCell sx={{ whiteSpace: 'nowrap' }}>{row.hmoName}</TableCell>
-        {/* <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
-          <ListItemText
-            primary={memberName}
-            // secondary={email}
-            primaryTypographyProps={{ typography: 'body2' }}
-            secondaryTypographyProps={{ component: 'span', color: 'text.disabled' }}
-          />
-        </TableCell> */}
-
         <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.hmoId}</TableCell>
 
         <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.staff}</TableCell>

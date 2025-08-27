@@ -9,15 +9,11 @@ import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 // routes
-import { paths } from 'src/routes/paths';
-// hooks
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useRouter } from 'src/routes/hook';
 // components
 import Scrollbar from 'src/components/scrollbar';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import { useSettingsContext } from 'src/components/settings';
-import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 import {
   useTable,
   emptyRows,
@@ -28,13 +24,10 @@ import {
 } from 'src/components/table';
 // types
 //
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
 import { LoadingScreen } from 'src/components/loading-screen';
-import { useDebounce } from 'src/hooks/use-debounce';
 import { Box, Stack } from '@mui/system';
 import Iconify from 'src/components/iconify';
 import { InputAdornment, TableCell, TableRow, TextField, Typography } from '@mui/material';
-import { IInquiry } from 'src/types/inquiry';
 import { hasData } from 'src/utils/helper';
 import { useTheme } from '@mui/material/styles';
 import { hmoData } from 'src/utils/dummyMembers';
@@ -56,14 +49,11 @@ const TABLE_HEAD = [
 // ----------------------------------------------------------------------
 
 export default function HmoListView() {
-  const router = useRouter();
   const theme = useTheme();
   const create = useBoolean();
 
-  const dispatch = useDispatch();
   // const { inquirys, isLoading } = useSelector((state: RootState) => state.inquiry);
   const [searchQuery, setSearchQuery] = useState('');
-  const debouncedSearchQuery = useDebounce(searchQuery, 150);
   const [tableData, setTableData] = useState<any[] | []>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -186,19 +176,13 @@ export default function HmoListView() {
                             table.page * table.rowsPerPage,
                             table.page * table.rowsPerPage + table.rowsPerPage
                           )
-                          .map((row, index) => {
-                            const sr_no = table.page * table.rowsPerPage + index + 1;
-                            console.log(`sr no : ${sr_no}`);
-
-                            return (
+                          .map((row) => (
                               <HmoTableRow
                                 key={row._id}
                                 row={row}
-                                sr_no={sr_no}
                                 onEditRow={() => handleEditRow(row._id as string)}
                               />
-                            );
-                          })}
+                            ))}
 
                       <TableEmptyRows
                         height={denseHeight}

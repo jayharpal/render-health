@@ -1,6 +1,5 @@
 // sections
 import { Metadata } from 'next';
-import { DealListView } from 'src/sections/manage-account/view';
 
 // ----------------------------------------------------------------------
 
