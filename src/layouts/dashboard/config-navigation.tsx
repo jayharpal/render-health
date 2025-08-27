@@ -1,15 +1,14 @@
-import { Children, useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { paths } from 'src/routes/paths';
 
 import { useTranslate } from 'src/locales';
 
 import SvgColor from 'src/components/svg-color';
-import { RootState, useDispatch, useSelector } from 'src/redux/store';
+import { useDispatch } from 'src/redux/store';
 import { useAuthContext } from 'src/auth/hooks';
 import { getProjects } from 'src/redux/slices/projects';
 import { getRoadmaps } from 'src/redux/slices/roadmap';
-import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
 import { getCourses } from 'src/redux/slices/course';
 
@@ -63,8 +62,8 @@ export function useNavData() {
   const { t } = useTranslate();
   const dispatch = useDispatch();
   const { isAdmin } = useAuthContext();
-  const { projects } = useSelector((state: RootState) => state.projects);
-  const { roadmaps } = useSelector((state: RootState) => state.roadmap);
+  // const { projects } = useSelector((state: RootState) => state.projects);
+  // const { roadmaps } = useSelector((state: RootState) => state.roadmap);
   // const { courses } = useSelector((state: RootState) => state.course);
 
   useEffect(() => {
@@ -82,13 +81,13 @@ export function useNavData() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const unarchivedProjects = useMemo(
-    () =>
-      projects && Array.isArray(projects) && projects.length > 0
-        ? projects.filter((project) => !project.is_archived)
-        : [],
-    [projects]
-  );
+  // const unarchivedProjects = useMemo(
+  //   () =>
+  //     projects && Array.isArray(projects) && projects.length > 0
+  //       ? projects.filter((project) => !project.is_archived)
+  //       : [],
+  //   [projects]
+  // );
 
   const data = useMemo(
     () => [
@@ -252,6 +251,13 @@ export function useNavData() {
             ? {
               title: t('View Record'),
               path: paths.dashboard.viewRecord.root,
+              icon: ICONS.course,
+            }
+            : null,
+          isAdmin
+            ? {
+              title: t('Facility Dashboard'),
+              path: paths.dashboard.facilityDashboard.root,
               icon: ICONS.course,
             }
             : null,

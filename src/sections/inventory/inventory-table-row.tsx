@@ -1,15 +1,12 @@
 // @mui
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import IconButton from '@mui/material/IconButton';
-import ListItemText from '@mui/material/ListItemText';
 // hooks
 import { useBoolean } from 'src/hooks/use-boolean';
 // components
-import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
 import { ConfirmDialog } from 'src/components/custom-dialog';
@@ -20,11 +17,10 @@ import AddInventoryDialog from './inventory-add-model';
 
 type Props = {
   row: any;
-  sr_no: number;
   onEditRow: VoidFunction;
 };
 
-export default function InventoryTableRow({ row, sr_no, onEditRow }: Props) {
+export default function InventoryTableRow({ row, onEditRow }: Props) {
 
   const confirm = useBoolean();
   const price = useBoolean();

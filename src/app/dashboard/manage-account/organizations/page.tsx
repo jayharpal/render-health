@@ -1,6 +1,5 @@
 // sections
 import { Metadata } from 'next';
-import { DashboardListView } from 'src/sections/dashboard/view';
 
 // ----------------------------------------------------------------------
 

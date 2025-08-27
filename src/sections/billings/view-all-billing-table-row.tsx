@@ -13,9 +13,6 @@ import Iconify from 'src/components/iconify';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 //
-import { Avatar, ListItemText } from '@mui/material';
-import { useTheme } from '@mui/system';
-// ----------------------------------------------------------------------
 
 type Props = {
   row: any;
@@ -24,7 +21,6 @@ type Props = {
 };
 
 export default function ViewAllBillingTableRow({ row, sr_no, onEditRow }: Props) {
-  const theme = useTheme();
   const confirm = useBoolean();
 
   const create = useBoolean();

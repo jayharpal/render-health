@@ -3,7 +3,6 @@ import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import dayjs from "dayjs";
-import { useState } from "react";
 import Iconify from "src/components/iconify";
 import { useBoolean } from "src/hooks/use-boolean";
 import CustomDateRangePicker from "../custom-date-range-picker/custom-date-range-picker";
