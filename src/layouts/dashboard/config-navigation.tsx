@@ -261,6 +261,43 @@ export function useNavData() {
               icon: ICONS.course,
             }
             : null,
+          isAdmin
+            ? {
+              title: t('Analytics'),
+              path: paths.dashboard.analytics.root,
+              icon: ICONS.course,
+            }
+            : null,
+          isAdmin
+            ? {
+              title: t('Availability'),
+              path: paths.dashboard.availability.root,
+              icon: ICONS.course,
+            }
+            : null,
+          isAdmin
+            ? {
+              title: t('Facility Appointment'),
+              path: paths.dashboard.facilityAppointment.root,
+              icon: ICONS.course,
+            }
+            : null,
+
+          isAdmin
+            ? {
+              title: t('Admission'),
+              path: paths.dashboard.admission.root,
+              icon: ICONS.course,
+            }
+            : null,
+          isAdmin
+            ? {
+              title: t('Pharmacy'),
+              path: paths.dashboard.pharmacy.root,
+              icon: ICONS.course,
+            }
+            : null,
+
           // PROJECTS
           // {
           //   title: t('Projects'),

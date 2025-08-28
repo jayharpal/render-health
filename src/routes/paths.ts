@@ -195,6 +195,21 @@ export const paths = {
     facilityDashboard: {
       root: `${ROOTS.DASHBOARD}/facility-dashboard`,
     },
+    analytics: {
+      root: `${ROOTS.DASHBOARD}/analytics`,
+    },
+    availability: {
+      root: `${ROOTS.DASHBOARD}/availability`,
+    },
+    facilityAppointment: {
+      root: `${ROOTS.DASHBOARD}/facility-appointment`,
+    },
+    admission: {
+      root: `${ROOTS.DASHBOARD}/admission`,
+    },
+    pharmacy: {
+      root: `${ROOTS.DASHBOARD}/pharmacy`,
+    },
     searchPatient: {
       root: `${ROOTS.DASHBOARD}/search-patient`,
     },

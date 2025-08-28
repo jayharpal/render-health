@@ -1936,62 +1936,146 @@ export const billingData = [
 
 
 export const labSections = [
-  {
-    title: "Blood Chemistry",
-    tests: [
-      { name: "Blood Urea Nitrogen (BUN)", value: 0, unit: "-", result: "-" },
-      { name: "Calcium (Ca)", value: 0, unit: "-", result: "-" },
-      { name: "Chloride (Cl)", value: 0, unit: "-", result: "-" },
-      { name: "Low Density Lipoprotein (LDL)", value: 0, unit: "-", result: "-" },
-      { name: "High Density Lipoprotein (HDL)", value: 0, unit: "-", result: "-" },
-      { name: "Creatinine (Creat)", value: 0, unit: "-", result: "-" },
-      { name: "Fasting Blood Sugar (FBS)", value: 0, unit: "-", result: "-" },
-      { name: "Post-Prandial Blood Sugar (PPBS)", value: 0, unit: "-", result: "-" },
-      { name: "Glucose Tolerance Test (GTT)", value: 0, unit: "-", result: "-" },
-      { name: "Potassium (K)", value: 0, unit: "-", result: "-" },
-      { name: "Sodium (Na)", value: 0, unit: "-", result: "-" },
-      { name: "Thyroid-Stimulating Hormone (TSH)", value: 0, unit: "-", result: "-" },
-      { name: "Urea", value: 0, unit: "-", result: "-" },
-      { name: "Complete Blood Count (CBC)", value: 0, unit: "-", result: "-" },
-      { name: "Hematocrit", value: 0, unit: "-", result: "-" },
-      { name: "Red Blood Cells", value: 0, unit: "-", result: "-" },
-      { name: "White Blood Cells", value: 0, unit: "-", result: "-" },
-      { name: "Platelets", value: 0, unit: "-", result: "-" },
-      { name: "Hemoglobin", value: 0, unit: "-", result: "-" },
-      { name: "Mean corpuscular (MCV)", value: 0, unit: "-", result: "-" },
-      { name: "Bicarbonate (Total CO2)", value: 0, unit: "-", result: "-" },
-      { name: "Albumin", value: 0, unit: "-", result: "-" },
-      { name: "Total Protein", value: 0, unit: "-", result: "-" },
-    ],
-  },
-  {
-    title: "Liver Functions Profile",
-    tests: [
-      { name: "Bil (T)", value: 0, unit: "-", result: "-" },
-      { name: "Bil (D)", value: 0, unit: "-", result: "-" },
-      { name: "SGOT", value: 0, unit: "-", result: "-" },
-      { name: "SGPT", value: 0, unit: "-", result: "-" },
-      { name: "GGT", value: 0, unit: "-", result: "-" },
-      { name: "ALK. ph", value: 0, unit: "-", result: "-" },
-      { name: "Albumin", value: 0, unit: "-", result: "-" },
-      { name: "P.T.", value: 0, unit: "-", result: "-" },
-    ],
-  },
-  {
-    title: "Hepatitis Markers",
-    tests: [
-      { name: "HAV", value: 0, unit: "-", result: "-" },
-      { name: "HAV-IgM", value: 0, unit: "-", result: "-" },
-      { name: "HAC-IgG", value: 0, unit: "-", result: "-" },
-      { name: "HBs AG", value: 0, unit: "-", result: "-" },
-      { name: "HBsAb", value: 0, unit: "-", result: "-" },
-      { name: "HBcIgM", value: 0, unit: "-", result: "-" },
-      { name: "HBc Total", value: 0, unit: "-", result: "-" },
-      { name: "HBc Ab", value: 0, unit: "-", result: "-" },
-      { name: "HBV.DNA by Taq Man", value: 0, unit: "-", result: "-" },
-      { name: "HBV Genotype", value: 0, unit: "-", result: "-" },
-    ],
-  },
+    {
+        title: "Blood Chemistry",
+        tests: [
+            { name: "Blood Urea Nitrogen (BUN)", value: 0, unit: "-", result: "-" },
+            { name: "Calcium (Ca)", value: 0, unit: "-", result: "-" },
+            { name: "Chloride (Cl)", value: 0, unit: "-", result: "-" },
+            { name: "Low Density Lipoprotein (LDL)", value: 0, unit: "-", result: "-" },
+            { name: "High Density Lipoprotein (HDL)", value: 0, unit: "-", result: "-" },
+            { name: "Creatinine (Creat)", value: 0, unit: "-", result: "-" },
+            { name: "Fasting Blood Sugar (FBS)", value: 0, unit: "-", result: "-" },
+            { name: "Post-Prandial Blood Sugar (PPBS)", value: 0, unit: "-", result: "-" },
+            { name: "Glucose Tolerance Test (GTT)", value: 0, unit: "-", result: "-" },
+            { name: "Potassium (K)", value: 0, unit: "-", result: "-" },
+            { name: "Sodium (Na)", value: 0, unit: "-", result: "-" },
+            { name: "Thyroid-Stimulating Hormone (TSH)", value: 0, unit: "-", result: "-" },
+            { name: "Urea", value: 0, unit: "-", result: "-" },
+            { name: "Complete Blood Count (CBC)", value: 0, unit: "-", result: "-" },
+            { name: "Hematocrit", value: 0, unit: "-", result: "-" },
+            { name: "Red Blood Cells", value: 0, unit: "-", result: "-" },
+            { name: "White Blood Cells", value: 0, unit: "-", result: "-" },
+            { name: "Platelets", value: 0, unit: "-", result: "-" },
+            { name: "Hemoglobin", value: 0, unit: "-", result: "-" },
+            { name: "Mean corpuscular (MCV)", value: 0, unit: "-", result: "-" },
+            { name: "Bicarbonate (Total CO2)", value: 0, unit: "-", result: "-" },
+            { name: "Albumin", value: 0, unit: "-", result: "-" },
+            { name: "Total Protein", value: 0, unit: "-", result: "-" },
+        ],
+    },
+    {
+        title: "Liver Functions Profile",
+        tests: [
+            { name: "Bil (T)", value: 0, unit: "-", result: "-" },
+            { name: "Bil (D)", value: 0, unit: "-", result: "-" },
+            { name: "SGOT", value: 0, unit: "-", result: "-" },
+            { name: "SGPT", value: 0, unit: "-", result: "-" },
+            { name: "GGT", value: 0, unit: "-", result: "-" },
+            { name: "ALK. ph", value: 0, unit: "-", result: "-" },
+            { name: "Albumin", value: 0, unit: "-", result: "-" },
+            { name: "P.T.", value: 0, unit: "-", result: "-" },
+        ],
+    },
+    {
+        title: "Hepatitis Markers",
+        tests: [
+            { name: "HAV", value: 0, unit: "-", result: "-" },
+            { name: "HAV-IgM", value: 0, unit: "-", result: "-" },
+            { name: "HAC-IgG", value: 0, unit: "-", result: "-" },
+            { name: "HBs AG", value: 0, unit: "-", result: "-" },
+            { name: "HBsAb", value: 0, unit: "-", result: "-" },
+            { name: "HBcIgM", value: 0, unit: "-", result: "-" },
+            { name: "HBc Total", value: 0, unit: "-", result: "-" },
+            { name: "HBc Ab", value: 0, unit: "-", result: "-" },
+            { name: "HBV.DNA by Taq Man", value: 0, unit: "-", result: "-" },
+            { name: "HBV Genotype", value: 0, unit: "-", result: "-" },
+        ],
+    },
 ];
 
 export const medicines = []
+
+
+export const doctorList = [
+    {
+        label: "Dr. John Okafor",
+        value: "Dr. John Okafor"
+    },
+    {
+        label: "Dr. Amina Bello",
+        value: "Dr. Amina Bello"
+    },
+    {
+        label: "Dr. Samuel Eze",
+        value: "Dr. Samuel Eze"
+    },
+]
+
+export const appointmentTypes = [
+    {
+        label: "Facility Appointment",
+        value: "Facility Appointment"
+    },
+    {
+        label: "Teleconsultation Appointment",
+        value: "Teleconsultation Appointment"
+    },
+]
+
+
+export const dummyAppointments = [
+    {
+        date: "28 Aug 2025",
+        type: "General Checkup",
+        patient: "John Doe",
+        time: "10:00 AM",
+    },
+    {
+        date: "28 Aug 2025",
+        type: "Dental Cleaning",
+        patient: "Jane Smith",
+        time: "11:30 AM",
+    },
+    {
+        date: "29 Aug 2025",
+        type: "Eye Consultation",
+        patient: "Alex Johnson",
+        time: "02:00 PM",
+    },
+    {
+        date: "30 Aug 2025",
+        type: "Physiotherapy",
+        patient: "Emma Brown",
+        time: "04:00 PM",
+    },
+    {
+        date: "31 Aug 2025",
+        type: "Follow-up Visit",
+        patient: "Michael Lee",
+        time: "09:30 AM",
+    },
+];
+
+
+export const dummyMedicines = [
+    { name: "Paracetamol 500mg" },
+    { name: "Ibuprofen 200mg" },
+    { name: "Amoxicillin 250mg" },
+    { name: "Vitamin C Tablets" },
+    { name: "Cough Syrup" },
+    { name: "Insulin Injection" },
+    { name: "Metformin 500mg" },
+    { name: "Antacid Suspension" },
+    { name: "Pain Relief Spray" },
+    { name: "Abc" },
+    { name: "B" },
+    { name: "CASF" },
+    { name: "Dfhay" },
+    { name: "Eghf" },
+    { name: "Hi" },
+    { name: "Kxsd" },
+    { name: "LOSNA" },
+    { name: "assd" },
+    { name: "rewew" },
+];
