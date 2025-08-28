@@ -5,10 +5,13 @@ import { Button, Card, CardContent, Typography, Grid, Box } from '@mui/material'
 import { useTheme } from '@mui/material/styles';
 import { useForm } from 'react-hook-form';
 import FormProvider from 'src/components/hook-form';
+import { paths } from 'src/routes/paths';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import Iconify from 'src/app/components/iconify';
+import { useRouter } from 'src/routes/hook';
 import AddPatientDialog from '../patient-add-model';
+
 
 const data = [
   { date: 'Thu, 21/08/25', patients: 0 },
@@ -21,6 +24,7 @@ export default function FacilityDashboardList() {
   const theme = useTheme();
   const methods = useForm();
   const create = useBoolean();
+  const router = useRouter();
 
   const [expanded, setExpanded] = useState(true);
   const [expandedRevenue, setExpandedRevenue] = useState(true);
@@ -34,13 +38,15 @@ export default function FacilityDashboardList() {
           Dashboard Overview
         </Typography>
 
-        {/* Action Buttons */}
         <Grid container spacing={2} sx={{ mb: 3 }}>
           <Grid item>
             <Button
               variant="contained"
-              color="secondary"
+              color="primary"
               sx={{ px: 3, py: 1.5, borderRadius: 2 }}
+              onClick={() => {
+                router.push(paths.dashboard.searchPatient.root);
+              }}
             >
               Patient Search
             </Button>
@@ -267,7 +273,6 @@ export default function FacilityDashboardList() {
           }
         </Box>
       </Box>
-
 
       <AddPatientDialog open={create.value} onClose={create.onFalse} />
     </FormProvider>

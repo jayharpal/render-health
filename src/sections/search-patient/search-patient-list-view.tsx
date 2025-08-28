@@ -77,7 +77,7 @@ export default function SearchPatientListView() {
 
             <Stack direction='row' gap={1} alignItems="center" justifyContent="center" marginY={3} >
               <LoadingButton
-                type="submit"
+                // type="submit"
                 variant="contained"
                 size="medium"
               // loading={isLoading}
