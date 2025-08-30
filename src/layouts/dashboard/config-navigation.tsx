@@ -297,6 +297,26 @@ export function useNavData() {
               icon: ICONS.course,
             }
             : null,
+          isAdmin
+            ? {
+              title: t('Facility Setting'),
+              path: paths.dashboard.facilitySetting.root,
+              icon: ICONS.course,
+            }
+            : null,
+
+          isAdmin
+            ? {
+              title: t('Facility Inventory'),
+              path: paths.dashboard.facilityInventory.root,
+              icon: ICONS.inquiry,
+              children: [
+                { title: t('Inventory'), path: paths.dashboard.facilityInventory.inventory },
+                { title: t('Manage Inventory'), path: paths.dashboard.facilityInventory.manageInventory },
+              ],
+            }
+            : null,
+
 
           // PROJECTS
           // {

@@ -6,23 +6,20 @@ import Container from '@mui/material/Container';
 import { useSettingsContext } from 'src/components/settings';
 // types
 //
-import { Box, Stack, useTheme } from '@mui/system';
-import { Button, Divider, InputAdornment, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from '@mui/material';
+import { Box, Stack } from '@mui/system';
+import { Button, InputAdornment, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from '@mui/material';
 
-import FormProvider, { RHFDateField, RHFTextField } from 'src/components/hook-form';
+import FormProvider from 'src/components/hook-form';
 import { useForm } from 'react-hook-form';
-import { LoadingButton } from '@mui/lab';
 import { hasData } from 'src/utils/helper';
 import { useEffect, useState } from 'react';
 import { useTable } from 'src/components/table';
-import { useBoolean } from 'src/hooks/use-boolean';
 import { dummyMedicines } from 'src/utils/dummyMembers';
 import Iconify from 'src/app/components/iconify';
 import { emptyRows, TableEmptyRows, TableHeadCustom, TableNoData, TablePaginationCustom } from 'src/app/components/table';
 import Scrollbar from 'src/app/components/scrollbar';
 import { LoadingScreen } from 'src/app/components/loading-screen';
 import PharmacyTableRow from './pharmacy-table-row';
-
 
 // ----------------------------------------------------------------------
 
@@ -36,16 +33,9 @@ export default function PharmacyView() {
   const settings = useSettingsContext();
   const methods = useForm();
 
-  const theme = useTheme();
-  const create = useBoolean();
-
   const [searchQuery, setSearchQuery] = useState('');
   const [tableData, setTableData] = useState<any[] | []>([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  // useEffect(() => {
-  //   dispatch(getInquiry(debouncedSearchQuery));
-  // }, [debouncedSearchQuery, dispatch]);
 
   useEffect(() => {
     if (!searchQuery) {
@@ -111,7 +101,7 @@ export default function PharmacyView() {
           alignItems="center"
           width="100%"
           sx={{
-            mb: { xs: 3, md: 5 },
+            mb: 3,
           }}
           justifyContent="space-between"
         >
