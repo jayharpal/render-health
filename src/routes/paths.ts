@@ -189,6 +189,9 @@ export const paths = {
     settings: {
       root: `${ROOTS.DASHBOARD}/settings`,
     },
+    facilitySetting: {
+      root: `${ROOTS.DASHBOARD}/facility-setting`,
+    },
     healthRecord: {
       root: `${ROOTS.DASHBOARD}/health-record`,
     },
@@ -212,6 +215,11 @@ export const paths = {
     },
     searchPatient: {
       root: `${ROOTS.DASHBOARD}/search-patient`,
+    },
+    facilityInventory: {
+      root: `${ROOTS.DASHBOARD}/facility-inventory`,
+      inventory: `${ROOTS.DASHBOARD}/facility-inventory/inventory`,
+      manageInventory: `${ROOTS.DASHBOARD}/facility-inventory/manage-inventory`,
     },
     inquiry: {
       root: `${ROOTS.DASHBOARD}/inquiry`,

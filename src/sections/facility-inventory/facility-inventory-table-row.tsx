@@ -1,19 +1,15 @@
 // @mui
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import IconButton from '@mui/material/IconButton';
-import ListItemText from '@mui/material/ListItemText';
 // hooks
 import { useBoolean } from 'src/hooks/use-boolean';
 // components
-import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
 import { ConfirmDialog } from 'src/components/custom-dialog';
-import PharmacyDialog from './pharmacy-model';
 //
 // ----------------------------------------------------------------------
 
@@ -22,11 +18,11 @@ type Props = {
   onEditRow: VoidFunction;
 };
 
-export default function PharmacyTableRow({ row, onEditRow }: Props) {
+export default function FacilityInventoryTableRow({ row, onEditRow }: Props) {
 
   const confirm = useBoolean();
-
-  const create = useBoolean();
+  const price = useBoolean();
+  const quickEdit = useBoolean();
 
   const popover = usePopover();
 
@@ -34,21 +30,24 @@ export default function PharmacyTableRow({ row, onEditRow }: Props) {
     <>
       <TableRow>
         <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.name}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.dosageForm}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.strengths}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.count}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.description}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.qty}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.lowStockAlert}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row?.price}</TableCell>
 
         <TableCell align="right" sx={{ px: 1, whiteSpace: 'nowrap' }}>
-          <Tooltip title="Quick Info" placement="top" arrow>
-            <IconButton color={create.value ? 'inherit' : 'default'} onClick={create.onTrue}>
-              <Iconify icon="mdi:eye" />
-            </IconButton>
-          </Tooltip>
+          <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
+            <Iconify icon="eva:more-vertical-fill" />
+          </IconButton>
+          
         </TableCell>
       </TableRow>
-
-      <PharmacyDialog
-        open={create.value}
-        onClose={create.onFalse}
-        currentBooking={row}
-      />
+      {/* 
+      <AddPriceDialog open={price.value} onClose={price.onFalse} />
+      <AddInventoryDialog open={quickEdit.value} onClose={quickEdit.onFalse} /> */}
 
       <CustomPopover
         open={popover.open}
@@ -58,6 +57,24 @@ export default function PharmacyTableRow({ row, onEditRow }: Props) {
       >
         <MenuItem
           onClick={() => {
+            price.onTrue();
+            popover.onClose();
+          }}
+        >
+          <Iconify icon="iconoir:money-square" />
+          Price
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            quickEdit.onTrue();
+            popover.onClose();
+          }}
+        >
+          <Iconify icon="solar:pen-bold" />
+          Edit
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
             confirm.onTrue();
             popover.onClose();
           }}
@@ -65,16 +82,6 @@ export default function PharmacyTableRow({ row, onEditRow }: Props) {
         >
           <Iconify icon="solar:trash-bin-trash-bold" />
           Delete
-        </MenuItem>
-
-        <MenuItem
-          onClick={() => {
-            onEditRow();
-            popover.onClose();
-          }}
-        >
-          <Iconify icon="solar:pen-bold" />
-          Edit
         </MenuItem>
       </CustomPopover>
 

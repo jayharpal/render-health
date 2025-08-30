@@ -2079,3 +2079,43 @@ export const dummyMedicines = [
     { name: "assd" },
     { name: "rewew" },
 ];
+
+export const FavoriteDiagnosis = [
+    { label: "Hypertension", value: "hypertension" },
+    { label: "Diabetes Mellitus", value: "diabetes_mellitus" },
+    { label: "Asthma", value: "asthma" },
+    { label: "Chronic Kidney Disease", value: "chronic_kidney_disease" },
+    { label: "Coronary Artery Disease", value: "coronary_artery_disease" },
+];
+
+export const TestOptions = [
+    { label: "HIV", value: "hiv" },
+    { label: "Thyroid Disorder", value: "thyroid_disorder" },
+    { label: "Thyroid", value: "thyroid" },
+    { label: "Kidney Disease", value: "kidney_disease" },
+    { label: "HCV", value: "hcv" },
+];
+
+
+export const ManageInventoryData = [
+    {
+        group: "INV001",
+        priceType: "Private Patient",
+        uploadedDate: "22-07-2022",
+    },
+    {
+        group: "INV001",
+        priceType: "rhsc",
+        uploadedDate: "28-07-2022",
+    },
+    {
+        group: "INV001",
+        priceType: "Private Patient",
+        uploadedDate: "29-07-2024",
+    },
+    {
+        priceType: "Private Patient",
+        group: "INV001",
+        uploadedDate: "30-08-2022",
+    },
+];

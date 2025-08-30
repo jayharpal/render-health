@@ -124,6 +124,7 @@ export function RHFMultiSelect({
           <Select
             {...field}
             multiple
+            value={field.value || []} 
             displayEmpty={!!placeholder}
             id={`multiple-${name}`}
             labelId={name}
@@ -131,7 +132,7 @@ export function RHFMultiSelect({
             renderValue={renderValues}
           >
             {options.map((option) => {
-              const selected = field.value.includes(option.value);
+              const selected = field?.value?.includes(option?.value);
 
               return (
                 <MenuItem key={option.value} value={option.value}>
